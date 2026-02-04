@@ -1,0 +1,1128 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>hypgeom.h – support for hypergeometric series &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>hypgeom.h</strong> – support for hypergeometric series</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="hypgeom-h-support-for-hypergeometric-series">
+<span id="hypgeom"></span><h1><strong>hypgeom.h</strong> – support for hypergeometric series<a class="headerlink" href="#hypgeom-h-support-for-hypergeometric-series" title="Link to this heading">¶</a></h1>
+<p>This module provides functions for high-precision evaluation of series
+of the form</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=0}^{n-1} \frac{A(k)}{B(k)} z^k \prod_{j=1}^k \frac{P(j)}{Q(j)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A, B, P, Q\)</span> are polynomials. The present version only supports
+<span class="math notranslate nohighlight">\(A, B, P, Q \in \mathbb{Z}[k]\)</span> (represented using the
+FLINT <em>fmpz_poly_t</em> type). This module also provides functions
+for high-precision evaluation of infinite series (<span class="math notranslate nohighlight">\(n \to \infty\)</span>),
+with automatic, rigorous error bounding.</p>
+<p>Note that we can standardize to <span class="math notranslate nohighlight">\(A = B = 1\)</span> by
+setting <span class="math notranslate nohighlight">\(\tilde P(k) = P(k) A(k) B(k-1), \tilde Q(k) = Q(k) A(k-1) B(k)\)</span>.
+However, separating out <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is convenient and improves
+efficiency during evaluation.</p>
+<section id="strategy-for-error-bounding">
+<h2>Strategy for error bounding<a class="headerlink" href="#strategy-for-error-bounding" title="Link to this heading">¶</a></h2>
+<p>We wish to evaluate <span class="math notranslate nohighlight">\(S(z) = \sum_{k=0}^{\infty} T(k) z^k\)</span> where <span class="math notranslate nohighlight">\(T(k)\)</span>
+satisfies <span class="math notranslate nohighlight">\(T(0) = 1\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[T(k) = R(k) T(k-1) = \left( \frac{P(k)}{Q(k)} \right) T(k-1)\]</div>
+<p>for given polynomials</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}P(k) = a_p k^p + a_{p-1} k^{p-1} + \ldots a_0\\Q(k) = b_q k^q + b_{q-1} k^{q-1} + \ldots b_0.\end{aligned}\end{align} \]</div>
+<p>For convergence, we require <span class="math notranslate nohighlight">\(p &lt; q\)</span>, or <span class="math notranslate nohighlight">\(p = q\)</span> with <span class="math notranslate nohighlight">\(|z| |a_p| &lt; |b_q|\)</span>.
+We also assume that <span class="math notranslate nohighlight">\(P(k)\)</span> and <span class="math notranslate nohighlight">\(Q(k)\)</span> have no roots among the positive
+integers (if there are positive integer roots, the sum is either finite
+or undefined). With these conditions satisfied, our goal is to find a
+parameter <span class="math notranslate nohighlight">\(n \ge 0\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\left\lvert \sum_{k=n}^{\infty} T(k) z^k \right\rvert \le 2^{-d}.\]</div>
+<p>We can rewrite the hypergeometric term ratio as</p>
+<div class="math notranslate nohighlight">
+\[z R(k) = z \frac{P(k)}{Q(k)} =
+    z \left( \frac{a_p}{b_q} \right) \frac{1}{k^{q-p}} F(k)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[F(k) = \frac{
+1 + \tilde a_{1} / k + \tilde a_{2} / k^2 + \ldots + \tilde a_q / k^p
+}{
+1 + \tilde b_{1} / k + \tilde b_{2} / k^2 + \ldots + \tilde b_q / k^q
+} = 1 + O(1/k)\]</div>
+<p>and where <span class="math notranslate nohighlight">\(\tilde a_i = a_{p-i} / a_p\)</span>, <span class="math notranslate nohighlight">\(\tilde b_i = b_{q-i} / b_q\)</span>.
+Next, we define</p>
+<div class="math notranslate nohighlight">
+\[C = \max_{1 \le i \le p} |\tilde a_i|^{(1/i)},
+\quad D = \max_{1 \le i \le q} |\tilde b_i|^{(1/i)}.\]</div>
+<p>Now, if <span class="math notranslate nohighlight">\(k &gt; C\)</span>, the magnitude of the numerator of <span class="math notranslate nohighlight">\(F(k)\)</span> is
+bounded from above by</p>
+<div class="math notranslate nohighlight">
+\[1 + \sum_{i=1}^p \left(\frac{C}{k}\right)^i \le 1 + \frac{C}{k-C}\]</div>
+<p>and if <span class="math notranslate nohighlight">\(k &gt; 2D\)</span>, the magnitude of the denominator of <span class="math notranslate nohighlight">\(F(k)\)</span> is bounded
+from below by</p>
+<div class="math notranslate nohighlight">
+\[1 - \sum_{i=1}^q \left(\frac{D}{k}\right)^i \ge 1 + \frac{D}{D-k}.\]</div>
+<p>Putting the inequalities together gives the following bound,
+valid for <span class="math notranslate nohighlight">\(k &gt; K = \max(C, 2D)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[|F(k)| \le \frac{k (k-D)}{(k-C)(k-2D)} = \left(1 + \frac{C}{k-C} \right)
+\left(1 + \frac{D}{k-2D} \right).\]</div>
+<p>Let <span class="math notranslate nohighlight">\(r = q-p\)</span> and <span class="math notranslate nohighlight">\(\tilde z = |z a_p / b_q|\)</span>. Assuming
+<span class="math notranslate nohighlight">\(k &gt; \max(C, 2D, {\tilde z}^{1/r})\)</span>, we have</p>
+<div class="math notranslate nohighlight">
+\[|z R(k)| \le G(k) = \frac{\tilde z F(k)}{k^r}\]</div>
+<p>where <span class="math notranslate nohighlight">\(G(k)\)</span> is monotonically decreasing. Now we just need to find an
+<span class="math notranslate nohighlight">\(n\)</span> such that <span class="math notranslate nohighlight">\(G(n) &lt; 1\)</span> and for which <span class="math notranslate nohighlight">\(|T(n)| / (1 - G(n)) \le 2^{-d}\)</span>.
+This can be done by computing a floating-point guess for <span class="math notranslate nohighlight">\(n\)</span> then
+trying successively larger values.</p>
+<p>This strategy leaves room for some improvement. For example, if
+<span class="math notranslate nohighlight">\(\tilde b_1\)</span> is positive and large, the bound <span class="math notranslate nohighlight">\(B\)</span> becomes very pessimistic
+(a larger positive <span class="math notranslate nohighlight">\(\tilde b_1\)</span> causes faster convergence,
+not slower convergence).</p>
+</section>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.hypgeom_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_struct</span></span></span><a class="headerlink" href="#c.hypgeom_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.hypgeom_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_t</span></span></span><a class="headerlink" href="#c.hypgeom_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Stores polynomials <em>A</em>, <em>B</em>, <em>P</em>, <em>Q</em> and precomputed bounds,
+representing a fixed hypergeometric series.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.hypgeom_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.hypgeom_t" title="hypgeom_t"><span class="n"><span class="pre">hypgeom_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">hyp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.hypgeom_init" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.hypgeom_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.hypgeom_t" title="hypgeom_t"><span class="n"><span class="pre">hypgeom_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">hyp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.hypgeom_clear" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="error-bounding">
+<h2>Error bounding<a class="headerlink" href="#error-bounding" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.hypgeom_estimate_terms">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_estimate_terms</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mag.html#c.mag_t" title="mag_t"><span class="n"><span class="pre">mag_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.hypgeom_estimate_terms" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes an approximation of the largest <span class="math notranslate nohighlight">\(n\)</span> such
+that <span class="math notranslate nohighlight">\(|z|^n/(n!)^r = 2^{-d}\)</span>, giving a first-order estimate of the
+number of terms needed to approximate the sum of a hypergeometric
+series of weight <span class="math notranslate nohighlight">\(r \ge 0\)</span> and argument <span class="math notranslate nohighlight">\(z\)</span> to an absolute
+precision of <span class="math notranslate nohighlight">\(d \ge 0\)</span> bits. If <span class="math notranslate nohighlight">\(r = 0\)</span>, the direct solution of the
+equation is given by <span class="math notranslate nohighlight">\(n = (\log(1-z) - d \log 2) / \log z\)</span>.
+If <span class="math notranslate nohighlight">\(r &gt; 0\)</span>, using <span class="math notranslate nohighlight">\(\log n! \approx n \log n - n\)</span> gives an equation
+that can be solved in terms of the Lambert <em>W</em>-function as
+<span class="math notranslate nohighlight">\(n = (d \log 2) / (r\,W\!(t))\)</span> where
+<span class="math notranslate nohighlight">\(t = (d \log 2) / (e r z^{1/r})\)</span>.</p>
+<p>The evaluation is done using double precision arithmetic.
+The function aborts if the computed value of <span class="math notranslate nohighlight">\(n\)</span> is greater
+than or equal to LONG_MAX / 2.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.hypgeom_bound">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_bound</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="mag.html#c.mag_t" title="mag_t"><span class="n"><span class="pre">mag_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">error</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">K</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mag.html#c.mag_t" title="mag_t"><span class="n"><span class="pre">mag_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">TK</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mag.html#c.mag_t" title="mag_t"><span class="n"><span class="pre">mag_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.hypgeom_bound" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes a truncation parameter sufficient to achieve <em>prec</em> bits
+of absolute accuracy, according to the strategy described above.
+The input consists of <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(K\)</span>, precomputed bound for <span class="math notranslate nohighlight">\(T(K)\)</span>,
+and <span class="math notranslate nohighlight">\(\tilde z = z (a_p / b_q)\)</span>, such that for <span class="math notranslate nohighlight">\(k &gt; K\)</span>, the hypergeometric
+term ratio is bounded by</p>
+<div class="math notranslate nohighlight">
+\[\frac{\tilde z}{k^r} \frac{k(k-D)}{(k-C)(k-2D)}.\]</div>
+<p>Given this information, we compute a <span class="math notranslate nohighlight">\(\varepsilon\)</span> and an
+integer <span class="math notranslate nohighlight">\(n\)</span> such that
+<span class="math notranslate nohighlight">\(\left| \sum_{k=n}^{\infty} T(k) \right| \le \varepsilon \le 2^{-\mathrm{prec}}\)</span>.
+The output variable <em>error</em> is set to the value of <span class="math notranslate nohighlight">\(\varepsilon\)</span>,
+and <span class="math notranslate nohighlight">\(n\)</span> is returned.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.hypgeom_precompute">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hypgeom_precompute</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.hypgeom_t" title="hypgeom_t"><span class="n"><span class="pre">hypgeom_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">hyp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.hypgeom_precompute" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Precomputes the bounds data <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(K\)</span> and an upper bound for <span class="math notranslate nohighlight">\(T(K)\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="summation">
+<h2>Summation<a class="headerlink" href="#summation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arb_hypgeom_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arb_hypgeom_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="arb.html#c.arb_t" title="arb_t"><span class="n"><span class="pre">arb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">P</span></span>, <a class="reference internal" href="arb.html#c.arb_t" title="arb_t"><span class="n"><span class="pre">arb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.hypgeom_t" title="hypgeom_t"><span class="n"><span class="pre">hypgeom_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">hyp</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arb_hypgeom_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(P, Q\)</span> such that <span class="math notranslate nohighlight">\(P / Q = \sum_{k=0}^{n-1} T(k)\)</span> where <span class="math notranslate nohighlight">\(T(k)\)</span>
+is defined by <em>hyp</em>,
+using binary splitting and a working precision of <em>prec</em> bits.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.arb_hypgeom_infsum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arb_hypgeom_infsum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="arb.html#c.arb_t" title="arb_t"><span class="n"><span class="pre">arb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">P</span></span>, <a class="reference internal" href="arb.html#c.arb_t" title="arb_t"><span class="n"><span class="pre">arb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Q</span></span>, <a class="reference internal" href="#c.hypgeom_t" title="hypgeom_t"><span class="n"><span class="pre">hypgeom_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">hyp</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">tol</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.arb_hypgeom_infsum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(P, Q\)</span> such that <span class="math notranslate nohighlight">\(P / Q = \sum_{k=0}^{\infty} T(k)\)</span> where <span class="math notranslate nohighlight">\(T(k)\)</span>
+is defined by <em>hyp</em>, using binary splitting and
+working precision of <em>prec</em> bits.
+The number of terms is chosen automatically to bound the
+truncation error by at most <span class="math notranslate nohighlight">\(2^{-\mathrm{tol}}\)</span>.
+The bound for the truncation error is included in the output
+as part of <em>P</em>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="bernoulli.html"
+          title="Previous article"
+          ><strong>bernoulli.h</strong> – support for Bernoulli numbers</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="partitions.html"
+          title="Next article"
+          ><strong>partitions.h</strong> – computation of the partition function</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>hypgeom.h</strong> – support for hypergeometric series</a><ul>
+<li><a class="reference internal" href="#strategy-for-error-bounding">Strategy for error bounding</a></li>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_struct"><code class="docutils literal notranslate"><span class="pre">hypgeom_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_t"><code class="docutils literal notranslate"><span class="pre">hypgeom_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_init"><code class="docutils literal notranslate"><span class="pre">hypgeom_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_clear"><code class="docutils literal notranslate"><span class="pre">hypgeom_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-bounding">Error bounding</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_estimate_terms"><code class="docutils literal notranslate"><span class="pre">hypgeom_estimate_terms()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_bound"><code class="docutils literal notranslate"><span class="pre">hypgeom_bound()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_precompute"><code class="docutils literal notranslate"><span class="pre">hypgeom_precompute()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summation">Summation</a><ul>
+<li><a class="reference internal" href="#c.arb_hypgeom_sum"><code class="docutils literal notranslate"><span class="pre">arb_hypgeom_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.arb_hypgeom_infsum"><code class="docutils literal notranslate"><span class="pre">arb_hypgeom_infsum()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>hypgeom.h</strong> – support for hypergeometric series</a><ul>
+<li><a class="reference internal" href="#strategy-for-error-bounding">Strategy for error bounding</a></li>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_struct"><code class="docutils literal notranslate"><span class="pre">hypgeom_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_t"><code class="docutils literal notranslate"><span class="pre">hypgeom_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_init"><code class="docutils literal notranslate"><span class="pre">hypgeom_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_clear"><code class="docutils literal notranslate"><span class="pre">hypgeom_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-bounding">Error bounding</a><ul>
+<li><a class="reference internal" href="#c.hypgeom_estimate_terms"><code class="docutils literal notranslate"><span class="pre">hypgeom_estimate_terms()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_bound"><code class="docutils literal notranslate"><span class="pre">hypgeom_bound()</span></code></a></li>
+<li><a class="reference internal" href="#c.hypgeom_precompute"><code class="docutils literal notranslate"><span class="pre">hypgeom_precompute()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#summation">Summation</a><ul>
+<li><a class="reference internal" href="#c.arb_hypgeom_sum"><code class="docutils literal notranslate"><span class="pre">arb_hypgeom_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.arb_hypgeom_infsum"><code class="docutils literal notranslate"><span class="pre">arb_hypgeom_infsum()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

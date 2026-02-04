@@ -1,0 +1,1631 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>fq_zech_mat.h – matrices over finite fields (Zech logarithm representation) &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="fq-zech-mat-h-matrices-over-finite-fields-zech-logarithm-representation">
+<span id="fq-zech-mat"></span><h1><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)<a class="headerlink" href="#fq-zech-mat-h-matrices-over-finite-fields-zech-logarithm-representation" title="Link to this heading">¶</a></h1>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fq_zech_mat_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_struct</span></span></span><a class="headerlink" href="#c.fq_zech_mat_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fq_zech_mat_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_t</span></span></span><a class="headerlink" href="#c.fq_zech_mat_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">rows</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">cols</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a <code class="docutils literal notranslate"><span class="pre">rows</span></code>-by-<code class="docutils literal notranslate"><span class="pre">cols</span></code> matrix with
+coefficients in <span class="math notranslate nohighlight">\(\mathbf{F}_{q}\)</span> given by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>. All elements
+are set to zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_init_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_init_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_init_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">mat</span></code> and sets its dimensions and elements to
+those of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the matrix and releases any memory it used. The matrix
+cannot be used again until it is initialised. This function must be
+called exactly once when finished using an <code class="docutils literal notranslate"><span class="pre">fq_zech_mat_t</span></code> object.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a copy of <code class="docutils literal notranslate"><span class="pre">src</span></code>. It is assumed
+that <code class="docutils literal notranslate"><span class="pre">mat</span></code> and <code class="docutils literal notranslate"><span class="pre">src</span></code> have identical dimensions.</p>
+</dd></dl>
+
+</section>
+<section id="basic-properties-and-manipulation">
+<h2>Basic properties and manipulation<a class="headerlink" href="#basic-properties-and-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_entry">
+<a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_entry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_entry" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Directly accesses the entry in <code class="docutils literal notranslate"><span class="pre">mat</span></code> in row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span>,
+indexed from zero. No bounds checking is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_entry_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_entry_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_t" title="fq_zech_t"><span class="n"><span class="pre">fq_zech_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_entry_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the entry in <code class="docutils literal notranslate"><span class="pre">mat</span></code> in row <span class="math notranslate nohighlight">\(i\)</span> and column <span class="math notranslate nohighlight">\(j\)</span> to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_nrows">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_nrows</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_nrows" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of rows in <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_ncols">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_ncols</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_ncols" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices. The dimensions of <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code>
+are allowed to be different.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_swap_entrywise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_swap_entrywise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_swap_entrywise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices by swapping the individual entries rather than swapping
+the contents of the structs.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets all entries of <code class="docutils literal notranslate"><span class="pre">mat</span></code> to 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets all diagonal entries of <code class="docutils literal notranslate"><span class="pre">mat</span></code> to 1 and all other entries to 0.</p>
+</dd></dl>
+
+</section>
+<section id="conversions">
+<h2>Conversions<a class="headerlink" href="#conversions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_set_nmod_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_set_nmod_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_set_nmod_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the matrix <code class="docutils literal notranslate"><span class="pre">mat1</span></code> to the matrix <code class="docutils literal notranslate"><span class="pre">mat2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_set_fmpz_mod_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_set_fmpz_mod_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_mod_mat.html#c.fmpz_mod_mat_t" title="fmpz_mod_mat_t"><span class="n"><span class="pre">fmpz_mod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_set_fmpz_mod_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the matrix <code class="docutils literal notranslate"><span class="pre">mat1</span></code> to the matrix <code class="docutils literal notranslate"><span class="pre">mat2</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="concatenate">
+<h2>Concatenate<a class="headerlink" href="#concatenate" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_concat_vertical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_concat_vertical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_concat_vertical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to vertical concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(k \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code> : <span class="math notranslate nohighlight">\((m + k) \times n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_concat_horizontal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_concat_horizontal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_concat_horizontal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to horizontal concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(m \times k\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code>  : <span class="math notranslate nohighlight">\(m \times (n + k)\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="printing">
+<h2>Printing<a class="headerlink" href="#printing" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_print_pretty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_print_pretty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_print_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pretty-prints <code class="docutils literal notranslate"><span class="pre">mat</span></code> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. A header is printed
+followed by the rows enclosed in brackets.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_fprint_pretty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_fprint_pretty</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_fprint_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pretty-prints <code class="docutils literal notranslate"><span class="pre">mat</span></code> to <code class="docutils literal notranslate"><span class="pre">file</span></code>. A header is printed
+followed by the rows enclosed in brackets.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <code class="docutils literal notranslate"><span class="pre">mat</span></code> to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. A header is printed followed
+by the rows enclosed in brackets.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <code class="docutils literal notranslate"><span class="pre">mat</span></code> to <code class="docutils literal notranslate"><span class="pre">file</span></code>. A header is printed followed by
+the rows enclosed in brackets.</p>
+<p>In case of success, returns a positive value.  In case of failure,
+returns a non-positive value.</p>
+</dd></dl>
+
+</section>
+<section id="window">
+<h2>Window<a class="headerlink" href="#window" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_window_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_window_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r1</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c1</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r2</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_window_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> to be an <code class="docutils literal notranslate"><span class="pre">r2</span> <span class="pre">-</span> <span class="pre">r1</span></code> by
+<code class="docutils literal notranslate"><span class="pre">c2</span> <span class="pre">-</span> <span class="pre">c1</span></code> submatrix of <code class="docutils literal notranslate"><span class="pre">mat</span></code> whose <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> entry
+is the <code class="docutils literal notranslate"><span class="pre">(r1,</span> <span class="pre">c1)</span></code> entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.  The memory for the
+elements of <code class="docutils literal notranslate"><span class="pre">window</span></code> is shared with <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_window_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_window_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_window_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> and releases any memory that it
+uses.  Note that the memory to the underlying matrix that
+<code class="docutils literal notranslate"><span class="pre">window</span></code> points to is not freed.</p>
+</dd></dl>
+
+</section>
+<section id="random-matrix-generation">
+<h2>Random matrix generation<a class="headerlink" href="#random-matrix-generation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the elements of <code class="docutils literal notranslate"><span class="pre">mat</span></code> to random elements of
+<span class="math notranslate nohighlight">\(\mathbf{F}_{q}\)</span>, given by <code class="docutils literal notranslate"><span class="pre">ctx</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randpermdiag">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randpermdiag</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">diag</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randpermdiag" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a random permutation of the diagonal matrix
+with <span class="math notranslate nohighlight">\(n\)</span> leading entries given by the vector <code class="docutils literal notranslate"><span class="pre">diag</span></code>. It is
+assumed that the main diagonal of <code class="docutils literal notranslate"><span class="pre">mat</span></code> has room for at
+least <span class="math notranslate nohighlight">\(n\)</span> entries.</p>
+<p>Returns <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, depending on whether the permutation is even
+or odd respectively.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randrank">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randrank</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">rank</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randrank" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a random sparse matrix with the given rank,
+having exactly as many non-zero elements as the rank, with the
+non-zero elements being uniformly random elements of
+<span class="math notranslate nohighlight">\(\mathbf{F}_{q}\)</span>.</p>
+<p>The matrix can be transformed into a dense matrix with unchanged
+rank by subsequently calling <a class="reference internal" href="#c.fq_zech_mat_randops" title="fq_zech_mat_randops"><code class="xref c c-func docutils literal notranslate"><span class="pre">fq_zech_mat_randops()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randops">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randops</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">count</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randops" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Randomises <code class="docutils literal notranslate"><span class="pre">mat</span></code> by performing elementary row or column
+operations. More precisely, at most <code class="docutils literal notranslate"><span class="pre">count</span></code> random additions
+or subtractions of distinct rows and columns will be performed.
+This leaves the rank (and for square matrices, determinant)
+unchanged.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randtril">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randtril</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">unit</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randtril" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a random lower triangular matrix. If
+<code class="docutils literal notranslate"><span class="pre">unit</span></code> is 1, it will have ones on the main diagonal,
+otherwise it will have random nonzero entries on the main
+diagonal.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_randtriu">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_randtriu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">unit</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_randtriu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to a random upper triangular matrix. If
+<code class="docutils literal notranslate"><span class="pre">unit</span></code> is 1, it will have ones on the main diagonal,
+otherwise it will have random nonzero entries on the main
+diagonal.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if mat1 and mat2 have the same dimensions and elements,
+and zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if all entries <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero, and
+otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if all entries <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero except the
+diagonal entries which must be one, otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_is_empty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_is_empty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_is_empty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows or the number of
+columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code> is zero, and otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_is_square">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_is_square</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_is_square" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows is equal to the
+number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>, and otherwise returns zero.</p>
+</dd></dl>
+
+</section>
+<section id="transpose">
+<h2>Transpose<a class="headerlink" href="#transpose" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_transpose">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_transpose</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_transpose" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(A^T\)</span>, the transpose of <span class="math notranslate nohighlight">\(A\)</span>. Dimensions must be compatible.
+Aliasing is allowed for square matrices.</p>
+</dd></dl>
+
+</section>
+<section id="addition-and-subtraction">
+<h2>Addition and subtraction<a class="headerlink" href="#addition-and-subtraction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(C = A + B\)</span>. Dimensions must be identical.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_sub" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes <span class="math notranslate nohighlight">\(C = A - B\)</span>. Dimensions must be identical.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(B = -A\)</span>. Dimensions must be identical.</p>
+</dd></dl>
+
+</section>
+<section id="matrix-multiplication">
+<h2>Matrix multiplication<a class="headerlink" href="#matrix-multiplication" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(C = AB\)</span>. Dimensions must be compatible for matrix
+multiplication.  <span class="math notranslate nohighlight">\(C\)</span> is not allowed to be aliased with <span class="math notranslate nohighlight">\(A\)</span> or
+<span class="math notranslate nohighlight">\(B\)</span>. This function automatically chooses between classical and
+KS multiplication.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_mul_classical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_mul_classical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_mul_classical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(C = AB\)</span>. Dimensions must be compatible for matrix multiplication.
+<span class="math notranslate nohighlight">\(C\)</span> is not allowed to be aliased with <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>. Uses classical
+matrix multiplication.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_mul_KS">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_mul_KS</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_mul_KS" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(C = AB\)</span>. Dimensions must be compatible for matrix
+multiplication.  <span class="math notranslate nohighlight">\(C\)</span> is not allowed to be aliased with <span class="math notranslate nohighlight">\(A\)</span> or
+<span class="math notranslate nohighlight">\(B\)</span>. Uses Kronecker substitution to perform the multiplication
+over the integers.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_submul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_submul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_submul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(D = C + AB\)</span>. <span class="math notranslate nohighlight">\(C\)</span> and <span class="math notranslate nohighlight">\(D\)</span> may be aliased with each other but
+not with <span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_mul_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_mul_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">blen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_mul_vec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fq_zech_mat_mul_vec_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_mul_vec_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">b</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">blen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_mul_vec_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute a matrix-vector product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">(b,</span> <span class="pre">blen)</span></code> and store the result in <code class="docutils literal notranslate"><span class="pre">c</span></code>.
+The vector <code class="docutils literal notranslate"><span class="pre">(b,</span> <span class="pre">blen)</span></code> is either truncated or zero-extended to the number of columns of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+The number entries written to <code class="docutils literal notranslate"><span class="pre">c</span></code> is always equal to the number of rows of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_vec_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_vec_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_vec_mul" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fq_zech_mat_vec_mul_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_vec_mul_ptr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_struct" title="fq_zech_struct"><span class="n"><span class="pre">fq_zech_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">alen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_vec_mul_ptr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute a vector-matrix product of <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">alen)</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> and and store the result in <code class="docutils literal notranslate"><span class="pre">c</span></code>.
+The vector <code class="docutils literal notranslate"><span class="pre">(a,</span> <span class="pre">alen)</span></code> is either truncated or zero-extended to the number of rows of <code class="docutils literal notranslate"><span class="pre">B</span></code>.
+The number entries written to <code class="docutils literal notranslate"><span class="pre">c</span></code> is always equal to the number of columns of <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="lu-decomposition">
+<h2>LU decomposition<a class="headerlink" href="#lu-decomposition" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_lu">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_lu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">P</span></span>, <a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">rank_check</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_lu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes a generalised LU decomposition <span class="math notranslate nohighlight">\(PLU = A\)</span> of a given
+matrix <span class="math notranslate nohighlight">\(A\)</span>, returning the rank of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is a nonsingular square matrix, it will be overwritten with
+a unit diagonal lower triangular matrix <span class="math notranslate nohighlight">\(L\)</span> and an upper
+triangular matrix <span class="math notranslate nohighlight">\(U\)</span> (the diagonal of <span class="math notranslate nohighlight">\(L\)</span> will not be stored
+explicitly).</p>
+<p>If <span class="math notranslate nohighlight">\(A\)</span> is an arbitrary matrix of rank <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(U\)</span> will be in row
+echelon form having <span class="math notranslate nohighlight">\(r\)</span> nonzero rows, and <span class="math notranslate nohighlight">\(L\)</span> will be lower
+triangular but truncated to <span class="math notranslate nohighlight">\(r\)</span> columns, having implicit ones on
+the <span class="math notranslate nohighlight">\(r\)</span> first entries of the main diagonal. All other entries will
+be zero.</p>
+<p>If a nonzero value for <code class="docutils literal notranslate"><span class="pre">rank_check</span></code> is passed, the function
+will abandon the output matrix in an undefined state and return 0
+if <span class="math notranslate nohighlight">\(A\)</span> is detected to be rank-deficient.</p>
+</dd></dl>
+
+</section>
+<section id="reduced-row-echelon-form">
+<h2>Reduced row echelon form<a class="headerlink" href="#reduced-row-echelon-form" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_rref">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_rref</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_rref" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Puts <span class="math notranslate nohighlight">\(B\)</span> in reduced row echelon form and returns the rank of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>The rref is computed by first obtaining an unreduced row echelon
+form via LU decomposition and then solving an additional
+triangular system.</p>
+</dd></dl>
+
+</section>
+<section id="triangular-solving">
+<h2>Triangular solving<a class="headerlink" href="#triangular-solving" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_solve_tril">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_solve_tril</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">L</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">unit</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_solve_tril" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(X = L^{-1} B\)</span> where <span class="math notranslate nohighlight">\(L\)</span> is a full rank lower triangular
+square matrix. If <code class="docutils literal notranslate"><span class="pre">unit</span></code> = 1, <span class="math notranslate nohighlight">\(L\)</span> is assumed to have ones on
+its main diagonal, and the main diagonal will not be read.  <span class="math notranslate nohighlight">\(X\)</span>
+and <span class="math notranslate nohighlight">\(B\)</span> are allowed to be the same matrix, but no other aliasing
+is allowed. Automatically chooses between the classical and
+recursive algorithms.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_solve_triu">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_solve_triu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">U</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">unit</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_solve_triu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(X = U^{-1} B\)</span> where <span class="math notranslate nohighlight">\(U\)</span> is a full rank upper triangular
+square matrix. If <code class="docutils literal notranslate"><span class="pre">unit</span></code> = 1, <span class="math notranslate nohighlight">\(U\)</span> is assumed to have ones on
+its main diagonal, and the main diagonal will not be read.  <span class="math notranslate nohighlight">\(X\)</span>
+and <span class="math notranslate nohighlight">\(B\)</span> are allowed to be the same matrix, but no other aliasing
+is allowed. Automatically chooses between the classical and
+recursive algorithms.</p>
+</dd></dl>
+
+</section>
+<section id="solving">
+<h2>Solving<a class="headerlink" href="#solving" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_solve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_solve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves the matrix-matrix equation <span class="math notranslate nohighlight">\(AX = B\)</span>.</p>
+<p>Returns <span class="math notranslate nohighlight">\(1\)</span> if <span class="math notranslate nohighlight">\(A\)</span> has full rank; otherwise returns <span class="math notranslate nohighlight">\(0\)</span> and sets the
+elements of <span class="math notranslate nohighlight">\(X\)</span> to undefined values.</p>
+<p>The matrix <span class="math notranslate nohighlight">\(A\)</span> must be square.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_can_solve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_can_solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_can_solve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves the matrix-matrix equation <span class="math notranslate nohighlight">\(AX = B\)</span> over <span class="math notranslate nohighlight">\(Fq\)</span>.</p>
+<p>Returns <span class="math notranslate nohighlight">\(1\)</span> if a solution exists; otherwise returns <span class="math notranslate nohighlight">\(0\)</span> and sets the
+elements of <span class="math notranslate nohighlight">\(X\)</span> to zero. If more than one solution exists, one of the
+valid solutions is given.</p>
+<p>There are no restrictions on the shape of <span class="math notranslate nohighlight">\(A\)</span> and it may be singular.</p>
+</dd></dl>
+
+</section>
+<section id="transforms">
+<h2>Transforms<a class="headerlink" href="#transforms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_similarity">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_similarity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">M</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <a class="reference internal" href="fq_zech.html#c.fq_zech_t" title="fq_zech_t"><span class="n"><span class="pre">fq_zech_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_similarity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Applies a similarity transform to the <span class="math notranslate nohighlight">\(n\times n\)</span> matrix <span class="math notranslate nohighlight">\(M\)</span> in-place.</p>
+<p>If <span class="math notranslate nohighlight">\(P\)</span> is the <span class="math notranslate nohighlight">\(n\times n\)</span> identity matrix the zero entries of whose row
+<span class="math notranslate nohighlight">\(r\)</span> (<span class="math notranslate nohighlight">\(0\)</span>-indexed) have been replaced by <span class="math notranslate nohighlight">\(d\)</span>, this transform is equivalent
+to <span class="math notranslate nohighlight">\(M = P^{-1}MP\)</span>.</p>
+<p>Similarity transforms preserve the determinant, characteristic polynomial
+and minimal polynomial.</p>
+<p>The value <span class="math notranslate nohighlight">\(d\)</span> is required to be reduced modulo the modulus of the entries
+in the matrix.</p>
+</dd></dl>
+
+</section>
+<section id="characteristic-polynomial">
+<h2>Characteristic polynomial<a class="headerlink" href="#characteristic-polynomial" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_charpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_charpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech_poly.html#c.fq_zech_poly_t" title="fq_zech_poly_t"><span class="n"><span class="pre">fq_zech_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_charpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the characteristic polynomial <span class="math notranslate nohighlight">\(p\)</span> of the matrix <span class="math notranslate nohighlight">\(M\)</span>. The matrix
+is required to be square, otherwise an exception is raised.</p>
+</dd></dl>
+
+</section>
+<section id="minimal-polynomial">
+<h2>Minimal polynomial<a class="headerlink" href="#minimal-polynomial" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_zech_mat_minpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_zech_mat_minpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_zech_poly.html#c.fq_zech_poly_t" title="fq_zech_poly_t"><span class="n"><span class="pre">fq_zech_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_zech_mat_t" title="fq_zech_mat_t"><span class="n"><span class="pre">fq_zech_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_zech.html#c.fq_zech_ctx_t" title="fq_zech_ctx_t"><span class="n"><span class="pre">fq_zech_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_zech_mat_minpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the minimal polynomial <span class="math notranslate nohighlight">\(p\)</span> of the matrix <span class="math notranslate nohighlight">\(M\)</span>. The matrix
+is required to be square, otherwise an exception is raised.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fq_zech_vec.html"
+          title="Previous article"
+          ><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fq_zech_poly.html"
+          title="Next article"
+          ><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_struct"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_t"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_init"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_init_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_init_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_clear"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-properties-and-manipulation">Basic properties and manipulation</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_entry"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_entry()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_entry_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_entry_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_nrows"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_nrows()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_ncols"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_ncols()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_swap"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_swap_entrywise"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_swap_entrywise()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_zero"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_one"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_one()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conversions">Conversions</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_set_nmod_mat"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_set_fmpz_mod_mat"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set_fmpz_mod_mat()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concatenate">Concatenate</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_concat_vertical"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_concat_vertical()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_concat_horizontal"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_concat_horizontal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing">Printing</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_print_pretty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_print_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_fprint_pretty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_fprint_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_print"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_fprint"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_fprint()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window">Window</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_window_init"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_window_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_window_clear"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_window_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtest"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtest()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randpermdiag"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randpermdiag()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randrank"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randrank()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randops"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randops()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtril"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtril()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtriu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtriu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_equal"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_zero"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_one"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_empty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_empty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_square"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_square()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transpose">Transpose</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_transpose"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_transpose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-and-subtraction">Addition and subtraction</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_add"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_sub"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_sub()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_neg"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_neg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#matrix-multiplication">Matrix multiplication</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_classical"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_KS"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_submul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_submul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_vec"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_vec_ptr"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_vec_ptr()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_vec_mul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_vec_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_vec_mul_ptr"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_vec_mul_ptr()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lu-decomposition">LU decomposition</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_lu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_lu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reduced-row-echelon-form">Reduced row echelon form</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_rref"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_rref()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#triangular-solving">Triangular solving</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve_tril"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve_tril()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve_triu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve_triu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#solving">Solving</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_can_solve"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_can_solve()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transforms">Transforms</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_similarity"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_similarity()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#characteristic-polynomial">Characteristic polynomial</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_charpoly"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_charpoly()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#minimal-polynomial">Minimal polynomial</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_minpoly"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_minpoly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_struct"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_t"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_init"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_init_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_init_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_clear"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-properties-and-manipulation">Basic properties and manipulation</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_entry"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_entry()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_entry_set"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_entry_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_nrows"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_nrows()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_ncols"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_ncols()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_swap"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_swap_entrywise"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_swap_entrywise()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_zero"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_one"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_one()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conversions">Conversions</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_set_nmod_mat"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_set_fmpz_mod_mat"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_set_fmpz_mod_mat()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concatenate">Concatenate</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_concat_vertical"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_concat_vertical()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_concat_horizontal"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_concat_horizontal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#printing">Printing</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_print_pretty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_print_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_fprint_pretty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_fprint_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_print"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_fprint"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_fprint()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window">Window</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_window_init"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_window_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_window_clear"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_window_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtest"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtest()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randpermdiag"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randpermdiag()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randrank"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randrank()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randops"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randops()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtril"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtril()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_randtriu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_randtriu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_equal"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_zero"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_one"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_empty"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_empty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_is_square"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_is_square()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transpose">Transpose</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_transpose"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_transpose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-and-subtraction">Addition and subtraction</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_add"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_sub"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_sub()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_neg"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_neg()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#matrix-multiplication">Matrix multiplication</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_classical"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_KS"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_submul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_submul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_vec"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_mul_vec_ptr"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_mul_vec_ptr()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_vec_mul"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_vec_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_vec_mul_ptr"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_vec_mul_ptr()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#lu-decomposition">LU decomposition</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_lu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_lu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reduced-row-echelon-form">Reduced row echelon form</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_rref"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_rref()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#triangular-solving">Triangular solving</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve_tril"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve_tril()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve_triu"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve_triu()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#solving">Solving</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_solve"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_solve()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_zech_mat_can_solve"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_can_solve()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transforms">Transforms</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_similarity"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_similarity()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#characteristic-polynomial">Characteristic polynomial</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_charpoly"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_charpoly()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#minimal-polynomial">Minimal polynomial</a><ul>
+<li><a class="reference internal" href="#c.fq_zech_mat_minpoly"><code class="docutils literal notranslate"><span class="pre">fq_zech_mat_minpoly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

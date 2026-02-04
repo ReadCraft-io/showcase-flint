@@ -1,0 +1,1663 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>aprcl.h – APRCL primality testing &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>aprcl.h</strong> – APRCL primality testing</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="aprcl-h-aprcl-primality-testing">
+<span id="aprcl"></span><h1><strong>aprcl.h</strong> – APRCL primality testing<a class="headerlink" href="#aprcl-h-aprcl-primality-testing" title="Link to this heading">¶</a></h1>
+<p>This module implements the rigorous APRCL primality test, suitable for
+integers up to a few thousand digits.</p>
+<p>The APR-CL test uses the Jacobi sums that belong to
+<span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta]/(n)\)</span>, so we have <a class="reference internal" href="#c.unity_zp" title="unity_zp"><code class="xref c c-type docutils literal notranslate"><span class="pre">unity_zp</span></code></a> struct and some
+useful operations. <a class="reference internal" href="#c.unity_zp" title="unity_zp"><code class="xref c c-type docutils literal notranslate"><span class="pre">unity_zp</span></code></a> is just a wrapper over
+<code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly</span></code> with additional fields.</p>
+<p>Also provides Gauss sum test, which is not very useful in practice,
+but can be useful for people who want to see an implementation of
+these. Gauss sums belong <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_q, \zeta_p]/(n)\)</span> and
+implemented in <a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><code class="xref c c-type docutils literal notranslate"><span class="pre">unity_zpq</span></code></a> struct.</p>
+<p>Authors:</p>
+<ul class="simple">
+<li><p>Vladimir Glazachev (Google Summer of Code, 2015)</p></li>
+</ul>
+<section id="primality-test-functions">
+<h2>Primality test functions<a class="headerlink" href="#primality-test-functions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Tests <span class="math notranslate nohighlight">\(n\)</span> for primality using the APRCL test.
+This is the same as <a class="reference internal" href="#c.aprcl_is_prime_jacobi" title="aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">aprcl_is_prime_jacobi()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_jacobi">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_jacobi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_jacobi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(n\)</span> is prime returns 1; otherwise returns 0. The algorithm is well described
+in “Implementation of a New Primality Test” by H. Cohen and A.K. Lenstra and
+“A Course in Computational Algebraic Number Theory” by H. Cohen.</p>
+<p>It is theoretically possible that this function fails to prove that
+<span class="math notranslate nohighlight">\(n\)</span> is prime. In this event, <a class="reference internal" href="flint.html#c.flint_abort" title="flint_abort"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_abort()</span></code></a> is called.
+To handle this condition, the <a class="reference internal" href="#c._aprcl_is_prime_jacobi" title="_aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a> function
+can be used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_gauss">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_gauss</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_gauss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(n\)</span> is prime returns 1; otherwise returns 0.
+Uses the cyclotomic primality testing algorithm described in
+“Four primality testing algorithms” by Rene Schoof.
+The minimum required numbers <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> are computed automatically.</p>
+<p>By default <span class="math notranslate nohighlight">\(R \ge 180\)</span>. In some cases this function fails to prove
+that <span class="math notranslate nohighlight">\(n\)</span> is prime. This means that we select a too small <span class="math notranslate nohighlight">\(R\)</span> value.
+In this event, <a class="reference internal" href="flint.html#c.flint_abort" title="flint_abort"><code class="xref c c-func docutils literal notranslate"><span class="pre">flint_abort()</span></code></a> is called.
+To handle this condition, the <a class="reference internal" href="#c._aprcl_is_prime_jacobi" title="_aprcl_is_prime_jacobi"><code class="xref c c-func docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a> function
+can be used.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._aprcl_is_prime_jacobi">
+<span class="n"><span class="pre">primality_test_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_is_prime_jacobi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._aprcl_is_prime_jacobi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Jacobi sum test for <span class="math notranslate nohighlight">\(n\)</span>. Possible return values:
+<code class="docutils literal notranslate"><span class="pre">PRIME</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPOSITE</span></code> and <code class="docutils literal notranslate"><span class="pre">UNKNOWN</span></code> (if we cannot
+prove primality).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._aprcl_is_prime_gauss">
+<span class="n"><span class="pre">primality_test_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_is_prime_gauss</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">config</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._aprcl_is_prime_gauss" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Tests <span class="math notranslate nohighlight">\(n\)</span> for primality with fixed <code class="docutils literal notranslate"><span class="pre">config</span></code>. Possible return values:
+<code class="docutils literal notranslate"><span class="pre">PRIME</span></code>, <code class="docutils literal notranslate"><span class="pre">COMPOSITE</span></code> and <code class="docutils literal notranslate"><span class="pre">PROBABPRIME</span></code>
+(if we cannot prove primality).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_gauss_min_R">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_gauss_min_R</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_gauss_min_R" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#c.aprcl_is_prime_gauss" title="aprcl_is_prime_gauss"><code class="xref c c-func docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss()</span></code></a> with fixed minimum value of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_is_prime_final_division">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_is_prime_final_division</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_is_prime_final_division" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 0 if for some <span class="math notranslate nohighlight">\(a = n^k \bmod s\)</span>, where <span class="math notranslate nohighlight">\(k \in [1, r - 1]\)</span>,
+we have that <span class="math notranslate nohighlight">\(a \mid n\)</span>; otherwise returns 1.</p>
+</dd></dl>
+
+</section>
+<section id="configuration-functions">
+<h2>Configuration functions<a class="headerlink" href="#configuration-functions" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c._aprcl_config">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_aprcl_config</span></span></span><a class="headerlink" href="#c._aprcl_config" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.aprcl_config">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config</span></span></span><a class="headerlink" href="#c.aprcl_config" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Holds precomputed parameters.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> values used in the cyclotomic primality test,
+<span class="math notranslate nohighlight">\(s^2 &gt; n\)</span> and <span class="math notranslate nohighlight">\(s=\prod\limits_{\substack{q-1\mid R \\ q \text{ prime}}}q\)</span>.
+Also stores factors of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_init_min_R">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_init_min_R</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">R</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_init_min_R" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> with fixed minimum <span class="math notranslate nohighlight">\(R\)</span> such that <span class="math notranslate nohighlight">\(a^R \equiv 1 \mod{s}\)</span>
+for all integers <span class="math notranslate nohighlight">\(a\)</span> coprime to <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_gauss_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_gauss_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_gauss_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given <code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code> element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_R_value">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_R_value</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_R_value" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a precomputed <span class="math notranslate nohighlight">\(R\)</span> value for APRCL, such that the
+corresponding <span class="math notranslate nohighlight">\(s\)</span> value is greater than <span class="math notranslate nohighlight">\(\sqrt{n}\)</span>. The maximum
+stored value <span class="math notranslate nohighlight">\(6983776800\)</span> allows to test numbers up to <span class="math notranslate nohighlight">\(6000\)</span> digits.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_jacobi_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_jacobi_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_jacobi_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(R\)</span> values used in the cyclotomic primality test,
+<span class="math notranslate nohighlight">\(s^2 &gt; n\)</span> and <span class="math notranslate nohighlight">\(a^R \equiv 1 \mod{s}\)</span> for all <span class="math notranslate nohighlight">\(a\)</span> coprime to <span class="math notranslate nohighlight">\(s\)</span>.
+Also stores factors of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(s\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.aprcl_config_jacobi_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">aprcl_config_jacobi_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.aprcl_config" title="aprcl_config"><span class="n"><span class="pre">aprcl_config</span></span></a><span class="w"> </span><span class="n"><span class="pre">conf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.aprcl_config_jacobi_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given <code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code> element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+</section>
+<section id="cyclotomic-arithmetic">
+<h2>Cyclotomic arithmetic<a class="headerlink" href="#cyclotomic-arithmetic" title="Link to this heading">¶</a></h2>
+<p>This code implements arithmetic in cyclotomic rings.</p>
+<section id="types">
+<h3>Types<a class="headerlink" href="#types" title="Link to this heading">¶</a></h3>
+<dl class="c type">
+<dt class="sig sig-object c" id="c._unity_zp">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp</span></span></span><a class="headerlink" href="#c._unity_zp" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.unity_zp">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp</span></span></span><a class="headerlink" href="#c.unity_zp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_{p^{exp}}]/(n)\)</span> as an
+<a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly_t</span></code></a> reduced modulo a cyclotomic polynomial.</p>
+</dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c._unity_zpq">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zpq</span></span></span><a class="headerlink" href="#c._unity_zpq" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.unity_zpq">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq</span></span></span><a class="headerlink" href="#c.unity_zpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_q, \zeta_p]/(n)\)</span>
+as an array of <a class="reference internal" href="fmpz_mod_poly.html#c.fmpz_mod_poly_t" title="fmpz_mod_poly_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_poly_t</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="memory-management">
+<h3>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <span class="math notranslate nohighlight">\(f\)</span> as an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_{p^{exp}}]/(n)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given element. It must be reinitialised in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_copy">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_copy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_copy" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_set_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_set_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_set_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to zero.</p>
+</dd></dl>
+
+</section>
+<section id="comparison">
+<h3>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_is_unity">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_is_unity</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_is_unity" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <span class="math notranslate nohighlight">\(f = \zeta^h\)</span> returns h; otherwise returns -1.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_equal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f = g\)</span> reduced by the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th cyclotomic
+polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="coefficient-management">
+<h3>Coefficient management<a class="headerlink" href="#coefficient-management" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_set_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_set_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_set_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.unity_zp_coeff_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_add_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_add_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_add_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.unity_zp_coeff_add_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_add_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_add_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <span class="math notranslate nohighlight">\(x\)</span> to the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(x\)</span> must be less than <span class="math notranslate nohighlight">\(n\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_inc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_inc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_inc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Increments the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_coeff_dec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_coeff_dec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">ind</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_coeff_dec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Decrements the coefficient of <span class="math notranslate nohighlight">\(\zeta^{ind}\)</span>.
+<span class="math notranslate nohighlight">\(ind\)</span> must be less than <span class="math notranslate nohighlight">\(p^{exp}\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="scalar-multiplication">
+<h3>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul_scalar_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul_scalar_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul_scalar_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(s \cdot g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="addition-and-multiplication">
+<h3>Addition and multiplication<a class="headerlink" href="#addition-and-multiplication" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g + h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_sqr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_sqr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_sqr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot g\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_mul_inplace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_mul_inplace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">t</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_mul_inplace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>. If <span class="math notranslate nohighlight">\(p^{exp} = 3, 4, 5, 7, 8, 9, 11, 16\)</span> special
+multiplication functions are used. The preallocated array <span class="math notranslate nohighlight">\(t\)</span> of <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> is
+used for all computations in this case.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_sqr_inplace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_sqr_inplace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">t</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_sqr_inplace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot g\)</span>. If <span class="math notranslate nohighlight">\(p^{exp} = 3, 4, 5, 7, 8, 9, 11, 16\)</span> special
+multiplication functions are used. The preallocated array <span class="math notranslate nohighlight">\(t\)</span> of <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code> is
+used for all computations in this case.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="powering-functions">
+<h3>Powering functions<a class="headerlink" href="#powering-functions" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zp_pow_select_k">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_pow_select_k</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_pow_select_k" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the smallest integer <span class="math notranslate nohighlight">\(k\)</span> satisfying
+<span class="math notranslate nohighlight">\(\log (n) &lt; (k(k + 1)2^{2k}) / (2^{k + 1} - k - 2) + 1\)</span></p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_2k_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_2k_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_2k_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the <span class="math notranslate nohighlight">\(2^k\)</span>-ary exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_2k_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_2k_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_2k_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the <span class="math notranslate nohighlight">\(2^k\)</span>-ary exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_pow_sliding_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_pow_sliding_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_pow_sliding_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^{pow}\)</span> using the sliding window exponentiation method.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="cyclotomic-reduction">
+<h3>Cyclotomic reduction<a class="headerlink" href="#cyclotomic-reduction" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zp_reduce_cyclotomic_divmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_reduce_cyclotomic_divmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_reduce_cyclotomic_divmod" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c._unity_zp_reduce_cyclotomic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zp_reduce_cyclotomic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zp_reduce_cyclotomic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = f \bmod \Phi_{p^{exp}}\)</span>. <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span> is the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th
+cyclotomic polynomial. <span class="math notranslate nohighlight">\(g\)</span> must be reduced by <span class="math notranslate nohighlight">\(x^{p^{exp}}-1\)</span> poly.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_reduce_cyclotomic">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_reduce_cyclotomic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_reduce_cyclotomic" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = g \bmod \Phi_{p^{exp}}\)</span>. <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span> is the <span class="math notranslate nohighlight">\(p^{exp}\)</span>-th
+cyclotomic polynomial.</p>
+</dd></dl>
+
+</section>
+<section id="automorphism-and-inverse">
+<h3>Automorphism and inverse<a class="headerlink" href="#automorphism-and-inverse" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_aut">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_aut</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_aut" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \sigma_x(g)\)</span>, the automorphism <span class="math notranslate nohighlight">\(\sigma_x(\zeta)=\zeta^x\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with the same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_aut_inv">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_aut_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_aut_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \sigma_x^{-1}(g)\)</span>, so <span class="math notranslate nohighlight">\(\sigma_x(f) = g\)</span>.
+<span class="math notranslate nohighlight">\(g\)</span> must be reduced by <span class="math notranslate nohighlight">\(\Phi_{p^{exp}}\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with the same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(exp\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="jacobi-sum">
+<h3>Jacobi sum<a class="headerlink" href="#jacobi-sum" title="Link to this heading">¶</a></h3>
+<p>Here <span class="math notranslate nohighlight">\(\chi_{p, q}\)</span> is the character defined by
+<span class="math notranslate nohighlight">\(\chi_{p, q}(g^x) = \zeta_{p^k}^x\)</span>, where <span class="math notranslate nohighlight">\(g\)</span> is
+a primitive root modulo <span class="math notranslate nohighlight">\(q\)</span>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_pq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_pq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_pq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum <span class="math notranslate nohighlight">\(J(p, q) = j(\chi_{p, q}, \chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_2q_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_2q_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_2q_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum
+<span class="math notranslate nohighlight">\(J_2(q) = j(\chi_{2, q}^{2^{k - 3}}, \chi_{2, q}^{3 \cdot 2^{k - 3}}))^2\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zp_jacobi_sum_2q_two">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zp_jacobi_sum_2q_two</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zp" title="unity_zp"><span class="n"><span class="pre">unity_zp</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zp_jacobi_sum_2q_two" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to the Jacobi sum
+<span class="math notranslate nohighlight">\(J_3(1) = j(\chi_{2, q}, \chi_{2, q}, \chi_{2, q}) =
+J(2, q) \cdot j(\chi_{2, q}^2, \chi_{2, q})\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="extended-rings">
+<h3>Extended rings<a class="headerlink" href="#extended-rings" title="Link to this heading">¶</a></h3>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <span class="math notranslate nohighlight">\(f\)</span> as an element of <span class="math notranslate nohighlight">\(\mathbb{Z}[\zeta_q, \zeta_p]/(n)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the given element. It must be reinitialized in
+order to be used again.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_copy">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_copy</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_copy" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with
+same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <span class="math notranslate nohighlight">\(f = g\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_set_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_set_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_set_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta_q^i \zeta_p^j\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(i\)</span> must be less than <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must be less than <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_set_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_set_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_set_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <span class="math notranslate nohighlight">\(\zeta_q^i \zeta_p^j\)</span> to <span class="math notranslate nohighlight">\(x\)</span>.
+<span class="math notranslate nohighlight">\(i\)</span> must be less than <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(j\)</span> must be less then <span class="math notranslate nohighlight">\(p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_coeff_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_coeff_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_coeff_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Adds <span class="math notranslate nohighlight">\(x\)</span> to the coefficient of <span class="math notranslate nohighlight">\(\zeta_p^i \zeta_q^j\)</span>. <span class="math notranslate nohighlight">\(x\)</span> must be less than <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g + h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same
+<span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot h\)</span>.
+<span class="math notranslate nohighlight">\(f\)</span>, <span class="math notranslate nohighlight">\(g\)</span> and <span class="math notranslate nohighlight">\(h\)</span> must be initialized with same
+<span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(p\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._unity_zpq_mul_unity_p">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_unity_zpq_mul_unity_p</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._unity_zpq_mul_unity_p" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = f \cdot \zeta_p\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_mul_unity_p_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_mul_unity_p_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_mul_unity_p_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g \cdot \zeta_p^k\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^p\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_pow_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_pow_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_pow_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f\)</span> to <span class="math notranslate nohighlight">\(g^p\)</span>. <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> must be initialized with same <span class="math notranslate nohighlight">\(p\)</span>, <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_gauss_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_gauss_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_gauss_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \tau(\chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.unity_zpq_gauss_sum_sigma_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unity_zpq_gauss_sum_sigma_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.unity_zpq" title="unity_zpq"><span class="n"><span class="pre">unity_zpq</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.unity_zpq_gauss_sum_sigma_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(f = \tau^{\sigma_n}(\chi_{p, q})\)</span>.</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="mpn_extras.html"
+          title="Previous article"
+          ><strong>mpn_extras.h</strong> – support functions for limb arrays</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="arith.html"
+          title="Next article"
+          ><strong>arith.h</strong> – arithmetic and special functions</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>aprcl.h</strong> – APRCL primality testing</a><ul>
+<li><a class="reference internal" href="#primality-test-functions">Primality test functions</a><ul>
+<li><a class="reference internal" href="#c.aprcl_is_prime"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_jacobi"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_jacobi()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_gauss"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss()</span></code></a></li>
+<li><a class="reference internal" href="#c._aprcl_is_prime_jacobi"><code class="docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a></li>
+<li><a class="reference internal" href="#c._aprcl_is_prime_gauss"><code class="docutils literal notranslate"><span class="pre">_aprcl_is_prime_gauss()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_gauss_min_R"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss_min_R()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_final_division"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_final_division()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-functions">Configuration functions</a><ul>
+<li><a class="reference internal" href="#c._aprcl_config"><code class="docutils literal notranslate"><span class="pre">_aprcl_config</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config"><code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_init"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_init_min_R"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_init_min_R()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_clear"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_R_value"><code class="docutils literal notranslate"><span class="pre">aprcl_R_value()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_jacobi_init"><code class="docutils literal notranslate"><span class="pre">aprcl_config_jacobi_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_jacobi_clear"><code class="docutils literal notranslate"><span class="pre">aprcl_config_jacobi_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclotomic-arithmetic">Cyclotomic arithmetic</a><ul>
+<li><a class="reference internal" href="#types">Types</a><ul>
+<li><a class="reference internal" href="#c._unity_zp"><code class="docutils literal notranslate"><span class="pre">_unity_zp</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp"><code class="docutils literal notranslate"><span class="pre">unity_zp</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zpq"><code class="docutils literal notranslate"><span class="pre">_unity_zpq</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq"><code class="docutils literal notranslate"><span class="pre">unity_zpq</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_init"><code class="docutils literal notranslate"><span class="pre">unity_zp_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_clear"><code class="docutils literal notranslate"><span class="pre">unity_zp_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_copy"><code class="docutils literal notranslate"><span class="pre">unity_zp_copy()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_swap"><code class="docutils literal notranslate"><span class="pre">unity_zp_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_set_zero"><code class="docutils literal notranslate"><span class="pre">unity_zp_set_zero()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_is_unity"><code class="docutils literal notranslate"><span class="pre">unity_zp_is_unity()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_equal"><code class="docutils literal notranslate"><span class="pre">unity_zp_equal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coefficient-management">Coefficient management</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_coeff_set_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_set_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_set_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_set_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_add_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_add_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_add_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_add_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_inc"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_inc()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_dec"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_dec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scalar-multiplication">Scalar multiplication</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_mul_scalar_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul_scalar_ui()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-and-multiplication">Addition and multiplication</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_add"><code class="docutils literal notranslate"><span class="pre">unity_zp_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_mul"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_sqr"><code class="docutils literal notranslate"><span class="pre">unity_zp_sqr()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_mul_inplace"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul_inplace()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_sqr_inplace"><code class="docutils literal notranslate"><span class="pre">unity_zp_sqr_inplace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#powering-functions">Powering functions</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_pow_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zp_pow_select_k"><code class="docutils literal notranslate"><span class="pre">_unity_zp_pow_select_k()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_2k_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_2k_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_2k_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_2k_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_sliding_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_sliding_fmpz()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclotomic-reduction">Cyclotomic reduction</a><ul>
+<li><a class="reference internal" href="#c._unity_zp_reduce_cyclotomic_divmod"><code class="docutils literal notranslate"><span class="pre">_unity_zp_reduce_cyclotomic_divmod()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zp_reduce_cyclotomic"><code class="docutils literal notranslate"><span class="pre">_unity_zp_reduce_cyclotomic()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_reduce_cyclotomic"><code class="docutils literal notranslate"><span class="pre">unity_zp_reduce_cyclotomic()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automorphism-and-inverse">Automorphism and inverse</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_aut"><code class="docutils literal notranslate"><span class="pre">unity_zp_aut()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_aut_inv"><code class="docutils literal notranslate"><span class="pre">unity_zp_aut_inv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jacobi-sum">Jacobi sum</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_pq"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_pq()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_2q_one"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_2q_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_2q_two"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_2q_two()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extended-rings">Extended rings</a><ul>
+<li><a class="reference internal" href="#c.unity_zpq_init"><code class="docutils literal notranslate"><span class="pre">unity_zpq_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_clear"><code class="docutils literal notranslate"><span class="pre">unity_zpq_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_copy"><code class="docutils literal notranslate"><span class="pre">unity_zpq_copy()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_swap"><code class="docutils literal notranslate"><span class="pre">unity_zpq_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_equal"><code class="docutils literal notranslate"><span class="pre">unity_zpq_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_set_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_set_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_set_ui"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_set_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_add"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_add"><code class="docutils literal notranslate"><span class="pre">unity_zpq_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_mul"><code class="docutils literal notranslate"><span class="pre">unity_zpq_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zpq_mul_unity_p"><code class="docutils literal notranslate"><span class="pre">_unity_zpq_mul_unity_p()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_mul_unity_p_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_mul_unity_p_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_pow_ui"><code class="docutils literal notranslate"><span class="pre">unity_zpq_pow_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_gauss_sum"><code class="docutils literal notranslate"><span class="pre">unity_zpq_gauss_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_gauss_sum_sigma_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_gauss_sum_sigma_pow()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>aprcl.h</strong> – APRCL primality testing</a><ul>
+<li><a class="reference internal" href="#primality-test-functions">Primality test functions</a><ul>
+<li><a class="reference internal" href="#c.aprcl_is_prime"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_jacobi"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_jacobi()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_gauss"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss()</span></code></a></li>
+<li><a class="reference internal" href="#c._aprcl_is_prime_jacobi"><code class="docutils literal notranslate"><span class="pre">_aprcl_is_prime_jacobi()</span></code></a></li>
+<li><a class="reference internal" href="#c._aprcl_is_prime_gauss"><code class="docutils literal notranslate"><span class="pre">_aprcl_is_prime_gauss()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_gauss_min_R"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_gauss_min_R()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_is_prime_final_division"><code class="docutils literal notranslate"><span class="pre">aprcl_is_prime_final_division()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configuration-functions">Configuration functions</a><ul>
+<li><a class="reference internal" href="#c._aprcl_config"><code class="docutils literal notranslate"><span class="pre">_aprcl_config</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config"><code class="docutils literal notranslate"><span class="pre">aprcl_config</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_init"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_init_min_R"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_init_min_R()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_gauss_clear"><code class="docutils literal notranslate"><span class="pre">aprcl_config_gauss_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_R_value"><code class="docutils literal notranslate"><span class="pre">aprcl_R_value()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_jacobi_init"><code class="docutils literal notranslate"><span class="pre">aprcl_config_jacobi_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.aprcl_config_jacobi_clear"><code class="docutils literal notranslate"><span class="pre">aprcl_config_jacobi_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclotomic-arithmetic">Cyclotomic arithmetic</a><ul>
+<li><a class="reference internal" href="#types">Types</a><ul>
+<li><a class="reference internal" href="#c._unity_zp"><code class="docutils literal notranslate"><span class="pre">_unity_zp</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp"><code class="docutils literal notranslate"><span class="pre">unity_zp</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zpq"><code class="docutils literal notranslate"><span class="pre">_unity_zpq</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq"><code class="docutils literal notranslate"><span class="pre">unity_zpq</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_init"><code class="docutils literal notranslate"><span class="pre">unity_zp_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_clear"><code class="docutils literal notranslate"><span class="pre">unity_zp_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_copy"><code class="docutils literal notranslate"><span class="pre">unity_zp_copy()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_swap"><code class="docutils literal notranslate"><span class="pre">unity_zp_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_set_zero"><code class="docutils literal notranslate"><span class="pre">unity_zp_set_zero()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#comparison">Comparison</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_is_unity"><code class="docutils literal notranslate"><span class="pre">unity_zp_is_unity()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_equal"><code class="docutils literal notranslate"><span class="pre">unity_zp_equal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coefficient-management">Coefficient management</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_coeff_set_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_set_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_set_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_set_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_add_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_add_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_add_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_add_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_inc"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_inc()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_coeff_dec"><code class="docutils literal notranslate"><span class="pre">unity_zp_coeff_dec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scalar-multiplication">Scalar multiplication</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_mul_scalar_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul_scalar_ui()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-and-multiplication">Addition and multiplication</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_add"><code class="docutils literal notranslate"><span class="pre">unity_zp_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_mul"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_sqr"><code class="docutils literal notranslate"><span class="pre">unity_zp_sqr()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_mul_inplace"><code class="docutils literal notranslate"><span class="pre">unity_zp_mul_inplace()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_sqr_inplace"><code class="docutils literal notranslate"><span class="pre">unity_zp_sqr_inplace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#powering-functions">Powering functions</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_pow_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zp_pow_select_k"><code class="docutils literal notranslate"><span class="pre">_unity_zp_pow_select_k()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_2k_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_2k_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_2k_ui"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_2k_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_pow_sliding_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zp_pow_sliding_fmpz()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cyclotomic-reduction">Cyclotomic reduction</a><ul>
+<li><a class="reference internal" href="#c._unity_zp_reduce_cyclotomic_divmod"><code class="docutils literal notranslate"><span class="pre">_unity_zp_reduce_cyclotomic_divmod()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zp_reduce_cyclotomic"><code class="docutils literal notranslate"><span class="pre">_unity_zp_reduce_cyclotomic()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_reduce_cyclotomic"><code class="docutils literal notranslate"><span class="pre">unity_zp_reduce_cyclotomic()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#automorphism-and-inverse">Automorphism and inverse</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_aut"><code class="docutils literal notranslate"><span class="pre">unity_zp_aut()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_aut_inv"><code class="docutils literal notranslate"><span class="pre">unity_zp_aut_inv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jacobi-sum">Jacobi sum</a><ul>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_pq"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_pq()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_2q_one"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_2q_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zp_jacobi_sum_2q_two"><code class="docutils literal notranslate"><span class="pre">unity_zp_jacobi_sum_2q_two()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extended-rings">Extended rings</a><ul>
+<li><a class="reference internal" href="#c.unity_zpq_init"><code class="docutils literal notranslate"><span class="pre">unity_zpq_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_clear"><code class="docutils literal notranslate"><span class="pre">unity_zpq_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_copy"><code class="docutils literal notranslate"><span class="pre">unity_zpq_copy()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_swap"><code class="docutils literal notranslate"><span class="pre">unity_zpq_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_equal"><code class="docutils literal notranslate"><span class="pre">unity_zpq_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_set_fmpz"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_set_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_set_ui"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_set_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_coeff_add"><code class="docutils literal notranslate"><span class="pre">unity_zpq_coeff_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_add"><code class="docutils literal notranslate"><span class="pre">unity_zpq_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_mul"><code class="docutils literal notranslate"><span class="pre">unity_zpq_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c._unity_zpq_mul_unity_p"><code class="docutils literal notranslate"><span class="pre">_unity_zpq_mul_unity_p()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_mul_unity_p_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_mul_unity_p_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_pow_ui"><code class="docutils literal notranslate"><span class="pre">unity_zpq_pow_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_gauss_sum"><code class="docutils literal notranslate"><span class="pre">unity_zpq_gauss_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.unity_zpq_gauss_sum_sigma_pow"><code class="docutils literal notranslate"><span class="pre">unity_zpq_gauss_sum_sigma_pow()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

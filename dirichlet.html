@@ -1,0 +1,1399 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>dirichlet.h – Dirichlet characters &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>dirichlet.h</strong> – Dirichlet characters</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="dirichlet-h-dirichlet-characters">
+<span id="dirichlet"></span><h1><strong>dirichlet.h</strong> – Dirichlet characters<a class="headerlink" href="#dirichlet-h-dirichlet-characters" title="Link to this heading">¶</a></h1>
+<p><em>Warning: the interfaces in this module are experimental and may change
+without notice.</em></p>
+<p>This module allows working with Dirichlet characters algebraically.
+For evaluations of characters as complex numbers, see <a class="reference internal" href="acb_dirichlet.html#acb-dirichlet"><span class="std std-ref">acb_dirichlet.h – Dirichlet L-functions, Riemann zeta and related functions</span></a>.</p>
+<section id="dirichlet-characters">
+<h2>Dirichlet characters<a class="headerlink" href="#dirichlet-characters" title="Link to this heading">¶</a></h2>
+<p>Working with Dirichlet characters mod <em>q</em> consists mainly
+in going from residue classes mod <em>q</em> to exponents on a set
+of generators of the group.</p>
+<p>This implementation relies on the Conrey numbering scheme
+introduced in the
+<a class="reference external" href="http://www.lmfdb.org/Character/Dirichlet">L-functions and Modular Forms DataBase</a>,
+which is an explicit choice of generators
+allowing to represent Dirichlet characters via the pairing</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{ccccc}
+(\mathbb Z/q\mathbb Z)^\times \times (\mathbb Z/q\mathbb Z)^\times &amp; \to &amp; \bigoplus_i \mathbb Z/\phi_i\mathbb Z \times \mathbb Z/\phi_i\mathbb Z &amp; \to &amp;\mathbb C \\
+(m,n) &amp; \mapsto&amp; (a_i,b_i) &amp;\mapsto&amp; \chi_q(m,n) = \exp(2i\pi\sum \frac{a_ib_i}{\phi_i} )
+\end{array}\end{split}\]</div>
+<p>We call <em>number</em> a residue class <span class="math notranslate nohighlight">\(m\)</span> modulo <em>q</em>, and <em>log</em> the
+corresponding vector <span class="math notranslate nohighlight">\((a_i)\)</span> of exponents of Conrey generators.</p>
+<p>Going from a <em>log</em> to the corresponding <em>number</em> is a cheap
+operation we call exponential, while the converse requires computing discrete
+logarithms.</p>
+</section>
+<section id="multiplicative-group-modulo-q">
+<h2>Multiplicative group modulo <em>q</em><a class="headerlink" href="#multiplicative-group-modulo-q" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.dirichlet_group_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_struct</span></span></span><a class="headerlink" href="#c.dirichlet_group_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.dirichlet_group_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_t</span></span></span><a class="headerlink" href="#c.dirichlet_group_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents the group of Dirichlet characters mod <em>q</em>.</p>
+<p>An <em>dirichlet_group_t</em> is defined as an array of <em>dirichlet_group_struct</em>
+of length 1, permitting it to be passed by reference.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_init">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>G</em> to the group of Dirichlet characters mod <em>q</em>.</p>
+<p>This method computes a canonical decomposition of <em>G</em> in terms of cyclic
+groups, which are the mod <span class="math notranslate nohighlight">\(p^e\)</span> subgroups for <span class="math notranslate nohighlight">\(p^e\|q\)</span>, plus
+the specific generator described by Conrey for each subgroup.</p>
+<p>In particular <em>G</em> contains:</p>
+<ul class="simple">
+<li><p>the number <em>num</em> of components</p></li>
+<li><p>the generators</p></li>
+<li><p>the exponent <em>expo</em> of the group</p></li>
+</ul>
+<p>It does <em>not</em> automatically precompute lookup tables
+of discrete logarithms or numerical roots of unity, and can therefore
+safely be called even with large <em>q</em>.</p>
+<p>For implementation reasons, the largest prime factor of <em>q</em> must not
+exceed <span class="math notranslate nohighlight">\(10^{16}\)</span>. This restriction could
+be removed in the future. The function returns 1 on success and 0
+if a factor is too large.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_subgroup_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_subgroup_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">H</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_subgroup_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given an already computed group <em>G</em> mod <span class="math notranslate nohighlight">\(q\)</span>, initialize its subgroup <em>H</em>
+defined mod <span class="math notranslate nohighlight">\(h\mid q\)</span>. Precomputed discrete log tables are inherited.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears <em>G</em>. Remark this function does <em>not</em> clear the discrete logarithm
+tables stored in <em>G</em> (which may be shared with another group).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_size">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_size" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of elements in <em>G</em>, i.e. <span class="math notranslate nohighlight">\(\varphi(q)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_num_primitive">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_num_primitive</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_num_primitive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of primitive elements in <em>G</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_dlog_precompute">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_dlog_precompute</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_dlog_precompute" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Precompute decomposition and tables for discrete log computations in <em>G</em>,
+so as to minimize the complexity of <em>num</em> calls to discrete logarithms.</p>
+<p>If <em>num</em> gets very large, the entire group may be indexed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_group_dlog_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_group_dlog_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_group_dlog_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clear discrete logarithm tables in <em>G</em>. When discrete logarithm tables are
+shared with subgroups, those subgroups must be cleared before clearing the
+tables.</p>
+</dd></dl>
+
+</section>
+<section id="character-type">
+<h2>Character type<a class="headerlink" href="#character-type" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.dirichlet_char_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_struct</span></span></span><a class="headerlink" href="#c.dirichlet_char_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.dirichlet_char_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_t</span></span></span><a class="headerlink" href="#c.dirichlet_char_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents a Dirichlet character.
+This structure contains both a <em>number</em> (residue class) and
+the corresponding <em>log</em> (exponents on the group generators).</p>
+<p>An <em>dirichlet_char_t</em> is defined as an array of <em>dirichlet_char_struct</em>
+of length 1, permitting it to be passed by reference.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>chi</em> to an element of the group <em>G</em> and sets its value
+to the principal character.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears <em>chi</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the array of exponents representing this character.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_log">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_log</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_log" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the character of number <em>m</em>, computing its log using discrete
+logarithm in <em>G</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_exp">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_exp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number <em>m</em> corresponding to exponents in <em>x</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._dirichlet_char_exp">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_dirichlet_char_exp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._dirichlet_char_exp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes and returns the number <em>m</em> corresponding to exponents in <em>x</em>.
+This function is for internal use.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the principal character in <em>G</em>, having <em>log</em> <span class="math notranslate nohighlight">\([0,\dots 0]\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_first_primitive">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_first_primitive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_first_primitive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the first primitive character of <em>G</em>, having <em>log</em> <span class="math notranslate nohighlight">\([1,\dots 1]\)</span>,
+or <span class="math notranslate nohighlight">\([0, 1, \dots 1]\)</span> if <span class="math notranslate nohighlight">\(8\mid q\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the element <em>y</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_next">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_next</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_next" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the next character in <em>G</em> according to lexicographic ordering
+of <em>log</em>.</p>
+<p>The return value
+is the index of the last updated exponent of <em>x</em>, or <em>-1</em> if the last
+element has been reached.</p>
+<p>This function allows to iterate on all elements of <em>G</em> looping on their <em>log</em>.
+Note that it produces elements in seemingly random <em>number</em> order.</p>
+<p>The following template can be used for such a loop:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dirichlet_char_one</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">G</span><span class="p">);</span>
+<span class="n">do</span> <span class="p">{</span>
+    <span class="o">/*</span> <span class="n">use</span> <span class="n">character</span> <span class="n">chi</span> <span class="o">*/</span>
+<span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">dirichlet_char_next</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">G</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_next_primitive">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_next_primitive</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_next_primitive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Same as <a class="reference internal" href="#c.dirichlet_char_next" title="dirichlet_char_next"><code class="xref c c-func docutils literal notranslate"><span class="pre">dirichlet_char_next()</span></code></a>, but jumps to the next primitive character of <em>G</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_index_char">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_index_char</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_index_char" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the lexicographic index of the <em>log</em> of <em>x</em> as an integer in <span class="math notranslate nohighlight">\(0\dots \varphi(q)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_index">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_index</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_index" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>x</em> to the character whose <em>log</em> has lexicographic index <em>j</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_eq">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_eq</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_eq" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_eq_deep">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_eq_deep</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_eq_deep" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Return 1 if <em>x</em> equals <em>y</em>.</p>
+<p>The second version checks every byte of the representation and is intended for testing only.</p>
+</dd></dl>
+
+</section>
+<section id="character-properties">
+<h2>Character properties<a class="headerlink" href="#character-properties" title="Link to this heading">¶</a></h2>
+<p>As a consequence of the Conrey numbering, all these numbers are available at the
+level of <em>number</em> and <em>char</em> object. Both case require no discrete log computation.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_is_principal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_is_principal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_is_principal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <em>chi</em> is the principal character mod <em>q</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_conductor_ui">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_conductor_ui</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_conductor_ui" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_conductor_char">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_conductor_char</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_conductor_char" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the <em>conductor</em> of <span class="math notranslate nohighlight">\(\chi_q(a,\cdot)\)</span>, that is the smallest <span class="math notranslate nohighlight">\(r\)</span> dividing <span class="math notranslate nohighlight">\(q\)</span>
+such <span class="math notranslate nohighlight">\(\chi_q(a,\cdot)\)</span> can be obtained as a character mod <span class="math notranslate nohighlight">\(r\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_parity_ui">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_parity_ui</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_parity_ui" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_parity_char">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_parity_char</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_parity_char" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the <em>parity</em> <span class="math notranslate nohighlight">\(\lambda\)</span> in <span class="math notranslate nohighlight">\(\{0,1\}\)</span> of <span class="math notranslate nohighlight">\(\chi_q(a,\cdot)\)</span>, such that
+<span class="math notranslate nohighlight">\(\chi_q(a,-1)=(-1)^\lambda\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_order_ui">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_order_ui</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_order_ui" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_order_char">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_order_char</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_order_char" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the order of <span class="math notranslate nohighlight">\(\chi_q(a,\cdot)\)</span> which is the order of <span class="math notranslate nohighlight">\(a\bmod q\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_is_real">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_is_real</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_is_real" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <em>chi</em> is a real character (iff it has order <span class="math notranslate nohighlight">\(\leq 2\)</span>).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_is_primitive">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_is_primitive</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_is_primitive" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <em>chi</em> is primitive (iff its conductor is exactly <em>q</em>).</p>
+</dd></dl>
+
+</section>
+<section id="character-evaluation">
+<h2>Character evaluation<a class="headerlink" href="#character-evaluation" title="Link to this heading">¶</a></h2>
+<p>Dirichlet characters take value in a finite cyclic group of roots of unity plus zero.</p>
+<p>Evaluation functions return a <em>ulong</em>, this number corresponds to the
+power of a primitive root of unity, the special value <em>DIRICHLET_CHI_NULL</em>
+encoding the zero value.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_pairing">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_pairing</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_pairing" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_pairing_char">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_pairing_char</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">psi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_pairing_char" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the value of the Dirichlet pairing on numbers <em>m</em> and <em>n</em>, as
+exponent modulo <em>G-&gt;expo</em>.</p>
+<p>The <em>char</em> variant takes as input two characters, so that no discrete
+logarithm is computed.</p>
+<p>The returned value is the numerator of the actual value exponent mod the group exponent <em>G-&gt;expo</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_chi">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_chi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_chi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the value <span class="math notranslate nohighlight">\(\chi(n)\)</span> as the exponent modulo <em>G-&gt;expo</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_chi_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_chi_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_chi_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the list of exponent values <em>v[k]</em> for <span class="math notranslate nohighlight">\(0\leq k &lt; nv\)</span>, as exponents
+modulo <em>G-&gt;expo</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_chi_vec_order">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_chi_vec_order</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">order</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_chi_vec_order" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Compute the list of exponent values <em>v[k]</em> for <span class="math notranslate nohighlight">\(0\leq k &lt; nv\)</span>, as exponents
+modulo <em>order</em>, which is assumed to be a multiple of the order of <em>chi</em>.</p>
+</dd></dl>
+
+</section>
+<section id="character-operations">
+<h2>Character operations<a class="headerlink" href="#character-operations" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi12</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Multiply two characters of the same group <em>G</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">a</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Take the power of a character.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_lift">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_lift</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi_G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi_H</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">H</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_lift" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <em>H</em> is a subgroup of <em>G</em>, computes the character in <em>G</em> corresponding to
+<em>chi_H</em> in <em>H</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.dirichlet_char_lower">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dirichlet_char_lower</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi_H</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">H</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_char_t" title="dirichlet_char_t"><span class="n"><span class="pre">dirichlet_char_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">chi_G</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.dirichlet_group_t" title="dirichlet_group_t"><span class="n"><span class="pre">dirichlet_group_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">G</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.dirichlet_char_lower" title="Link to this definition">¶</a><br /></dt>
+<dd><p>If <em>chi_G</em> is a character of <em>G</em> which factors through <em>H</em>, sets <em>chi_H</em> to
+the corresponding restriction in <em>H</em>.</p>
+<p>This requires <span class="math notranslate nohighlight">\(c(\chi_G)\mid q_H\mid q_G\)</span>, where <span class="math notranslate nohighlight">\(c(\chi_G)\)</span> is the
+conductor of <span class="math notranslate nohighlight">\(\chi_G\)</span> and <span class="math notranslate nohighlight">\(q_G, q_H\)</span> are the moduli of G and H.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="qfb.html"
+          title="Previous article"
+          ><strong>qfb.h</strong> – binary quadratic forms</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="dlog.html"
+          title="Next article"
+          ><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>dirichlet.h</strong> – Dirichlet characters</a><ul>
+<li><a class="reference internal" href="#dirichlet-characters">Dirichlet characters</a></li>
+<li><a class="reference internal" href="#multiplicative-group-modulo-q">Multiplicative group modulo <em>q</em></a><ul>
+<li><a class="reference internal" href="#c.dirichlet_group_struct"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_t"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_t</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_subgroup_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_subgroup_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_size"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_size()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_num_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_num_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_dlog_precompute"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_dlog_precompute()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_dlog_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_dlog_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-type">Character type</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_struct"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_t"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_t</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_print"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_log"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_log()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_exp"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_exp()</span></code></a></li>
+<li><a class="reference internal" href="#c._dirichlet_char_exp"><code class="docutils literal notranslate"><span class="pre">_dirichlet_char_exp()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_one"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_first_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_first_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_set"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_next"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_next()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_next_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_next_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_index_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_index_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_index"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_index()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_eq"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_eq()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_eq_deep"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_eq_deep()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-properties">Character properties</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_is_principal"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_principal()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_conductor_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_conductor_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_conductor_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_conductor_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_parity_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_parity_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_parity_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_parity_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_order_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_order_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_order_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_order_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_is_real"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_real()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_is_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_primitive()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-evaluation">Character evaluation</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_pairing"><code class="docutils literal notranslate"><span class="pre">dirichlet_pairing()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_pairing_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_pairing_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi_vec"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi_vec_order"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi_vec_order()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-operations">Character operations</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_mul"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_pow"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_lift"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_lift()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_lower"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_lower()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>dirichlet.h</strong> – Dirichlet characters</a><ul>
+<li><a class="reference internal" href="#dirichlet-characters">Dirichlet characters</a></li>
+<li><a class="reference internal" href="#multiplicative-group-modulo-q">Multiplicative group modulo <em>q</em></a><ul>
+<li><a class="reference internal" href="#c.dirichlet_group_struct"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_t"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_t</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_subgroup_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_subgroup_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_size"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_size()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_num_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_num_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_dlog_precompute"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_dlog_precompute()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_group_dlog_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_group_dlog_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-type">Character type</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_struct"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_t"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_t</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_init"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_clear"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_print"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_log"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_log()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_exp"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_exp()</span></code></a></li>
+<li><a class="reference internal" href="#c._dirichlet_char_exp"><code class="docutils literal notranslate"><span class="pre">_dirichlet_char_exp()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_one"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_first_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_first_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_set"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_next"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_next()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_next_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_next_primitive()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_index_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_index_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_index"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_index()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_eq"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_eq()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_eq_deep"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_eq_deep()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-properties">Character properties</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_is_principal"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_principal()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_conductor_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_conductor_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_conductor_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_conductor_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_parity_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_parity_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_parity_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_parity_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_order_ui"><code class="docutils literal notranslate"><span class="pre">dirichlet_order_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_order_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_order_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_is_real"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_real()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_is_primitive"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_is_primitive()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-evaluation">Character evaluation</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_pairing"><code class="docutils literal notranslate"><span class="pre">dirichlet_pairing()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_pairing_char"><code class="docutils literal notranslate"><span class="pre">dirichlet_pairing_char()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi_vec"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_chi_vec_order"><code class="docutils literal notranslate"><span class="pre">dirichlet_chi_vec_order()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#character-operations">Character operations</a><ul>
+<li><a class="reference internal" href="#c.dirichlet_char_mul"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_pow"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_lift"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_lift()</span></code></a></li>
+<li><a class="reference internal" href="#c.dirichlet_char_lower"><code class="docutils literal notranslate"><span class="pre">dirichlet_char_lower()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

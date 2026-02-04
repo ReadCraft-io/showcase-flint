@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>nmod_poly_mat.h – matrices of univariate polynomials over integers mod n (word-size n) &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="nmod-poly-mat-h-matrices-of-univariate-polynomials-over-integers-mod-n-word-size-n">
+<span id="nmod-poly-mat"></span><h1><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)<a class="headerlink" href="#nmod-poly-mat-h-matrices-of-univariate-polynomials-over-integers-mod-n-word-size-n" title="Link to this heading">¶</a></h1>
+<p>The <a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">nmod_poly_mat_t</span></code></a> data type represents matrices whose
+entries are polynomials having coefficients in
+<span class="math notranslate nohighlight">\(\mathbb{Z}/n\mathbb{Z}\)</span>. We generally assume that <span class="math notranslate nohighlight">\(n\)</span> is a prime
+number.</p>
+<p>The <a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">nmod_poly_mat_t</span></code></a> type is defined as an array of
+<a class="reference internal" href="#c.nmod_poly_mat_struct" title="nmod_poly_mat_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">nmod_poly_mat_struct</span></code></a>’s of length one. This permits passing
+parameters of type <a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">nmod_poly_mat_t</span></code></a> by reference.</p>
+<p>A matrix internally consists of a single array of
+<a class="reference internal" href="nmod_poly.html#c.nmod_poly_struct" title="nmod_poly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">nmod_poly_struct</span></code></a>’s, representing a dense matrix in row-major
+order. This array is only directly indexed during memory allocation
+and deallocation. A separate array holds pointers to the start of each
+row, and is used for all indexing. This allows the rows of a matrix to
+be permuted quickly by swapping pointers.</p>
+<p>Matrices having zero rows or columns are allowed.</p>
+<p>The shape of a matrix is fixed upon initialisation. The user is
+assumed to provide input and output variables whose dimensions are
+compatible with the given operation.</p>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_struct</span></span></span><a class="headerlink" href="#c.nmod_poly_mat_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></span><a class="headerlink" href="#c.nmod_poly_mat_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">rows</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">cols</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises a matrix with the given number of rows and columns for use.
+The modulus is set to <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_init_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_init_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_init_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises a matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code> of the same dimensions and modulus
+as <code class="docutils literal notranslate"><span class="pre">src</span></code>, and sets it to a copy of <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees all memory associated with the matrix. The matrix must be
+reinitialised if it is to be used again.</p>
+</dd></dl>
+
+</section>
+<section id="truncate-shift">
+<h2>Truncate, shift<a class="headerlink" href="#truncate-shift" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_set_trunc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_set_trunc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_set_trunc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set <code class="docutils literal notranslate"><span class="pre">res</span></code> to the truncation of <code class="docutils literal notranslate"><span class="pre">pmat</span></code> to length <code class="docutils literal notranslate"><span class="pre">len</span></code>. Entries of
+<code class="docutils literal notranslate"><span class="pre">res</span></code> are normalized.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_truncate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_truncate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_truncate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Truncates <code class="docutils literal notranslate"><span class="pre">pmat</span></code> to the given length <code class="docutils literal notranslate"><span class="pre">len</span></code>, and normalize its entries.
+If <code class="docutils literal notranslate"><span class="pre">len</span></code> is greater than the maximum length of the entries of <code class="docutils literal notranslate"><span class="pre">pmat</span></code>,
+then nothing happens.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_shift_left">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_shift_left</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_shift_left" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">pmat</span></code> shifted left by <code class="docutils literal notranslate"><span class="pre">k</span></code> coefficients, that is,
+multiplied by <span class="math notranslate nohighlight">\(x^k\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_shift_right">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_shift_right</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_shift_right" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to <code class="docutils literal notranslate"><span class="pre">pmat</span></code> shifted right by <code class="docutils literal notranslate"><span class="pre">k</span></code> coefficients, that is,
+divide by <span class="math notranslate nohighlight">\(x^k\)</span> and throw away the remainder. If <code class="docutils literal notranslate"><span class="pre">k</span></code> is greater than or
+equal to the length of <code class="docutils literal notranslate"><span class="pre">pmat</span></code>, the result is the zero polynomial matrix.</p>
+</dd></dl>
+
+</section>
+<section id="basic-properties">
+<h2>Basic properties<a class="headerlink" href="#basic-properties" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_nrows">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_nrows</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_nrows" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of rows in <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_ncols">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_ncols</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_ncols" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_modulus">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_modulus</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_modulus" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the modulus of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="basic-assignment-and-manipulation">
+<h2>Basic assignment and manipulation<a class="headerlink" href="#basic-assignment-and-manipulation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_entry">
+<a class="reference internal" href="nmod_poly.html#c.nmod_poly_struct" title="nmod_poly_struct"><span class="n"><span class="pre">nmod_poly_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_entry</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">i</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_entry" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Gives a reference to the entry at row <code class="docutils literal notranslate"><span class="pre">i</span></code> and column <code class="docutils literal notranslate"><span class="pre">j</span></code>.
+The reference can be passed as an input or output variable to any
+<code class="docutils literal notranslate"><span class="pre">nmod_poly</span></code> function for direct manipulation of the matrix element.
+No bounds checking is performed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat1</span></code> to a copy of <code class="docutils literal notranslate"><span class="pre">mat2</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_set_nmod_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_set_nmod_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">cmat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_set_nmod_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the already-initialized polynomial matrix <code class="docutils literal notranslate"><span class="pre">pmat</span></code> to a constant
+matrix with the same entries as <code class="docutils literal notranslate"><span class="pre">cmat</span></code>. Both input matrices must have the
+same dimensions and modulus.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> efficiently.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_swap_entrywise">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_swap_entrywise</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_swap_entrywise" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps two matrices by swapping the individual entries rather than swapping
+the contents of the structs.</p>
+</dd></dl>
+
+</section>
+<section id="window">
+<h2>Window<a class="headerlink" href="#window" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_window_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_window_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r1</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c1</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">r2</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_window_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> to be an <code class="docutils literal notranslate"><span class="pre">r2</span> <span class="pre">-</span> <span class="pre">r1</span></code> by
+<code class="docutils literal notranslate"><span class="pre">c2</span> <span class="pre">-</span> <span class="pre">c1</span></code> submatrix of <code class="docutils literal notranslate"><span class="pre">mat</span></code> whose <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> entry
+is the <code class="docutils literal notranslate"><span class="pre">(r1,</span> <span class="pre">c1)</span></code> entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code>. The memory for the
+elements of <code class="docutils literal notranslate"><span class="pre">window</span></code> is shared with <code class="docutils literal notranslate"><span class="pre">mat</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_window_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_window_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">window</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_window_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the matrix <code class="docutils literal notranslate"><span class="pre">window</span></code> and releases any memory that it
+uses. Note that the memory of the underlying matrix that
+<code class="docutils literal notranslate"><span class="pre">window</span></code> points to is not freed.</p>
+</dd></dl>
+
+</section>
+<section id="concatenate">
+<h2>Concatenate<a class="headerlink" href="#concatenate" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_concat_vertical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_concat_vertical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_concat_vertical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to vertical concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(k \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code> : <span class="math notranslate nohighlight">\((m + k) \times n\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_concat_horizontal">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_concat_horizontal</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_concat_horizontal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to horizontal concatenation of (<code class="docutils literal notranslate"><span class="pre">mat1</span></code>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code>) in that order. Matrix dimensions : <code class="docutils literal notranslate"><span class="pre">mat1</span></code> : <span class="math notranslate nohighlight">\(m \times n\)</span>, <code class="docutils literal notranslate"><span class="pre">mat2</span></code> : <span class="math notranslate nohighlight">\(m \times k\)</span>, <code class="docutils literal notranslate"><span class="pre">res</span></code>  : <span class="math notranslate nohighlight">\(m \times (n + k)\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code> to standard output, using the
+variable <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="random-matrix-generation">
+<h2>Random matrix generation<a class="headerlink" href="#random-matrix-generation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>This is equivalent to applying <code class="docutils literal notranslate"><span class="pre">nmod_poly_randtest</span></code> to all entries
+in the matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_randtest_sparse">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_randtest_sparse</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n"><span class="pre">density</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_randtest_sparse" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Creates a random matrix with the amount of nonzero entries given
+approximately by the <code class="docutils literal notranslate"><span class="pre">density</span></code> variable, which should be a fraction
+between 0 (most sparse) and 1 (most dense).</p>
+<p>The nonzero entries will have random lengths between 1 and <code class="docutils literal notranslate"><span class="pre">len</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="special-matrices">
+<h2>Special matrices<a class="headerlink" href="#special-matrices" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_zero">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_zero</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the zero matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">mat</span></code> to the unit or identity matrix of given shape,
+having the element 1 on the main diagonal and zeros elsewhere.
+If <code class="docutils literal notranslate"><span class="pre">mat</span></code> is nonsquare, it is set to the truncation of a unit matrix.</p>
+</dd></dl>
+
+</section>
+<section id="basic-comparison-and-properties">
+<h2>Basic comparison and properties<a class="headerlink" href="#basic-comparison-and-properties" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">mat1</span></code> and <code class="docutils literal notranslate"><span class="pre">mat2</span></code> have the same shape and
+all their entries agree, and returns zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_equal_nmod_mat">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_equal_nmod_mat</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">cmat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_equal_nmod_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if <code class="docutils literal notranslate"><span class="pre">pmat</span></code> is a constant matrix with the same dimensions
+and entries as <code class="docutils literal notranslate"><span class="pre">cmat</span></code>; returns zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_is_zero">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_is_zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_is_zero" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if all entries in <code class="docutils literal notranslate"><span class="pre">mat</span></code> are zero, and returns
+zero otherwise.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if all entry of <code class="docutils literal notranslate"><span class="pre">mat</span></code> on the main diagonal
+are the constant polynomial 1 and all remaining entries are zero,
+and returns zero otherwise. The matrix need not be square.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_is_empty">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_is_empty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_is_empty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows or the number of
+columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code> is zero, and otherwise returns
+zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_is_square">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_is_square</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_is_square" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns a non-zero value if the number of rows is equal to the
+number of columns in <code class="docutils literal notranslate"><span class="pre">mat</span></code>, and otherwise returns zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_get_coeff_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_get_coeff_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">coeff</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">deg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_get_coeff_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">coeff</span></code> to be the coefficient of <code class="docutils literal notranslate"><span class="pre">pmat</span></code> of degree <code class="docutils literal notranslate"><span class="pre">deg</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">pmat</span></code> is seen as a polynomial with matrix coefficients and coefficients
+are numbered from zero. <code class="docutils literal notranslate"><span class="pre">coeff</span></code> must be already initialized with the
+right dimensions and modulus. For entries of <code class="docutils literal notranslate"><span class="pre">pmat</span></code> of degree less than
+<code class="docutils literal notranslate"><span class="pre">deg</span></code>, the corresponding entry of <code class="docutils literal notranslate"><span class="pre">coeff</span></code> is zero.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_set_coeff_mat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_set_coeff_mat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">coeff</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">deg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_set_coeff_mat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the coefficient of <code class="docutils literal notranslate"><span class="pre">pmat</span></code> of degree <code class="docutils literal notranslate"><span class="pre">deg</span></code> to <code class="docutils literal notranslate"><span class="pre">coeff</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">pmat</span></code> is seen as a polynomial with matrix coefficients and coefficients
+are numbered from zero. For each entry of <code class="docutils literal notranslate"><span class="pre">pmat</span></code>, if <code class="docutils literal notranslate"><span class="pre">deg</span></code> is larger
+than its degree, this entry is first resized to the appropriate length,
+with intervening coefficients being set to zero.</p>
+</dd></dl>
+
+</section>
+<section id="transposition">
+<h2>Transposition<a class="headerlink" href="#transposition" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_transpose">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_transpose</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_transpose" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <span class="math notranslate nohighlight">\(B\)</span> to the transpose of <span class="math notranslate nohighlight">\(A\)</span>. Dimensions must be compatible.
+Aliasing is allowed for square matrices.</p>
+</dd></dl>
+
+</section>
+<section id="norms">
+<h2>Norms<a class="headerlink" href="#norms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_max_length">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_max_length</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_max_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the maximum polynomial length among all the entries in <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_degree">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_degree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pmat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_degree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the degree of the polynomial matrix <code class="docutils literal notranslate"><span class="pre">pmat</span></code>. The zero matrix is
+deemed to have degree <span class="math notranslate nohighlight">\(-1\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="evaluation">
+<h2>Evaluation<a class="headerlink" href="#evaluation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_evaluate_nmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_evaluate_nmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_mat.html#c.nmod_mat_t" title="nmod_mat_t"><span class="n"><span class="pre">nmod_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_evaluate_nmod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the <code class="docutils literal notranslate"><span class="pre">nmod_mat_t</span></code> <code class="docutils literal notranslate"><span class="pre">B</span></code> to <code class="docutils literal notranslate"><span class="pre">A</span></code> evaluated entrywise
+at the point <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="arithmetic">
+<h2>Arithmetic<a class="headerlink" href="#arithmetic" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_scalar_mul_nmod_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_scalar_mul_nmod_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_scalar_mul_nmod_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to <code class="docutils literal notranslate"><span class="pre">A</span></code> multiplied entrywise by the polynomial <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_scalar_mul_nmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_scalar_mul_nmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_scalar_mul_nmod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to <code class="docutils literal notranslate"><span class="pre">A</span></code> multiplied entrywise by the coefficient
+<code class="docutils literal notranslate"><span class="pre">c</span></code>, which is assumed to be reduced modulo the modulus.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.
+All matrices must have the same shape. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_sub">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_sub</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_sub" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the sum of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.
+All matrices must have the same shape. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_neg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_neg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_neg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the negation of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+The matrices must have the same shape. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>.
+The matrices must have compatible dimensions for matrix multiplication.
+Aliasing is allowed. This function automatically chooses between
+classical, KS and evaluation-interpolation multiplication.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_mul_classical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_mul_classical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_mul_classical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>,
+computed using the classical algorithm. The matrices must have
+compatible dimensions for matrix multiplication. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_mul_KS">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_mul_KS</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_mul_KS" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>,
+computed using Kronecker segmentation. The matrices must have
+compatible dimensions for matrix multiplication. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_mul_interpolate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_mul_interpolate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_mul_interpolate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">C</span></code> to the matrix product of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code>,
+computed through evaluation and interpolation. The matrices must have
+compatible dimensions for matrix multiplication. For interpolation
+to be well-defined, we require that the modulus is a prime at least as
+large as <span class="math notranslate nohighlight">\(m + n - 1\)</span> where <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(n\)</span> are the maximum lengths of
+polynomials in the input matrices. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_sqr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_sqr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_sqr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the square of <code class="docutils literal notranslate"><span class="pre">A</span></code>, which must be a square matrix.
+Aliasing is allowed. This function automatically chooses between
+classical and KS squaring.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_sqr_classical">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_sqr_classical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_sqr_classical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the square of <code class="docutils literal notranslate"><span class="pre">A</span></code>, which must be a square matrix.
+Aliasing is allowed. This function uses direct formulas for very small
+matrices, and otherwise classical matrix multiplication.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_sqr_KS">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_sqr_KS</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_sqr_KS" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the square of <code class="docutils literal notranslate"><span class="pre">A</span></code>, which must be a square matrix.
+Aliasing is allowed. This function uses Kronecker segmentation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_sqr_interpolate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_sqr_interpolate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_sqr_interpolate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to the square of <code class="docutils literal notranslate"><span class="pre">A</span></code>, which must be a square matrix,
+computed through evaluation and interpolation. For interpolation
+to be well-defined, we require that the modulus is a prime at least as
+large as <span class="math notranslate nohighlight">\(2n - 1\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is the maximum length of
+polynomials in the input matrix. Aliasing is allowed.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">B</span></code> to <code class="docutils literal notranslate"><span class="pre">A</span></code> raised to the power <code class="docutils literal notranslate"><span class="pre">exp</span></code>, where <code class="docutils literal notranslate"><span class="pre">A</span></code>
+is a square matrix. Uses exponentiation by squaring. Aliasing is allowed.</p>
+</dd></dl>
+
+</section>
+<section id="row-reduction">
+<h2>Row reduction<a class="headerlink" href="#row-reduction" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_find_pivot_any">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_find_pivot_any</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">start_row</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">end_row</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_find_pivot_any" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to find a pivot entry for row reduction.
+Returns a row index <span class="math notranslate nohighlight">\(r\)</span> between <code class="docutils literal notranslate"><span class="pre">start_row</span></code> (inclusive) and
+<code class="docutils literal notranslate"><span class="pre">stop_row</span></code> (exclusive) such that column <span class="math notranslate nohighlight">\(c\)</span> in <code class="docutils literal notranslate"><span class="pre">mat</span></code> has
+a nonzero entry on row <span class="math notranslate nohighlight">\(r\)</span>, or returns -1 if no such entry exists.</p>
+<p>This implementation simply chooses the first nonzero entry from
+it encounters. This is likely to be a nearly optimal choice if all
+entries in the matrix have roughly the same size, but can lead to
+unnecessary coefficient growth if the entries vary in size.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_find_pivot_partial">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_find_pivot_partial</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">start_row</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">end_row</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_find_pivot_partial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to find a pivot entry for row reduction.
+Returns a row index <span class="math notranslate nohighlight">\(r\)</span> between <code class="docutils literal notranslate"><span class="pre">start_row</span></code> (inclusive) and
+<code class="docutils literal notranslate"><span class="pre">stop_row</span></code> (exclusive) such that column <span class="math notranslate nohighlight">\(c\)</span> in <code class="docutils literal notranslate"><span class="pre">mat</span></code> has
+a nonzero entry on row <span class="math notranslate nohighlight">\(r\)</span>, or returns -1 if no such entry exists.</p>
+<p>This implementation searches all the rows in the column and
+chooses the nonzero entry of smallest degree. This heuristic
+typically reduces coefficient growth when the matrix entries
+vary in size.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_fflu">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_fflu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">rank_check</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_fflu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Uses fraction-free Gaussian elimination to set (<code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">den</span></code>) to a
+fraction-free LU decomposition of <code class="docutils literal notranslate"><span class="pre">A</span></code> and returns the
+rank of <code class="docutils literal notranslate"><span class="pre">A</span></code>. Aliasing of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is allowed.</p>
+<p>Pivot elements are chosen with <code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_find_pivot_partial</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">perm</span></code> is non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the permutation of
+rows in the matrix will also be applied to <code class="docutils literal notranslate"><span class="pre">perm</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">rank_check</span></code> is set, the function aborts and returns 0 if the
+matrix is detected not to have full rank without completing the
+elimination.</p>
+<p>The denominator <code class="docutils literal notranslate"><span class="pre">den</span></code> is set to <span class="math notranslate nohighlight">\(\pm \operatorname{det}(A)\)</span>, where
+the sign is decided by the parity of the permutation. Note that the
+determinant is not generally the minimal denominator.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_rref">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_rref</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span>, <a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_rref" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets (<code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">den</span></code>) to the reduced row echelon form of <code class="docutils literal notranslate"><span class="pre">A</span></code>
+and returns the rank of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+Aliasing of <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">B</span></code> is allowed.</p>
+<p>The denominator <code class="docutils literal notranslate"><span class="pre">den</span></code> is set to <span class="math notranslate nohighlight">\(\pm \operatorname{det}(A)\)</span>.
+Note that the determinant is not generally the minimal denominator.</p>
+</dd></dl>
+
+</section>
+<section id="trace">
+<h2>Trace<a class="headerlink" href="#trace" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_trace">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_trace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">trace</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_trace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the trace of the matrix, i.e. the sum of the entries on
+the main diagonal. The matrix is required to be square.</p>
+</dd></dl>
+
+</section>
+<section id="determinant-and-rank">
+<h2>Determinant and rank<a class="headerlink" href="#determinant-and-rank" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_det">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_det</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">det</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_det" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">det</span></code> to the determinant of the square matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>. Uses
+a direct formula, fraction-free LU decomposition, or interpolation,
+depending on the size of the matrix.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_det_fflu">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_det_fflu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">det</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_det_fflu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">det</span></code> to the determinant of the square matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+The determinant is computed by performing a fraction-free LU
+decomposition on a copy of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_det_interpolate">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_det_interpolate</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">det</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_det_interpolate" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">det</span></code> to the determinant of the square matrix <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+The determinant is computed by determining a bound <span class="math notranslate nohighlight">\(n\)</span> for its length,
+evaluating the matrix at <span class="math notranslate nohighlight">\(n\)</span> distinct points, computing the determinant
+of each coefficient matrix, and forming the interpolating polynomial.</p>
+<p>If the coefficient ring does not contain <span class="math notranslate nohighlight">\(n\)</span> distinct points (that is,
+if working over <span class="math notranslate nohighlight">\(\mathbf{Z}/p\mathbf{Z}\)</span> where <span class="math notranslate nohighlight">\(p &lt; n\)</span>),
+this function automatically falls back to <code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det_fflu</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_rank">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_rank</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_rank" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns the rank of <code class="docutils literal notranslate"><span class="pre">A</span></code>. Performs fraction-free LU decomposition
+on a copy of <code class="docutils literal notranslate"><span class="pre">A</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="inverse">
+<h2>Inverse<a class="headerlink" href="#inverse" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_inv">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">Ainv</span></span>, <a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets (<code class="docutils literal notranslate"><span class="pre">Ainv</span></code>, <code class="docutils literal notranslate"><span class="pre">den</span></code>) to the inverse matrix of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+Returns 1 if <code class="docutils literal notranslate"><span class="pre">A</span></code> is nonsingular and 0 if <code class="docutils literal notranslate"><span class="pre">A</span></code> is singular.
+Aliasing of <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> and <code class="docutils literal notranslate"><span class="pre">A</span></code> is allowed.</p>
+<p>More precisely, <code class="docutils literal notranslate"><span class="pre">det</span></code> will be set to the determinant of <code class="docutils literal notranslate"><span class="pre">A</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Ainv</span></code> will be set to the adjugate matrix of <code class="docutils literal notranslate"><span class="pre">A</span></code>.
+Note that the determinant is not necessarily the minimal denominator.</p>
+<p>Uses fraction-free LU decomposition, followed by solving for
+the identity matrix.</p>
+</dd></dl>
+
+</section>
+<section id="nullspace">
+<h2>Nullspace<a class="headerlink" href="#nullspace" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_nullspace">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_nullspace</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mat</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_nullspace" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the right rational nullspace of the matrix <code class="docutils literal notranslate"><span class="pre">mat</span></code> and
+returns the nullity.</p>
+<p>More precisely, assume that <code class="docutils literal notranslate"><span class="pre">mat</span></code> has rank <span class="math notranslate nohighlight">\(r\)</span> and nullity <span class="math notranslate nohighlight">\(n\)</span>.
+Then this function sets the first <span class="math notranslate nohighlight">\(n\)</span> columns of <code class="docutils literal notranslate"><span class="pre">res</span></code>
+to linearly independent vectors spanning the nullspace of <code class="docutils literal notranslate"><span class="pre">mat</span></code>.
+As a result, we always have rank(<code class="docutils literal notranslate"><span class="pre">res</span></code>) <span class="math notranslate nohighlight">\(= n\)</span>, and
+<code class="docutils literal notranslate"><span class="pre">mat</span></code> <span class="math notranslate nohighlight">\(\times\)</span> <code class="docutils literal notranslate"><span class="pre">res</span></code> is the zero matrix.</p>
+<p>The computed basis vectors will not generally be in a reduced form.
+In general, the polynomials in each column vector in the result
+will have a nontrivial common GCD.</p>
+</dd></dl>
+
+</section>
+<section id="solving">
+<h2>Solving<a class="headerlink" href="#solving" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_solve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_solve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_solve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves the equation <span class="math notranslate nohighlight">\(AX = B\)</span> for nonsingular <span class="math notranslate nohighlight">\(A\)</span>. More precisely, computes
+(<code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">den</span></code>) such that <span class="math notranslate nohighlight">\(AX = B \times \operatorname{den}\)</span>.
+Returns 1 if <span class="math notranslate nohighlight">\(A\)</span> is nonsingular and 0 if <span class="math notranslate nohighlight">\(A\)</span> is singular.
+The computed denominator will not generally be minimal.</p>
+<p>Uses fraction-free LU decomposition followed by fraction-free
+forward and back substitution.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_solve_fflu">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_solve_fflu</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <a class="reference internal" href="nmod_poly.html#c.nmod_poly_t" title="nmod_poly_t"><span class="n"><span class="pre">nmod_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">den</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">A</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_solve_fflu" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Solves the equation <span class="math notranslate nohighlight">\(AX = B\)</span> for nonsingular <span class="math notranslate nohighlight">\(A\)</span>. More precisely, computes
+(<code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">den</span></code>) such that <span class="math notranslate nohighlight">\(AX = B \times \operatorname{den}\)</span>.
+Returns 1 if <span class="math notranslate nohighlight">\(A\)</span> is nonsingular and 0 if <span class="math notranslate nohighlight">\(A\)</span> is singular.
+The computed denominator will not generally be minimal.</p>
+<p>Uses fraction-free LU decomposition followed by fraction-free
+forward and back substitution.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.nmod_poly_mat_solve_fflu_precomp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmod_poly_mat_solve_fflu_precomp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">X</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">perm</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">FFLU</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.nmod_poly_mat_t" title="nmod_poly_mat_t"><span class="n"><span class="pre">nmod_poly_mat_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">B</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.nmod_poly_mat_solve_fflu_precomp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Performs fraction-free forward and back substitution given a precomputed
+fraction-free LU decomposition and corresponding permutation.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="nmod_poly.html"
+          title="Previous article"
+          ><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="nmod_poly_factor.html"
+          title="Next article"
+          ><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_struct"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_t"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_init"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_init_set"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_init_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_clear"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#truncate-shift">Truncate, shift</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_trunc"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_trunc()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_truncate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_truncate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_shift_left"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_shift_left()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_shift_right"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_shift_right()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-properties">Basic properties</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_nrows"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_nrows()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_ncols"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_ncols()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_modulus"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_modulus()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-assignment-and-manipulation">Basic assignment and manipulation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_entry"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_entry()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_nmod_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_swap"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_swap_entrywise"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_swap_entrywise()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window">Window</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_window_init"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_window_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_window_clear"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_window_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concatenate">Concatenate</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_concat_vertical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_concat_vertical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_concat_horizontal"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_concat_horizontal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_print"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_print()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_randtest"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_randtest()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_randtest_sparse"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_randtest_sparse()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#special-matrices">Special matrices</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_zero"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_one"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_one()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-comparison-and-properties">Basic comparison and properties</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_equal"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_equal_nmod_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_equal_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_zero"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_one"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_empty"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_empty()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_square"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_square()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_get_coeff_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_get_coeff_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_coeff_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_coeff_mat()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transposition">Transposition</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_transpose"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_transpose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#norms">Norms</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_max_length"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_max_length()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_degree"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_degree()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_evaluate_nmod"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_evaluate_nmod()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_scalar_mul_nmod_poly"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_scalar_mul_nmod_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_scalar_mul_nmod"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_scalar_mul_nmod()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_add"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sub"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sub()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_neg"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_neg()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_classical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_KS"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_classical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_KS"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_pow"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_pow()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#row-reduction">Row reduction</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_find_pivot_any"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_find_pivot_any()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_find_pivot_partial"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_find_pivot_partial()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_rref"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_rref()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trace">Trace</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_trace"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_trace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#determinant-and-rank">Determinant and rank</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_rank"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_rank()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inverse">Inverse</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_inv"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_inv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nullspace">Nullspace</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_nullspace"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_nullspace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#solving">Solving</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve_fflu_precomp"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve_fflu_precomp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_struct"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_t"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory management</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_init"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_init_set"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_init_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_clear"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#truncate-shift">Truncate, shift</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_trunc"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_trunc()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_truncate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_truncate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_shift_left"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_shift_left()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_shift_right"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_shift_right()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-properties">Basic properties</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_nrows"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_nrows()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_ncols"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_ncols()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_modulus"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_modulus()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-assignment-and-manipulation">Basic assignment and manipulation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_entry"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_entry()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_nmod_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_swap"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_swap_entrywise"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_swap_entrywise()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#window">Window</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_window_init"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_window_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_window_clear"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_window_clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concatenate">Concatenate</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_concat_vertical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_concat_vertical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_concat_horizontal"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_concat_horizontal()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_print"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_print()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-matrix-generation">Random matrix generation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_randtest"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_randtest()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_randtest_sparse"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_randtest_sparse()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#special-matrices">Special matrices</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_zero"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_one"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_one()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-comparison-and-properties">Basic comparison and properties</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_equal"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_equal_nmod_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_equal_nmod_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_zero"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_zero()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_one"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_empty"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_empty()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_is_square"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_is_square()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_get_coeff_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_get_coeff_mat()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_set_coeff_mat"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_set_coeff_mat()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transposition">Transposition</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_transpose"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_transpose()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#norms">Norms</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_max_length"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_max_length()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_degree"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_degree()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_evaluate_nmod"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_evaluate_nmod()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_scalar_mul_nmod_poly"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_scalar_mul_nmod_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_scalar_mul_nmod"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_scalar_mul_nmod()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_add"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sub"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sub()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_neg"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_neg()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_classical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_KS"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_mul_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_mul_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_classical"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_classical()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_KS"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_KS()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_sqr_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_sqr_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_pow"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_pow()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#row-reduction">Row reduction</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_find_pivot_any"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_find_pivot_any()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_find_pivot_partial"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_find_pivot_partial()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_rref"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_rref()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#trace">Trace</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_trace"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_trace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#determinant-and-rank">Determinant and rank</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_det_interpolate"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_det_interpolate()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_rank"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_rank()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#inverse">Inverse</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_inv"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_inv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nullspace">Nullspace</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_nullspace"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_nullspace()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#solving">Solving</a><ul>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve_fflu"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve_fflu()</span></code></a></li>
+<li><a class="reference internal" href="#c.nmod_poly_mat_solve_fflu_precomp"><code class="docutils literal notranslate"><span class="pre">nmod_poly_mat_solve_fflu_precomp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

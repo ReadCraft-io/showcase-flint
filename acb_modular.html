@@ -1,0 +1,1634 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>acb_modular.h – modular forms of complex variables &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>acb_modular.h</strong> – modular forms of complex variables</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="acb-modular-h-modular-forms-of-complex-variables">
+<span id="acb-modular"></span><h1><strong>acb_modular.h</strong> – modular forms of complex variables<a class="headerlink" href="#acb-modular-h-modular-forms-of-complex-variables" title="Link to this heading">¶</a></h1>
+<p>This module provides methods for numerical evaluation of modular
+forms and Jacobi theta functions. See <a class="reference internal" href="acb_elliptic.html#acb-elliptic"><span class="std std-ref">acb_elliptic.h</span></a>
+for the closely related elliptic functions and integrals.</p>
+<p>In the context of this module, <em>tau</em> or <span class="math notranslate nohighlight">\(\tau\)</span> always denotes an
+element of the complex upper half-plane
+<span class="math notranslate nohighlight">\(\mathbb{H} = \{z \in \mathbb{C} : \operatorname{Im}(z) &gt; 0\}\)</span>.
+We also often use the variable <span class="math notranslate nohighlight">\(q\)</span>, variously defined as <span class="math notranslate nohighlight">\(q = e^{2 \pi i \tau}\)</span>
+(usually in relation to modular forms) or <span class="math notranslate nohighlight">\(q = e^{\pi i \tau}\)</span> (usually
+in relation to theta functions) and satisfying <span class="math notranslate nohighlight">\(|q| &lt; 1\)</span>.
+We will clarify the local meaning of <span class="math notranslate nohighlight">\(q\)</span> every time such a quantity appears as
+a function of <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>As usual, the numerical functions in this module compute strict error
+bounds: if <em>tau</em> is represented by an <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">acb_t</span></code></a> whose content
+overlaps with the real line (or lies in the lower half-plane),
+and <em>tau</em> is passed to a function defined only on <span class="math notranslate nohighlight">\(\mathbb{H}\)</span>, then
+the output will have an infinite radius. The analogous behavior holds for
+functions requiring <span class="math notranslate nohighlight">\(|q| &lt; 1\)</span>.</p>
+<section id="the-modular-group">
+<h2>The modular group<a class="headerlink" href="#the-modular-group" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.psl2z_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_struct</span></span></span><a class="headerlink" href="#c.psl2z_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.psl2z_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_t</span></span></span><a class="headerlink" href="#c.psl2z_t" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Represents an element of the modular group <span class="math notranslate nohighlight">\(\text{PSL}(2, \mathbb{Z})\)</span>,
+namely an integer matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(ad-bc = 1\)</span>, and with signs canonicalized such that <span class="math notranslate nohighlight">\(c \ge 0\)</span>,
+and <span class="math notranslate nohighlight">\(d &gt; 0\)</span> if <span class="math notranslate nohighlight">\(c = 0\)</span>.
+The struct members <em>a</em>, <em>b</em>, <em>c</em>, <em>d</em> are of type <em>fmpz</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>g</em> and set it to the identity element.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears <em>g</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_swap">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_swap" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Swaps <em>f</em> and <em>g</em> efficiently.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>f</em> to a copy of <em>g</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_one">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_one</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>g</em> to the identity element.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_is_one">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_is_one</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_is_one" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero iff <em>g</em> is the identity element.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <em>g</em> to standard output.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_fprint">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">file</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_fprint" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints <em>g</em> to the stream <em>file</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_equal">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_equal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_equal" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero iff <em>f</em> and <em>g</em> are equal.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_mul">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_mul</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_mul" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>h</em> to the product of <em>f</em> and <em>g</em>, namely the matrix product
+with the signs canonicalized.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_inv">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_inv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">h</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_inv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>h</em> to the inverse of <em>g</em>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_is_correct">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_is_correct</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_is_correct" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero iff <em>g</em> contains correct data, i.e.
+satisfying <span class="math notranslate nohighlight">\(ad-bc = 1\)</span>, <span class="math notranslate nohighlight">\(c \ge 0\)</span>, and <span class="math notranslate nohighlight">\(d &gt; 0\)</span> if <span class="math notranslate nohighlight">\(c = 0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.psl2z_randtest">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">psl2z_randtest</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">bits</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.psl2z_randtest" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>g</em> to a random element of <span class="math notranslate nohighlight">\(\text{PSL}(2, \mathbb{Z})\)</span>
+with entries of bit length at most <em>bits</em>
+(or 1, if <em>bits</em> is not positive). We first generate <em>a</em> and <em>d</em>, compute
+their Bezout coefficients, divide by the GCD, and then correct the signs.</p>
+</dd></dl>
+
+</section>
+<section id="modular-transformations">
+<h2>Modular transformations<a class="headerlink" href="#modular-transformations" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_transform">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_transform</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_transform" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Applies the modular transformation <em>g</em> to the complex number <em>z</em>,
+evaluating</p>
+<div class="math notranslate nohighlight">
+\[w = g z = \frac{az+b}{cz+d}.\]</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_fundamental_domain_approx_d">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_fundamental_domain_approx_d</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">y</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">one_minus_eps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_fundamental_domain_approx_d" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_fundamental_domain_approx_arf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_fundamental_domain_approx_arf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><span class="n"><span class="pre">arf_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><span class="n"><span class="pre">arf_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><span class="n"><span class="pre">arf_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">one_minus_eps</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_fundamental_domain_approx_arf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to determine a modular transformation <em>g</em> that maps the
+complex number <span class="math notranslate nohighlight">\(x+yi\)</span> to the fundamental domain or just
+slightly outside the fundamental domain, where the target tolerance
+(not a strict bound) is specified by <em>one_minus_eps</em>.</p>
+<p>The inputs are assumed to be finite numbers, with <em>y</em> positive.</p>
+<p>Uses floating-point iteration, repeatedly applying either
+the transformation <span class="math notranslate nohighlight">\(z \gets z + b\)</span> or <span class="math notranslate nohighlight">\(z \gets -1/z\)</span>. The iteration is
+terminated if <span class="math notranslate nohighlight">\(|x| \le 1/2\)</span> and <span class="math notranslate nohighlight">\(x^2 + y^2 \ge 1 - \varepsilon\)</span> where
+<span class="math notranslate nohighlight">\(1 - \varepsilon\)</span> is passed as <em>one_minus_eps</em>. It is also terminated
+if too many steps have been taken without convergence, or if the numbers
+end up too large or too small for the working precision.</p>
+<p>The algorithm can fail to produce a satisfactory transformation.
+The output <em>g</em> is always set to <em>some</em> correct modular transformation,
+but it is up to the user to verify a posteriori that <em>g</em> maps <span class="math notranslate nohighlight">\(x+yi\)</span>
+close enough to the fundamental domain.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_fundamental_domain_approx">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_fundamental_domain_approx</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><span class="n"><span class="pre">arf_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">one_minus_eps</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_fundamental_domain_approx" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to determine a modular transformation <em>g</em> that maps the
+complex number <span class="math notranslate nohighlight">\(z\)</span> to the fundamental domain or just
+slightly outside the fundamental domain, where the target tolerance
+(not a strict bound) is specified by <em>one_minus_eps</em>. It also computes
+the transformed value <span class="math notranslate nohighlight">\(w = gz\)</span>.</p>
+<p>This function first tries to use
+<a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_d" title="acb_modular_fundamental_domain_approx_d"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_d()</span></code></a> and checks if the
+result is acceptable. If this fails, it calls
+<a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_arf" title="acb_modular_fundamental_domain_approx_arf"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_arf()</span></code></a> with higher precision.
+Finally, <span class="math notranslate nohighlight">\(w = gz\)</span> is evaluated by a single application of <em>g</em>.</p>
+<p>The algorithm can fail to produce a satisfactory transformation.
+The output <em>g</em> is always set to <em>some</em> correct modular transformation,
+but it is up to the user to verify a posteriori that <span class="math notranslate nohighlight">\(w\)</span> is close enough
+to the fundamental domain.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_is_in_fundamental_domain">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_is_in_fundamental_domain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><span class="n"><span class="pre">arf_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tol</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_is_in_fundamental_domain" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns nonzero if it is certainly true that <span class="math notranslate nohighlight">\(|z| \ge 1 - \varepsilon\)</span> and
+<span class="math notranslate nohighlight">\(|\operatorname{Re}(z)| \le 1/2 + \varepsilon\)</span> where <span class="math notranslate nohighlight">\(\varepsilon\)</span> is
+specified by <em>tol</em>. Returns zero if this is false or cannot be determined.</p>
+</dd></dl>
+
+</section>
+<section id="addition-sequences">
+<h2>Addition sequences<a class="headerlink" href="#addition-sequences" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_fill_addseq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_fill_addseq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">tab</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_fill_addseq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Builds a near-optimal addition sequence for a sequence of integers
+which is assumed to be reasonably dense.</p>
+<p>As input, the caller should set each entry in <em>tab</em> to <span class="math notranslate nohighlight">\(-1\)</span> if
+that index is to be part of the addition sequence, and to 0 otherwise.
+On output, entry <em>i</em> in <em>tab</em> will either be zero (if the number is
+not part of the sequence), or a value <em>j</em> such that both
+<em>j</em> and <span class="math notranslate nohighlight">\(i - j\)</span> are also marked.
+The first two entries in <em>tab</em> are ignored (the number 1 is always
+assumed to be part of the sequence).</p>
+</dd></dl>
+
+</section>
+<section id="jacobi-theta-functions">
+<h2>Jacobi theta functions<a class="headerlink" href="#jacobi-theta-functions" title="Link to this heading">¶</a></h2>
+<p>Unfortunately, there are many inconsistent notational variations for
+Jacobi theta functions in the literature. Unless otherwise noted,
+we use the functions</p>
+<div class="math notranslate nohighlight">
+\[\theta_1(z,\tau) = -i \sum_{n=-\infty}^{\infty} (-1)^n \exp(\pi i [(n + 1/2)^2 \tau + (2n + 1) z])
+                 = 2 q_{1/4} \sum_{n=0}^{\infty} (-1)^n q^{n(n+1)} \sin((2n+1) \pi z)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_2(z,\tau) = \sum_{n=-\infty}^{\infty} \exp(\pi i [(n + 1/2)^2 \tau + (2n + 1) z])
+                 = 2 q_{1/4} \sum_{n=0}^{\infty} q^{n(n+1)} \cos((2n+1) \pi z)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_3(z,\tau) = \sum_{n=-\infty}^{\infty} \exp(\pi i [n^2 \tau + 2n z])
+                 = 1 + 2 \sum_{n=1}^{\infty} q^{n^2} \cos(2n \pi z)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_4(z,\tau) = \sum_{n=-\infty}^{\infty} (-1)^n \exp(\pi i [n^2 \tau + 2n z])
+                 = 1 + 2 \sum_{n=1}^{\infty} (-1)^n q^{n^2} \cos(2n \pi z)\]</div>
+<p>where <span class="math notranslate nohighlight">\(q = \exp(\pi i \tau)\)</span> and <span class="math notranslate nohighlight">\(q_{1/4} = \exp(\pi i \tau / 4)\)</span>.
+Note that many authors write <span class="math notranslate nohighlight">\(q_{1/4}\)</span> as <span class="math notranslate nohighlight">\(q^{1/4}\)</span>,
+but the principal fourth root <span class="math notranslate nohighlight">\((q)^{1/4} = \exp(\frac{1}{4} \log q)\)</span>
+differs from <span class="math notranslate nohighlight">\(q_{1/4}\)</span> in general and some formulas are
+only correct if one reads “<span class="math notranslate nohighlight">\(q^{1/4} = \exp(\pi i \tau / 4)\)</span>”.
+To avoid confusion, we only write <span class="math notranslate nohighlight">\(q^k\)</span> when <span class="math notranslate nohighlight">\(k\)</span> is an integer.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_transform">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_transform</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">R</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">S</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">C</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_transform" title="Link to this definition">¶</a><br /></dt>
+<dd><p>We wish to write a theta function with quasiperiod <span class="math notranslate nohighlight">\(\tau\)</span> in terms
+of a theta function with quasiperiod <span class="math notranslate nohighlight">\(\tau' = g \tau\)</span>, given
+some <span class="math notranslate nohighlight">\(g = (a, b; c, d) \in \text{PSL}(2, \mathbb{Z})\)</span>.
+For <span class="math notranslate nohighlight">\(i = 0, 1, 2, 3\)</span>, this function computes integers <span class="math notranslate nohighlight">\(R_i\)</span> and <span class="math notranslate nohighlight">\(S_i\)</span>
+(<em>R</em> and <em>S</em> should be arrays of length 4)
+and <span class="math notranslate nohighlight">\(C \in \{0, 1\}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[\theta_{1+i}(z,\tau) = \exp(\pi i R_i / 4) \cdot A \cdot B \cdot \theta_{1+S_i}(z',\tau')\]</div>
+<p>where <span class="math notranslate nohighlight">\(z' = z, A = B = 1\)</span> if <span class="math notranslate nohighlight">\(C = 0\)</span>, and</p>
+<div class="math notranslate nohighlight">
+\[z' = \frac{-z}{c \tau + d}, \quad
+A = \sqrt{\frac{i}{c \tau + d}}, \quad
+B = \exp\left(-\pi i c \frac{z^2}{c \tau + d}\right)\]</div>
+<p>if <span class="math notranslate nohighlight">\(C = 1\)</span>. Note that <span class="math notranslate nohighlight">\(A\)</span> is well-defined with the principal branch
+of the square root since <span class="math notranslate nohighlight">\(A^2 = i/(c \tau + d)\)</span> lies in the right half-plane.</p>
+<p>Firstly, if <span class="math notranslate nohighlight">\(c = 0\)</span>, we have
+<span class="math notranslate nohighlight">\(\theta_i(z, \tau) = \exp(-\pi i b / 4) \theta_i(z, \tau+b)\)</span>
+for <span class="math notranslate nohighlight">\(i = 1, 2\)</span>, whereas
+<span class="math notranslate nohighlight">\(\theta_3\)</span> and <span class="math notranslate nohighlight">\(\theta_4\)</span> remain unchanged when <span class="math notranslate nohighlight">\(b\)</span> is even
+and swap places with each other when <span class="math notranslate nohighlight">\(b\)</span> is odd.
+In this case we set <span class="math notranslate nohighlight">\(C = 0\)</span>.</p>
+<p>For an arbitrary <span class="math notranslate nohighlight">\(g\)</span> with <span class="math notranslate nohighlight">\(c &gt; 0\)</span>, we set <span class="math notranslate nohighlight">\(C = 1\)</span>. The general
+transformations are given by Rademacher <a class="reference internal" href="references.html#rad1973" id="id1"><span>[Rad1973]</span></a>.
+We need the function <span class="math notranslate nohighlight">\(\theta_{m,n}(z,\tau)\)</span> defined for <span class="math notranslate nohighlight">\(m, n \in \mathbb{Z}\)</span> by
+(beware of the typos in <a class="reference internal" href="references.html#rad1973" id="id2"><span>[Rad1973]</span></a>)</p>
+<div class="math notranslate nohighlight">
+\[\theta_{0,0}(z,\tau) = \theta_3(z,\tau), \quad
+\theta_{0,1}(z,\tau) = \theta_4(z,\tau)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_{1,0}(z,\tau) = \theta_2(z,\tau), \quad
+\theta_{1,1}(z,\tau) = i \theta_1(z,\tau)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_{m+2,n}(z,\tau) = (-1)^n \theta_{m,n}(z,\tau)\]</div>
+<div class="math notranslate nohighlight">
+\[\theta_{m,n+2}(z,\tau) = \theta_{m,n}(z,\tau).\]</div>
+<p>Then we may write</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\theta_1(z,\tau) &amp;= \varepsilon_1 A B \theta_1(z', \tau')\\\theta_2(z,\tau) &amp;= \varepsilon_2 A B \theta_{1-c,1+a}(z', \tau')\\\theta_3(z,\tau) &amp;= \varepsilon_3 A B \theta_{1+d-c,1-b+a}(z', \tau')\\\theta_4(z,\tau) &amp;= \varepsilon_4 A B \theta_{1+d,1-b}(z', \tau')\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(\varepsilon_i\)</span> is an 8th root of unity.
+Specifically, if we denote the 24th root of unity
+in the transformation formula of the Dedekind eta
+function by <span class="math notranslate nohighlight">\(\varepsilon(a,b,c,d) = \exp(\pi i R(a,b,c,d) / 12)\)</span>
+(see <a class="reference internal" href="#c.acb_modular_epsilon_arg" title="acb_modular_epsilon_arg"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_epsilon_arg()</span></code></a>), then:</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\varepsilon_1(a,b,c,d) &amp;= \exp(\pi i [R(-d,b,c,-a) + 1] / 4)\\\varepsilon_2(a,b,c,d) &amp;= \exp(\pi i [-R(a,b,c,d) + (5+(2-c)a)] / 4)\\\varepsilon_3(a,b,c,d) &amp;= \exp(\pi i [-R(a,b,c,d) + (4+(c-d-2)(b-a))] / 4)\\\varepsilon_4(a,b,c,d) &amp;= \exp(\pi i [-R(a,b,c,d) + (3-(2+d)b)] / 4)\end{aligned}\end{align} \]</div>
+<p>These formulas are easily derived from the formulas in <a class="reference internal" href="references.html#rad1973" id="id3"><span>[Rad1973]</span></a>
+(Rademacher has the transformed/untransformed variables exchanged,
+and his “<span class="math notranslate nohighlight">\(\varepsilon\)</span>” differs from ours by a constant
+offset in the phase).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_addseq_theta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_addseq_theta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">exponents</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">aindex</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">bindex</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_addseq_theta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Constructs an addition sequence for the first <em>num</em> squares and triangular
+numbers interleaved (excluding zero), i.e. 1, 2, 4, 6, 9, 12, 16, 20, 25, 30 etc.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">w_is_unit</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Simultaneously computes the first <em>len</em> coefficients of each of the
+formal power series</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\theta_1(z+x,\tau) / q_{1/4} \in \mathbb{C}[[x]]\\\theta_2(z+x,\tau) / q_{1/4} \in \mathbb{C}[[x]]\\\theta_3(z+x,\tau) \in \mathbb{C}[[x]]\\\theta_4(z+x,\tau) \in \mathbb{C}[[x]]\end{aligned}\end{align} \]</div>
+<p>given <span class="math notranslate nohighlight">\(w = \exp(\pi i z)\)</span> and <span class="math notranslate nohighlight">\(q = \exp(\pi i \tau)\)</span>, by summing
+a finite truncation of the respective theta function series.
+In particular, with <em>len</em> equal to 1, computes the respective
+value of the theta function at the point <em>z</em>.
+We require <em>len</em> to be positive.
+If <em>w_is_unit</em> is nonzero, <em>w</em> is assumed to lie on the unit circle,
+i.e. <em>z</em> is assumed to be real.</p>
+<p>Note that the factor <span class="math notranslate nohighlight">\(q_{1/4}\)</span> is removed from <span class="math notranslate nohighlight">\(\theta_1\)</span> and <span class="math notranslate nohighlight">\(\theta_2\)</span>.
+To get the true theta function values, the user has to multiply
+this factor back. This convention avoids unnecessary computations,
+since the user can compute <span class="math notranslate nohighlight">\(q_{1/4} = \exp(\pi i \tau / 4)\)</span> followed by
+<span class="math notranslate nohighlight">\(q = (q_{1/4})^4\)</span>, and in many cases when computing products or quotients
+of theta functions, the factor <span class="math notranslate nohighlight">\(q_{1/4}\)</span> can be eliminated entirely.</p>
+<p>This function is intended for <span class="math notranslate nohighlight">\(|q| \ll 1\)</span>. It can be called with any
+<span class="math notranslate nohighlight">\(q\)</span>, but will return useless intervals if convergence is not rapid.
+For general evaluation of theta functions, the user should only call
+this function after applying a suitable modular transformation.</p>
+<p>We consider the sums together, alternatingly updating <span class="math notranslate nohighlight">\((\theta_1, \theta_2)\)</span>
+or <span class="math notranslate nohighlight">\((\theta_3, \theta_4)\)</span>. For <span class="math notranslate nohighlight">\(k = 0, 1, 2, \ldots\)</span>, the powers of <span class="math notranslate nohighlight">\(q\)</span>
+are <span class="math notranslate nohighlight">\(\lfloor (k+2)^2 / 4 \rfloor = 1, 2, 4, 6, 9\)</span> etc. and the powers of <span class="math notranslate nohighlight">\(w\)</span> are
+<span class="math notranslate nohighlight">\(\pm (k+2) = \pm 2, \pm 3, \pm 4, \ldots\)</span> etc. The scheme
+is illustrated by the following table:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{llll}
+       &amp; \theta_1, \theta_2 &amp; q^0 &amp; (w^1 \pm w^{-1}) \\
+k = 0  &amp; \theta_3, \theta_4 &amp; q^1 &amp; (w^2 \pm w^{-2}) \\
+k = 1  &amp; \theta_1, \theta_2 &amp; q^2 &amp; (w^3 \pm w^{-3}) \\
+k = 2  &amp; \theta_3, \theta_4 &amp; q^4 &amp; (w^4 \pm w^{-4}) \\
+k = 3  &amp; \theta_1, \theta_2 &amp; q^6 &amp; (w^5 \pm w^{-5}) \\
+k = 4  &amp; \theta_3, \theta_4 &amp; q^9 &amp; (w^6 \pm w^{-6}) \\
+k = 5  &amp; \theta_1, \theta_2 &amp; q^{12} &amp; (w^7 \pm w^{-7}) \\
+\end{array}\end{split}\]</div>
+<p>For some integer <span class="math notranslate nohighlight">\(N \ge 1\)</span>, the summation is stopped just before term
+<span class="math notranslate nohighlight">\(k = N\)</span>. Let <span class="math notranslate nohighlight">\(Q = |q|\)</span>, <span class="math notranslate nohighlight">\(W = \max(|w|,|w^{-1}|)\)</span>,
+<span class="math notranslate nohighlight">\(E = \lfloor (N+2)^2 / 4 \rfloor\)</span> and
+<span class="math notranslate nohighlight">\(F = \lfloor (N+1)/2 \rfloor + 1\)</span>. The error of the
+zeroth derivative can be bounded as</p>
+<div class="math notranslate nohighlight">
+\[2 Q^E W^{N+2} \left[ 1 + Q^F W + Q^{2F} W^2 + \ldots \right]
+= \frac{2 Q^E W^{N+2}}{1 - Q^F W}\]</div>
+<p>provided that the denominator is positive (otherwise we set
+the error bound to infinity).
+When <em>len</em> is greater than 1, consider the derivative of order <em>r</em>.
+The term of index <em>k</em> and order <em>r</em> picks up a factor of magnitude
+<span class="math notranslate nohighlight">\((k+2)^r\)</span> from differentiation of <span class="math notranslate nohighlight">\(w^{k+2}\)</span> (it also picks up a factor
+<span class="math notranslate nohighlight">\(\pi^r\)</span>, but we omit this until we rescale the coefficients
+at the end of the computation). Thus we have the error bound</p>
+<div class="math notranslate nohighlight">
+\[2 Q^E W^{N+2} (N+2)^r \left[ 1 + Q^F W \frac{(N+3)^r}{(N+2)^r} + Q^{2F} W^2 \frac{(N+4)^r}{(N+2)^r} + \ldots \right]\]</div>
+<p>which by the inequality <span class="math notranslate nohighlight">\((1 + m/(N+2))^r \le \exp(mr/(N+2))\)</span>
+can be bounded as</p>
+<div class="math notranslate nohighlight">
+\[\frac{2 Q^E W^{N+2} (N+2)^r}{1 - Q^F W \exp(r/(N+2))},\]</div>
+<p>again valid when the denominator is positive.</p>
+<p>To actually evaluate the series, we write the even
+cosine terms as <span class="math notranslate nohighlight">\(w^{2n} + w^{-2n}\)</span>, the odd cosine terms as
+<span class="math notranslate nohighlight">\(w (w^{2n} + w^{-2n-2})\)</span>, and the sine terms as <span class="math notranslate nohighlight">\(w (w^{2n} - w^{-2n-2})\)</span>.
+This way we only need even powers of <span class="math notranslate nohighlight">\(w\)</span> and <span class="math notranslate nohighlight">\(w^{-1}\)</span>.
+The implementation is not yet optimized for real <span class="math notranslate nohighlight">\(z\)</span>, in which case
+further work can be saved.</p>
+<p>This function does not permit aliasing between input and output
+arguments.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_const_sum_basecase">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_const_sum_basecase</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">N</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_const_sum_basecase" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_const_sum_rs">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_const_sum_rs</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">N</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_const_sum_rs" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the truncated theta constant sums
+<span class="math notranslate nohighlight">\(\theta_2 = \sum_{k(k+1) &lt; N} q^{k(k+1)}\)</span>,
+<span class="math notranslate nohighlight">\(\theta_3 = \sum_{k^2 &lt; N} q^{k^2}\)</span>,
+<span class="math notranslate nohighlight">\(\theta_4 = \sum_{k^2 &lt; N} (-1)^k q^{k^2}\)</span>.
+The <em>basecase</em> version uses a short addition sequence.
+The <em>rs</em> version uses rectangular splitting.
+The algorithms are described in <a class="reference internal" href="references.html#ehj2016" id="id4"><span>[EHJ2016]</span></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_const_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_const_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_const_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the respective theta constants by direct summation
+(without applying modular transformations). This function
+selects an appropriate <em>N</em>, calls either
+<a class="reference internal" href="#c.acb_modular_theta_const_sum_basecase" title="acb_modular_theta_const_sum_basecase"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_basecase()</span></code></a> or
+<a class="reference internal" href="#c.acb_modular_theta_const_sum_rs" title="acb_modular_theta_const_sum_rs"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_rs()</span></code></a> or depending on <em>N</em>,
+and adds a bound for the truncation error.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_notransform">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_notransform</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_notransform" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates the Jacobi theta functions <span class="math notranslate nohighlight">\(\theta_i(z,\tau)\)</span>, <span class="math notranslate nohighlight">\(i = 1, 2, 3, 4\)</span>
+simultaneously. This function does not move <span class="math notranslate nohighlight">\(\tau\)</span> to the fundamental domain.
+This is generally worse than <a class="reference internal" href="#c.acb_modular_theta" title="acb_modular_theta"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_theta()</span></code></a>, but can
+be slightly better for moderate input.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates the Jacobi theta functions <span class="math notranslate nohighlight">\(\theta_i(z,\tau)\)</span>, <span class="math notranslate nohighlight">\(i = 1, 2, 3, 4\)</span>
+simultaneously. This function moves <span class="math notranslate nohighlight">\(\tau\)</span> to the fundamental domain
+and then also reduces <span class="math notranslate nohighlight">\(z\)</span> modulo <span class="math notranslate nohighlight">\(\tau\)</span>
+before calling <a class="reference internal" href="#c.acb_modular_theta_sum" title="acb_modular_theta_sum"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_theta_sum()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_jet_notransform">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_jet_notransform</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_jet_notransform" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_jet">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_jet</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_jet" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates the Jacobi theta functions along with their derivatives
+with respect to <em>z</em>, writing the first <em>len</em> coefficients in the power
+series <span class="math notranslate nohighlight">\(\theta_i(z+x,\tau) \in \mathbb{C}[[x]]\)</span> to
+each respective output variable. The <em>notransform</em> version does not
+move <span class="math notranslate nohighlight">\(\tau\)</span> to the fundamental domain or reduce <span class="math notranslate nohighlight">\(z\)</span> during the computation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._acb_modular_theta_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_acb_modular_theta_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <a class="reference internal" href="acb.html#c.acb_srcptr" title="acb_srcptr"><span class="n"><span class="pre">acb_srcptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">zlen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._acb_modular_theta_series" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_theta_series">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_theta_series</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb_poly.html#c.acb_poly_t" title="acb_poly_t"><span class="n"><span class="pre">acb_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta1</span></span>, <a class="reference internal" href="acb_poly.html#c.acb_poly_t" title="acb_poly_t"><span class="n"><span class="pre">acb_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta2</span></span>, <a class="reference internal" href="acb_poly.html#c.acb_poly_t" title="acb_poly_t"><span class="n"><span class="pre">acb_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta3</span></span>, <a class="reference internal" href="acb_poly.html#c.acb_poly_t" title="acb_poly_t"><span class="n"><span class="pre">acb_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">theta4</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb_poly.html#c.acb_poly_t" title="acb_poly_t"><span class="n"><span class="pre">acb_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_theta_series" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates the respective Jacobi theta functions of the power series <em>z</em>,
+truncated to length <em>len</em>. Either of the output variables can be <em>NULL</em>.</p>
+</dd></dl>
+
+</section>
+<section id="dedekind-eta-function">
+<h2>Dedekind eta function<a class="headerlink" href="#dedekind-eta-function" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_addseq_eta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_addseq_eta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">exponents</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">aindex</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">bindex</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_addseq_eta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Constructs an addition sequence for the first <em>num</em> generalized pentagonal
+numbers (excluding zero), i.e. 1, 2, 5, 7, 12, 15, 22, 26, 35, 40 etc.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_eta_sum">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_eta_sum</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">eta</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_eta_sum" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates the Dedekind eta function
+without the leading 24th root, i.e.</p>
+<div class="math notranslate nohighlight">
+\[\exp(-\pi i \tau/12) \eta(\tau) = \sum_{n=-\infty}^{\infty} (-1)^n q^{(3n^2-n)/2}\]</div>
+<p>given <span class="math notranslate nohighlight">\(q = \exp(2 \pi i \tau)\)</span>, by summing the defining series.</p>
+<p>This function is intended for <span class="math notranslate nohighlight">\(|q| \ll 1\)</span>. It can be called with any
+<span class="math notranslate nohighlight">\(q\)</span>, but will return useless intervals if convergence is not rapid.
+For general evaluation of the eta function, the user should only call
+this function after applying a suitable modular transformation.</p>
+<p>The series is evaluated using either a short addition sequence or
+rectangular splitting, depending on the number of terms.
+The algorithms are described in <a class="reference internal" href="references.html#ehj2016" id="id5"><span>[EHJ2016]</span></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_epsilon_arg">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_epsilon_arg</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.psl2z_t" title="psl2z_t"><span class="n"><span class="pre">psl2z_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">g</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_epsilon_arg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Given <span class="math notranslate nohighlight">\(g = (a, b; c, d)\)</span>, computes an integer <span class="math notranslate nohighlight">\(R\)</span> such that
+<span class="math notranslate nohighlight">\(\varepsilon(a,b,c,d) = \exp(\pi i R / 12)\)</span> is the 24th root of unity in
+the transformation formula for the Dedekind eta function,</p>
+<div class="math notranslate nohighlight">
+\[\eta\left(\frac{a\tau+b}{c\tau+d}\right) = \varepsilon (a,b,c,d)
+    \sqrt{c\tau+d} \eta(\tau).\]</div>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_eta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_eta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_eta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the Dedekind eta function <span class="math notranslate nohighlight">\(\eta(\tau)\)</span> given <span class="math notranslate nohighlight">\(\tau\)</span> in the upper
+half-plane. This function applies the functional equation to move
+<span class="math notranslate nohighlight">\(\tau\)</span> to the fundamental domain before calling
+<a class="reference internal" href="#c.acb_modular_eta_sum" title="acb_modular_eta_sum"><code class="xref c c-func docutils literal notranslate"><span class="pre">acb_modular_eta_sum()</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="modular-forms">
+<h2>Modular forms<a class="headerlink" href="#modular-forms" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_j">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_j</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_j" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes Klein’s j-invariant <span class="math notranslate nohighlight">\(j(\tau)\)</span> given <span class="math notranslate nohighlight">\(\tau\)</span> in the upper
+half-plane. The function is normalized so that <span class="math notranslate nohighlight">\(j(i) = 1728\)</span>.
+We first move <span class="math notranslate nohighlight">\(\tau\)</span> to the fundamental domain, which does not change
+the value of the function. Then we use the formula
+<span class="math notranslate nohighlight">\(j(\tau) = 32 (\theta_2^8+\theta_3^8+\theta_4^8)^3 / (\theta_2 \theta_3 \theta_4)^8\)</span> where
+<span class="math notranslate nohighlight">\(\theta_i = \theta_i(0,\tau)\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_lambda">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_lambda</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_lambda" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the lambda function
+<span class="math notranslate nohighlight">\(\lambda(\tau) = \theta_2^4(0,\tau) / \theta_3^4(0,\tau)\)</span>, which
+is invariant under modular transformations <span class="math notranslate nohighlight">\((a, b; c, d)\)</span>
+where <span class="math notranslate nohighlight">\(a, d\)</span> are odd and <span class="math notranslate nohighlight">\(b, c\)</span> are even.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_delta">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_delta</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_delta" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes the modular discriminant <span class="math notranslate nohighlight">\(\Delta(\tau) = \eta(\tau)^{24}\)</span>,
+which transforms as</p>
+<div class="math notranslate nohighlight">
+\[\Delta\left(\frac{a\tau+b}{c\tau+d}\right) = (c\tau+d)^{12} \Delta(\tau).\]</div>
+<p>The modular discriminant is sometimes defined with an extra factor
+<span class="math notranslate nohighlight">\((2\pi)^{12}\)</span>, which we omit in this implementation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_eisenstein">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_eisenstein</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_eisenstein" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Computes simultaneously the first <em>len</em> entries in the sequence
+of Eisenstein series <span class="math notranslate nohighlight">\(G_4(\tau), G_6(\tau), G_8(\tau), \ldots\)</span>,
+defined by</p>
+<div class="math notranslate nohighlight">
+\[G_{2k}(\tau) = \sum_{m^2 + n^2 \ne 0} \frac{1}{(m+n\tau )^{2k}}\]</div>
+<p>and satisfying</p>
+<div class="math notranslate nohighlight">
+\[G_{2k} \left(\frac{a\tau+b}{c\tau+d}\right) = (c\tau+d)^{2k} G_{2k}(\tau).\]</div>
+<p>We first evaluate <span class="math notranslate nohighlight">\(G_4(\tau)\)</span> and <span class="math notranslate nohighlight">\(G_6(\tau)\)</span> on the fundamental
+domain using theta functions, and then compute the Eisenstein series
+of higher index using a recurrence relation.</p>
+</dd></dl>
+
+</section>
+<section id="elliptic-integrals-and-functions">
+<h2>Elliptic integrals and functions<a class="headerlink" href="#elliptic-integrals-and-functions" title="Link to this heading">¶</a></h2>
+<p>See the <a class="reference internal" href="acb_elliptic.html#acb-elliptic"><span class="std std-ref">acb_elliptic.h</span></a> module for elliptic integrals and functions.
+The following wrappers are available for backwards compatibility.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_elliptic_k">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_elliptic_k</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_elliptic_k" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_elliptic_k_cpx">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_elliptic_k_cpx</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_elliptic_k_cpx" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_elliptic_e">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_elliptic_e</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">w</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_elliptic_e" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_elliptic_p">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_elliptic_p</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">wp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_elliptic_p" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_elliptic_p_zpx">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_elliptic_p_zpx</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="acb.html#c.acb_ptr" title="acb_ptr"><span class="n"><span class="pre">acb_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">wp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><span class="n"><span class="pre">acb_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">tau</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_elliptic_p_zpx" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="class-polynomials">
+<h2>Class polynomials<a class="headerlink" href="#class-polynomials" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.acb_modular_hilbert_class_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">acb_modular_hilbert_class_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">D</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.acb_modular_hilbert_class_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <em>res</em> to the Hilbert class polynomial of discriminant <em>D</em>,
+defined as</p>
+<div class="math notranslate nohighlight">
+\[H_D(x) = \prod_{(a,b,c)} \left(x - j\left(\frac{-b+\sqrt{D}}{2a}\right)\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\((a,b,c)\)</span> ranges over the primitive reduced positive
+definite binary quadratic forms of discriminant <span class="math notranslate nohighlight">\(b^2 - 4ac = D\)</span>.</p>
+<p>The Hilbert class polynomial is only defined if <span class="math notranslate nohighlight">\(D &lt; 0\)</span> and <em>D</em>
+is congruent to 0 or 1 mod 4. If some other value of <em>D</em> is passed as
+input, <em>res</em> is set to the zero polynomial.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="acb_elliptic.html"
+          title="Previous article"
+          ><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="acb_theta.html"
+          title="Next article"
+          ><strong>acb_theta.h</strong> – Riemann theta functions</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>acb_modular.h</strong> – modular forms of complex variables</a><ul>
+<li><a class="reference internal" href="#the-modular-group">The modular group</a><ul>
+<li><a class="reference internal" href="#c.psl2z_struct"><code class="docutils literal notranslate"><span class="pre">psl2z_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_t"><code class="docutils literal notranslate"><span class="pre">psl2z_t</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_init"><code class="docutils literal notranslate"><span class="pre">psl2z_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_clear"><code class="docutils literal notranslate"><span class="pre">psl2z_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_swap"><code class="docutils literal notranslate"><span class="pre">psl2z_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_set"><code class="docutils literal notranslate"><span class="pre">psl2z_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_one"><code class="docutils literal notranslate"><span class="pre">psl2z_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_is_one"><code class="docutils literal notranslate"><span class="pre">psl2z_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_print"><code class="docutils literal notranslate"><span class="pre">psl2z_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_fprint"><code class="docutils literal notranslate"><span class="pre">psl2z_fprint()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_equal"><code class="docutils literal notranslate"><span class="pre">psl2z_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_mul"><code class="docutils literal notranslate"><span class="pre">psl2z_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_inv"><code class="docutils literal notranslate"><span class="pre">psl2z_inv()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_is_correct"><code class="docutils literal notranslate"><span class="pre">psl2z_is_correct()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_randtest"><code class="docutils literal notranslate"><span class="pre">psl2z_randtest()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modular-transformations">Modular transformations</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_transform"><code class="docutils literal notranslate"><span class="pre">acb_modular_transform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_d"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_d()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_arf"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_arf()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_is_in_fundamental_domain"><code class="docutils literal notranslate"><span class="pre">acb_modular_is_in_fundamental_domain()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-sequences">Addition sequences</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_fill_addseq"><code class="docutils literal notranslate"><span class="pre">acb_modular_fill_addseq()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jacobi-theta-functions">Jacobi theta functions</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_theta_transform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_transform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_addseq_theta"><code class="docutils literal notranslate"><span class="pre">acb_modular_addseq_theta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum_basecase"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_basecase()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum_rs"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_rs()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_notransform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_notransform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_jet_notransform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_jet_notransform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_jet"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_jet()</span></code></a></li>
+<li><a class="reference internal" href="#c._acb_modular_theta_series"><code class="docutils literal notranslate"><span class="pre">_acb_modular_theta_series()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_series"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_series()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dedekind-eta-function">Dedekind eta function</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_addseq_eta"><code class="docutils literal notranslate"><span class="pre">acb_modular_addseq_eta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eta_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_eta_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_epsilon_arg"><code class="docutils literal notranslate"><span class="pre">acb_modular_epsilon_arg()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eta"><code class="docutils literal notranslate"><span class="pre">acb_modular_eta()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modular-forms">Modular forms</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_j"><code class="docutils literal notranslate"><span class="pre">acb_modular_j()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_lambda"><code class="docutils literal notranslate"><span class="pre">acb_modular_lambda()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_delta"><code class="docutils literal notranslate"><span class="pre">acb_modular_delta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eisenstein"><code class="docutils literal notranslate"><span class="pre">acb_modular_eisenstein()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elliptic-integrals-and-functions">Elliptic integrals and functions</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_k"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_k()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_k_cpx"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_k_cpx()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_e"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_e()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_p"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_p()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_p_zpx"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_p_zpx()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-polynomials">Class polynomials</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_hilbert_class_poly"><code class="docutils literal notranslate"><span class="pre">acb_modular_hilbert_class_poly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>acb_modular.h</strong> – modular forms of complex variables</a><ul>
+<li><a class="reference internal" href="#the-modular-group">The modular group</a><ul>
+<li><a class="reference internal" href="#c.psl2z_struct"><code class="docutils literal notranslate"><span class="pre">psl2z_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_t"><code class="docutils literal notranslate"><span class="pre">psl2z_t</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_init"><code class="docutils literal notranslate"><span class="pre">psl2z_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_clear"><code class="docutils literal notranslate"><span class="pre">psl2z_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_swap"><code class="docutils literal notranslate"><span class="pre">psl2z_swap()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_set"><code class="docutils literal notranslate"><span class="pre">psl2z_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_one"><code class="docutils literal notranslate"><span class="pre">psl2z_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_is_one"><code class="docutils literal notranslate"><span class="pre">psl2z_is_one()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_print"><code class="docutils literal notranslate"><span class="pre">psl2z_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_fprint"><code class="docutils literal notranslate"><span class="pre">psl2z_fprint()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_equal"><code class="docutils literal notranslate"><span class="pre">psl2z_equal()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_mul"><code class="docutils literal notranslate"><span class="pre">psl2z_mul()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_inv"><code class="docutils literal notranslate"><span class="pre">psl2z_inv()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_is_correct"><code class="docutils literal notranslate"><span class="pre">psl2z_is_correct()</span></code></a></li>
+<li><a class="reference internal" href="#c.psl2z_randtest"><code class="docutils literal notranslate"><span class="pre">psl2z_randtest()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modular-transformations">Modular transformations</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_transform"><code class="docutils literal notranslate"><span class="pre">acb_modular_transform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_d"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_d()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx_arf"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx_arf()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_fundamental_domain_approx"><code class="docutils literal notranslate"><span class="pre">acb_modular_fundamental_domain_approx()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_is_in_fundamental_domain"><code class="docutils literal notranslate"><span class="pre">acb_modular_is_in_fundamental_domain()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addition-sequences">Addition sequences</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_fill_addseq"><code class="docutils literal notranslate"><span class="pre">acb_modular_fill_addseq()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jacobi-theta-functions">Jacobi theta functions</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_theta_transform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_transform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_addseq_theta"><code class="docutils literal notranslate"><span class="pre">acb_modular_addseq_theta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum_basecase"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_basecase()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum_rs"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum_rs()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_const_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_const_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_notransform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_notransform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_jet_notransform"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_jet_notransform()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_jet"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_jet()</span></code></a></li>
+<li><a class="reference internal" href="#c._acb_modular_theta_series"><code class="docutils literal notranslate"><span class="pre">_acb_modular_theta_series()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_theta_series"><code class="docutils literal notranslate"><span class="pre">acb_modular_theta_series()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dedekind-eta-function">Dedekind eta function</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_addseq_eta"><code class="docutils literal notranslate"><span class="pre">acb_modular_addseq_eta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eta_sum"><code class="docutils literal notranslate"><span class="pre">acb_modular_eta_sum()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_epsilon_arg"><code class="docutils literal notranslate"><span class="pre">acb_modular_epsilon_arg()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eta"><code class="docutils literal notranslate"><span class="pre">acb_modular_eta()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modular-forms">Modular forms</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_j"><code class="docutils literal notranslate"><span class="pre">acb_modular_j()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_lambda"><code class="docutils literal notranslate"><span class="pre">acb_modular_lambda()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_delta"><code class="docutils literal notranslate"><span class="pre">acb_modular_delta()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_eisenstein"><code class="docutils literal notranslate"><span class="pre">acb_modular_eisenstein()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elliptic-integrals-and-functions">Elliptic integrals and functions</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_k"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_k()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_k_cpx"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_k_cpx()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_e"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_e()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_p"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_p()</span></code></a></li>
+<li><a class="reference internal" href="#c.acb_modular_elliptic_p_zpx"><code class="docutils literal notranslate"><span class="pre">acb_modular_elliptic_p_zpx()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-polynomials">Class polynomials</a><ul>
+<li><a class="reference internal" href="#c.acb_modular_hilbert_class_poly"><code class="docutils literal notranslate"><span class="pre">acb_modular_hilbert_class_poly()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -1,0 +1,1306 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>fmpz_factor.h – integer factorisation &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>fmpz_factor.h</strong> – integer factorisation</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="fmpz-factor-h-integer-factorisation">
+<span id="fmpz-factor"></span><h1><strong>fmpz_factor.h</strong> – integer factorisation<a class="headerlink" href="#fmpz-factor-h-integer-factorisation" title="Link to this heading">¶</a></h1>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_factor_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_struct</span></span></span><a class="headerlink" href="#c.fmpz_factor_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fmpz_factor_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_t</span></span></span><a class="headerlink" href="#c.fmpz_factor_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="factoring-integers">
+<h2>Factoring integers<a class="headerlink" href="#factoring-integers" title="Link to this heading">¶</a></h2>
+<p>An integer may be represented in factored form using the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> data structure. This consists of two <code class="docutils literal notranslate"><span class="pre">fmpz</span></code>
+vectors representing bases and exponents, respectively. Canonically,
+the bases will be prime numbers sorted in ascending order and the
+exponents will be positive.
+A separate <code class="docutils literal notranslate"><span class="pre">int</span></code> field holds the sign, which may be <span class="math notranslate nohighlight">\(-1\)</span>, <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>.</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises an <code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears an <code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_factor_append_ui">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_factor_append_ui</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_factor_append_ui" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Append a factor <span class="math notranslate nohighlight">\(p\)</span> to the given exponent to the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fmpz_factor_append">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fmpz_factor_append</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fmpz_factor_append" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Append a factor <span class="math notranslate nohighlight">\(p\)</span> to the given exponent to the
+<code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code> structure <code class="docutils literal notranslate"><span class="pre">factor</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime numbers. If <span class="math notranslate nohighlight">\(n\)</span> is zero or negative, the
+sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be set accordingly.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_smooth">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_smooth</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">bits</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">proved</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_smooth" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime numbers up to approximately the given number of
+bits and possibly one additional cofactor, which may or may not be prime.</p>
+<p>If the number is definitely factored fully, the return value is <span class="math notranslate nohighlight">\(1\)</span>,
+otherwise the final factor (which may have exponent greater than <span class="math notranslate nohighlight">\(1\)</span>)
+is composite and needs to be factored further.</p>
+<p>If the number has a factor of around the given number of bits, there is
+at least a two-thirds chance of finding it. Smaller factors should be
+found with a much higher probability.</p>
+<p>The amount of time spent factoring can be controlled by lowering or
+increasing <code class="docutils literal notranslate"><span class="pre">bits</span></code>. However, the quadratic sieve may be faster if
+<code class="docutils literal notranslate"><span class="pre">bits</span></code> is set to more than one third of the number of bits of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>The function uses trial factoring up to <code class="docutils literal notranslate"><span class="pre">bits</span> <span class="pre">=</span> <span class="pre">15</span></code>, followed by
+a primality test and a perfect power test to check if the factorisation
+is complete. If <code class="docutils literal notranslate"><span class="pre">bits</span></code> is at least 16, it proceeds to use the
+elliptic curve method to look for larger factors.</p>
+<p>The behavior of primality testing is determined by the <code class="docutils literal notranslate"><span class="pre">proved</span></code>
+parameter:</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(1\)</span> the function will prove all factors prime
+(other than the last factor, if the return value is <span class="math notranslate nohighlight">\(0\)</span>).</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(0\)</span>, the function will only check that factors are
+probable primes.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">proved</span></code> is set to <span class="math notranslate nohighlight">\(-1\)</span>, the function will not test primality
+after performing trial division. A perfect power test is still performed.</p>
+<p>As an exception to the rules stated above, this function will call
+<code class="docutils literal notranslate"><span class="pre">n_factor</span></code> internally if <span class="math notranslate nohighlight">\(n\)</span> or the remainder after trial division
+is smaller than one word, guaranteeing a complete factorisation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_si">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_si</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_si" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Like <code class="docutils literal notranslate"><span class="pre">fmpz_factor</span></code>, but takes a machine integer <span class="math notranslate nohighlight">\(n\)</span> as input.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_trial_range">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_trial_range</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">start</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num_primes</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_trial_range" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime factors using trial division. If <span class="math notranslate nohighlight">\(n\)</span> is
+zero or negative, the sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be
+set accordingly.</p>
+<p>The algorithm starts with the given start index in the <code class="docutils literal notranslate"><span class="pre">flint_primes</span></code>
+table and uses at most <code class="docutils literal notranslate"><span class="pre">num_primes</span></code> primes from that point.</p>
+<p>The function returns 1 if <span class="math notranslate nohighlight">\(n\)</span> is completely factored, otherwise it returns
+<span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_trial">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_trial</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num_primes</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_trial" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factors <span class="math notranslate nohighlight">\(n\)</span> into prime factors using trial division. If <span class="math notranslate nohighlight">\(n\)</span> is
+zero or negative, the sign field of the <code class="docutils literal notranslate"><span class="pre">factor</span></code> object will be
+set accordingly.</p>
+<p>The algorithm uses the given number of primes, which must be in the range
+<span class="math notranslate nohighlight">\([0, 3512]\)</span>. An exception is raised if a number outside this range is
+passed.</p>
+<p>The function returns 1 if <span class="math notranslate nohighlight">\(n\)</span> is completely factored, otherwise it returns
+<span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>The final entry in the factor struct is set to the cofactor after removing
+prime factors, if this is not <span class="math notranslate nohighlight">\(1\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_refine">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_refine</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_refine" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Attempts to improve a partial factorization of an integer by “refining”
+the factorization <code class="docutils literal notranslate"><span class="pre">f</span></code> to a more complete factorization <code class="docutils literal notranslate"><span class="pre">res</span></code>
+whose bases are pairwise relatively prime.</p>
+<p>This function does not require its input to be in canonical form,
+nor does it guarantee that the resulting factorization will be canonical.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_expand_iterative">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_expand_iterative</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_expand_iterative" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Evaluates an integer in factored form back to an <code class="docutils literal notranslate"><span class="pre">fmpz_t</span></code>.</p>
+<p>This currently exponentiates the bases separately and multiplies
+them together one by one, although much more efficient algorithms
+exist.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pp1">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pp1</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B2_sqrt</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">c</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pp1" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Use Williams’ <span class="math notranslate nohighlight">\(p + 1\)</span> method to factor <span class="math notranslate nohighlight">\(n\)</span>, using a prime bound in
+stage 1 of <code class="docutils literal notranslate"><span class="pre">B1</span></code> and a prime limit in stage 2 of at least the square
+of <code class="docutils literal notranslate"><span class="pre">B2_sqrt</span></code>. If a factor is found, the function returns <span class="math notranslate nohighlight">\(1\)</span> and
+<code class="docutils literal notranslate"><span class="pre">factor</span></code> is set to the factor that is found. Otherwise, the function
+returns <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>The value <span class="math notranslate nohighlight">\(c\)</span> should be a random value greater than <span class="math notranslate nohighlight">\(2\)</span>. Successive
+calls to the function with different values of <span class="math notranslate nohighlight">\(c\)</span> give additional
+chances to factor <span class="math notranslate nohighlight">\(n\)</span> with roughly exponentially decaying probability
+of finding a factor which has been missed (if <span class="math notranslate nohighlight">\(p+1\)</span> or <span class="math notranslate nohighlight">\(p-1\)</span> is not
+smooth for any prime factors <span class="math notranslate nohighlight">\(p\)</span> of <span class="math notranslate nohighlight">\(n\)</span> then the function will
+not ever succeed).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pollard_brent_single">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pollard_brent_single</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p_factor</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n_in</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">yi</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ai</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">max_iters</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pollard_brent_single" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pollard Rho algorithm for integer factorization. Assumes that the <span class="math notranslate nohighlight">\(n\)</span> is
+not prime. <code class="docutils literal notranslate"><span class="pre">factor</span></code> is set as the factor if found. Takes as input the initial
+value <span class="math notranslate nohighlight">\(y\)</span>, to start polynomial evaluation, and <span class="math notranslate nohighlight">\(a\)</span>, the constant of the polynomial
+used. It is not assured that the factor found will be prime. Does not compute
+the complete factorization, just one factor. Returns the number of limbs of
+factor if factorization is successful (non trivial factor is found), else returns 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_iters</span></code> is the number of iterations tried in process of finding the cycle.
+If the algorithm fails to find a non trivial factor in one call, it tries again
+(this time with a different set of random values).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_pollard_brent">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_pollard_brent</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">max_tries</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">max_iters</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_pollard_brent" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pollard Rho algorithm for integer factorization. Assumes that the <span class="math notranslate nohighlight">\(n\)</span> is
+not prime. <code class="docutils literal notranslate"><span class="pre">factor</span></code> is set as the factor if found. It is not assured that the
+factor found will be prime. Does not compute the complete factorization,
+just one factor. Returns the number of limbs of factor if factorization is
+successful (non trivial factor is found), else returns 0.</p>
+<p><code class="docutils literal notranslate"><span class="pre">max_iters</span></code> is the number of iterations tried in process of finding the cycle.
+If the algorithm fails to find a non trivial factor in one call, it tries again
+(this time with a different set of random values). This process is repeated a
+maximum of <code class="docutils literal notranslate"><span class="pre">max_tries</span></code> times.</p>
+<p>The algorithm used is a modification of the original Pollard Rho algorithm,
+suggested by Richard Brent. It can be found in the paper available at
+<a class="reference external" href="https://maths-people.anu.edu.au/~brent/pd/rpb051i.pdf">https://maths-people.anu.edu.au/~brent/pd/rpb051i.pdf</a></p>
+</dd></dl>
+
+</section>
+<section id="input-and-output">
+<h2>Input and output<a class="headerlink" href="#input-and-output" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_fprint">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_fprint</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">FILE</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">fs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_fprint" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.fmpz_factor_print">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fmpz_factor_t" title="fmpz_factor_t"><span class="n"><span class="pre">fmpz_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the factorization <code class="docutils literal notranslate"><span class="pre">factor</span></code> into <code class="docutils literal notranslate"><span class="pre">fs</span></code> or <code class="docutils literal notranslate"><span class="pre">stdout</span></code>. If <code class="docutils literal notranslate"><span class="pre">factor</span></code>
+is zero, it prints <code class="docutils literal notranslate"><span class="pre">0</span></code>. Else, it prints the factorization as
+<code class="docutils literal notranslate"><span class="pre">f_{1}^e_{1}</span> <span class="pre">*</span> <span class="pre">...</span> <span class="pre">*</span> <span class="pre">f_{n}^e_{n}</span></code>, where <code class="docutils literal notranslate"><span class="pre">f_{i}</span></code> and <code class="docutils literal notranslate"><span class="pre">e_{i}</span></code> are the
+<span class="math notranslate nohighlight">\(i\)</span>-th factor and exponent, where <code class="docutils literal notranslate"><span class="pre">^e_{i}</span></code> is omitted if <span class="math notranslate nohighlight">\(e_{i} = 1\)</span>. In
+particular, if <code class="docutils literal notranslate"><span class="pre">factor</span></code> is <span class="math notranslate nohighlight">\(1\)</span> or <span class="math notranslate nohighlight">\(-1\)</span>, it prints <code class="docutils literal notranslate"><span class="pre">1</span></code> or <code class="docutils literal notranslate"><span class="pre">-1</span></code>,
+respectively.</p>
+<p>Returns the number of characters written to file stream.</p>
+</dd></dl>
+
+</section>
+<section id="elliptic-curve-ecm-method">
+<h2>Elliptic curve (ECM) method<a class="headerlink" href="#elliptic-curve-ecm-method" title="Link to this heading">¶</a></h2>
+<p>Factoring of <code class="docutils literal notranslate"><span class="pre">fmpz</span></code> integers using ECM</p>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">sz</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes the <code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct. This is needed in some functions
+and carries data between subsequent calls.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_clear</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Clears the <code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_double">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_double</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_double" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to two times <span class="math notranslate nohighlight">\((x_0 : z_0)\)</span> modulo <span class="math notranslate nohighlight">\(n\)</span> according
+to the formula</p>
+<div class="math notranslate nohighlight">
+\[x = (x_0 + z_0)^2 \cdot (x_0 - z_0)^2 \mod n,\]</div>
+<div class="math notranslate nohighlight">
+\[z = 4 x_0 z_0 \left((x_0 - z_0)^2 + 4a_{24}x_0z_0\right) \mod n.\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">nn_ptr</span></code>’s in the
+structure. This group doubling is valid only for points expressed in
+Montgomery projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_add">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_add</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x1</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z1</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x2</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z2</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_add" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to the sum of <span class="math notranslate nohighlight">\((x_1 : z_1)\)</span> and <span class="math notranslate nohighlight">\((x_2 : z_2)\)</span>
+modulo <span class="math notranslate nohighlight">\(n\)</span>, given the difference <span class="math notranslate nohighlight">\((x_0 : z_0)\)</span> according to the formula</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x = 4z_0(x_1x_2 - z_1z_2)^2 \mod n, \\ z = 4x_0(x_2z_1 - x_1z_2)^2 \mod n.\end{split}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">nn_ptr</span></code>’s in the
+structure. This group addition is valid only for points expressed in
+Montgomery projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_mul_montgomery_ladder">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_mul_montgomery_ladder</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">x0</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">z0</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">k</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_mul_montgomery_ladder" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Montgomery ladder algorithm for scalar multiplication of elliptic points.</p>
+<p>Sets the point <span class="math notranslate nohighlight">\((x : z)\)</span> to <span class="math notranslate nohighlight">\(k(x_0 : z_0)\)</span> modulo <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ecm_inf</span></code> is used just to use temporary <code class="docutils literal notranslate"><span class="pre">nn_ptr</span></code>’s in the
+structure. Valid only for points expressed in Montgomery projective
+coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_select_curve">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_select_curve</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">sigma</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_select_curve" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Selects a random elliptic curve given a random integer <code class="docutils literal notranslate"><span class="pre">sigma</span></code>,
+according to Suyama’s parameterization. If the factor is found while
+selecting the curve, the number of limbs required to store the factor
+is returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+<p>It could be possible that the selected curve is unsuitable for further
+computations, in such a case, <span class="math notranslate nohighlight">\(-1\)</span> is returned.</p>
+<p>Also selects the initial point <span class="math notranslate nohighlight">\(x_0\)</span>, and the value of <span class="math notranslate nohighlight">\((a + 2)/4\)</span>, where <span class="math notranslate nohighlight">\(a\)</span>
+is a curve parameter. Sets <span class="math notranslate nohighlight">\(z_0\)</span> as <span class="math notranslate nohighlight">\(1\)</span>. All these are stored in the
+<code class="docutils literal notranslate"><span class="pre">ecm_t</span></code> struct.</p>
+<p>The curve selected is of Montgomery form, the points selected satisfy the
+curve and are projective coordinates.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_stage_I">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_stage_I</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prime_array</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">num</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_stage_I" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Stage I implementation of the ECM algorithm.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">num</span></code> is number of prime numbers
+<span class="math notranslate nohighlight">\(\le\)</span> the bound <code class="docutils literal notranslate"><span class="pre">B1</span></code>. <code class="docutils literal notranslate"><span class="pre">prime_array</span></code> is an array of first <code class="docutils literal notranslate"><span class="pre">B1</span></code>
+primes. <span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If the factor is found, number of words required to store the factor is
+returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm_stage_II">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm_stage_II</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B2</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">P</span></span>, <a class="reference internal" href="flint.html#c.nn_ptr" title="nn_ptr"><span class="n"><span class="pre">nn_ptr</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="n"><span class="pre">ecm_t</span></span><span class="w"> </span><span class="n"><span class="pre">ecm_inf</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm_stage_II" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Stage II implementation of the ECM algorithm.</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">B1</span></code>, <code class="docutils literal notranslate"><span class="pre">B2</span></code> are the two
+bounds. <code class="docutils literal notranslate"><span class="pre">P</span></code> is the primorial (approximately equal to <span class="math notranslate nohighlight">\(\sqrt{B2}\)</span>).
+<span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If the factor is found, number of words required to store the factor is
+returned, otherwise <span class="math notranslate nohighlight">\(0\)</span>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fmpz_factor_ecm">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fmpz_factor_ecm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">curves</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B1</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">B2</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n_in</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fmpz_factor_ecm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Outer wrapper function for the ECM algorithm. In case <code class="docutils literal notranslate"><span class="pre">f</span></code> can fit
+in a single unsigned word, a call to <code class="docutils literal notranslate"><span class="pre">n_factor_ecm</span></code> is made.</p>
+<p>The function calls stage I and II, and
+the precomputations (builds <code class="docutils literal notranslate"><span class="pre">prime_array</span></code> for stage I,
+<code class="docutils literal notranslate"><span class="pre">GCD_table</span></code> and <code class="docutils literal notranslate"><span class="pre">prime_table</span></code> for stage II).</p>
+<p><code class="docutils literal notranslate"><span class="pre">f</span></code> is set as the factor if found. <code class="docutils literal notranslate"><span class="pre">curves</span></code> is the number of
+random curves being tried. <code class="docutils literal notranslate"><span class="pre">B1</span></code>, <code class="docutils literal notranslate"><span class="pre">B2</span></code> are the two bounds or
+stage I and stage II. <span class="math notranslate nohighlight">\(n\)</span> is the number being factored.</p>
+<p>If a factor is found in stage I, <span class="math notranslate nohighlight">\(1\)</span> is returned.
+If a factor is found in stage II, <span class="math notranslate nohighlight">\(2\)</span> is returned.
+If a factor is found while selecting the curve, <span class="math notranslate nohighlight">\(-1\)</span> is returned.
+Otherwise <span class="math notranslate nohighlight">\(0\)</span> is returned.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fmpz_vec.html"
+          title="Previous article"
+          ><strong>fmpz_vec.h</strong> – vectors of integers</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fmpz_mat.html"
+          title="Next article"
+          ><strong>fmpz_mat.h</strong> – matrices over the integers</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fmpz_factor.h</strong> – integer factorisation</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_struct"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_t"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#factoring-integers">Factoring integers</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_init"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_clear"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c._fmpz_factor_append_ui"><code class="docutils literal notranslate"><span class="pre">_fmpz_factor_append_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c._fmpz_factor_append"><code class="docutils literal notranslate"><span class="pre">_fmpz_factor_append()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor"><code class="docutils literal notranslate"><span class="pre">fmpz_factor()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_smooth"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_smooth()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_si"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_si()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_trial_range"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_trial_range()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_trial"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_trial()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_refine"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_refine()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_expand_iterative"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_expand_iterative()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pp1"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pp1()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pollard_brent_single"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pollard_brent_single()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pollard_brent"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pollard_brent()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_fprint"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_fprint()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_print"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_print()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elliptic-curve-ecm-method">Elliptic curve (ECM) method</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_init"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_clear"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_double"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_double()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_add"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_mul_montgomery_ladder"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_mul_montgomery_ladder()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_select_curve"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_select_curve()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_stage_I"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_stage_I()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_stage_II"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_stage_II()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fmpz_factor.h</strong> – integer factorisation</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_struct"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_t"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#factoring-integers">Factoring integers</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_init"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_clear"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c._fmpz_factor_append_ui"><code class="docutils literal notranslate"><span class="pre">_fmpz_factor_append_ui()</span></code></a></li>
+<li><a class="reference internal" href="#c._fmpz_factor_append"><code class="docutils literal notranslate"><span class="pre">_fmpz_factor_append()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor"><code class="docutils literal notranslate"><span class="pre">fmpz_factor()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_smooth"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_smooth()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_si"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_si()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_trial_range"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_trial_range()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_trial"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_trial()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_refine"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_refine()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_expand_iterative"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_expand_iterative()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pp1"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pp1()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pollard_brent_single"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pollard_brent_single()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_pollard_brent"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_pollard_brent()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#input-and-output">Input and output</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_fprint"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_fprint()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_print"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_print()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#elliptic-curve-ecm-method">Elliptic curve (ECM) method</a><ul>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_init"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_clear"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_double"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_double()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_add"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_add()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_mul_montgomery_ladder"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_mul_montgomery_ladder()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_select_curve"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_select_curve()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_stage_I"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_stage_I()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm_stage_II"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm_stage_II()</span></code></a></li>
+<li><a class="reference internal" href="#c.fmpz_factor_ecm"><code class="docutils literal notranslate"><span class="pre">fmpz_factor_ecm()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

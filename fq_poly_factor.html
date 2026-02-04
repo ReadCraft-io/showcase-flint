@@ -1,0 +1,1291 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>fq_poly_factor.h – factorisation of univariate polynomials over finite fields &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="fq-poly-factor-h-factorisation-of-univariate-polynomials-over-finite-fields">
+<span id="fq-poly-factor"></span><h1><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields<a class="headerlink" href="#fq-poly-factor-h-factorisation-of-univariate-polynomials-over-finite-fields" title="Link to this heading">¶</a></h1>
+<section id="types-macros-and-constants">
+<h2>Types, macros and constants<a class="headerlink" href="#types-macros-and-constants" title="Link to this heading">¶</a></h2>
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fq_poly_factor_struct">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_struct</span></span></span><a class="headerlink" href="#c.fq_poly_factor_struct" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="c type">
+<dt class="sig sig-object c" id="c.fq_poly_factor_t">
+<span class="k"><span class="pre">type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_t</span></span></span><a class="headerlink" href="#c.fq_poly_factor_t" title="Link to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</section>
+<section id="memory-management">
+<h2>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_init">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_init" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialises <code class="docutils literal notranslate"><span class="pre">fac</span></code> for use. An <a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fq_poly_factor_t</span></code></a>
+represents a polynomial in factorised form as a product of
+polynomials with associated exponents.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_clear">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_clear</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_clear" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Frees all memory associated with <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_realloc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_realloc</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">alloc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_realloc" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Reallocates the factor structure to provide space for
+precisely <code class="docutils literal notranslate"><span class="pre">alloc</span></code> factors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_fit_length">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_fit_length</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_fit_length" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Ensures that the factor structure has space for at least
+<code class="docutils literal notranslate"><span class="pre">len</span></code> factors.  This function takes care of the case of
+repeated calls by always at least doubling the number of factors
+the structure can hold.</p>
+</dd></dl>
+
+</section>
+<section id="basic-operations">
+<h2>Basic Operations<a class="headerlink" href="#basic-operations" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_set</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_set" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to the same factorisation as <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_print_pretty">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_print_pretty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">var</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_print_pretty" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Pretty-prints the entries of <code class="docutils literal notranslate"><span class="pre">fac</span></code> to standard output.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_print">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_print</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_print" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Prints the entries of <code class="docutils literal notranslate"><span class="pre">fac</span></code> to standard output.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_insert">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_insert</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_insert" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Inserts the factor <code class="docutils literal notranslate"><span class="pre">poly</span></code> with multiplicity <code class="docutils literal notranslate"><span class="pre">exp</span></code> into
+the factorisation <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">fac</span></code> already contains <code class="docutils literal notranslate"><span class="pre">poly</span></code>, then <code class="docutils literal notranslate"><span class="pre">exp</span></code> simply
+gets added to the exponent of the existing entry.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_concat">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_concat</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_concat" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Concatenates two factorisations.</p>
+<p>This is equivalent to calling <a class="reference internal" href="#c.fq_poly_factor_insert" title="fq_poly_factor_insert"><code class="xref c c-func docutils literal notranslate"><span class="pre">fq_poly_factor_insert()</span></code></a>
+repeatedly with the individual factors of <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+<p>Does not support aliasing between <code class="docutils literal notranslate"><span class="pre">res</span></code> and <code class="docutils literal notranslate"><span class="pre">fac</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_pow">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_pow</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">fac</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">exp</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_pow" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Raises <code class="docutils literal notranslate"><span class="pre">fac</span></code> to the power <code class="docutils literal notranslate"><span class="pre">exp</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_remove">
+<a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_remove</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_remove" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Removes the highest possible power of <code class="docutils literal notranslate"><span class="pre">p</span></code> from <code class="docutils literal notranslate"><span class="pre">f</span></code> and
+returns the exponent.</p>
+</dd></dl>
+
+</section>
+<section id="irreducibility-testing">
+<h2>Irreducibility Testing<a class="headerlink" href="#irreducibility-testing" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_is_irreducible">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_is_irreducible</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_is_irreducible" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_is_irreducible_ddf">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_is_irreducible_ddf</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_is_irreducible_ddf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.
+Uses fast distinct-degree factorisation.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_is_irreducible_ben_or">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_is_irreducible_ben_or</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_is_irreducible_ben_or" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if the polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> is irreducible, otherwise returns 0.
+Uses Ben-Or’s irreducibility test.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._fq_poly_is_squarefree">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fq_poly_is_squarefree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_struct" title="fq_struct"><span class="n"><span class="pre">fq_struct</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">f</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._fq_poly_is_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <code class="docutils literal notranslate"><span class="pre">(f,</span> <span class="pre">len)</span></code> is squarefree, and 0 otherwise. As a
+special case, the zero polynomial is not considered squarefree.
+There are no restrictions on the length.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_is_squarefree">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_is_squarefree</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_is_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if <code class="docutils literal notranslate"><span class="pre">f</span></code> is squarefree, and 0 otherwise. As a special
+case, the zero polynomial is not considered squarefree.</p>
+</dd></dl>
+
+</section>
+<section id="factorisation">
+<h2>Factorisation<a class="headerlink" href="#factorisation" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_equal_deg_prob">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_equal_deg_prob</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factor</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_equal_deg_prob" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Probabilistic equal degree factorisation of <code class="docutils literal notranslate"><span class="pre">pol</span></code> into
+irreducible factors of degree <code class="docutils literal notranslate"><span class="pre">d</span></code>. If it passes, a factor is
+placed in factor and 1 is returned, otherwise 0 is returned and
+the value of factor is undetermined.</p>
+<p>Requires that <code class="docutils literal notranslate"><span class="pre">pol</span></code> be monic, non-constant and squarefree.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_equal_deg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_equal_deg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">pol</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_equal_deg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Assuming <code class="docutils literal notranslate"><span class="pre">pol</span></code> is a product of irreducible factors all of
+degree <code class="docutils literal notranslate"><span class="pre">d</span></code>, finds all those factors and places them in
+factors.  Requires that <code class="docutils literal notranslate"><span class="pre">pol</span></code> be monic, non-constant and
+squarefree.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_split_single">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_split_single</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">linfactor</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_split_single" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Assuming <code class="docutils literal notranslate"><span class="pre">input</span></code> is a product of factors all of degree 1, finds a single
+linear factor of <code class="docutils literal notranslate"><span class="pre">input</span></code> and places it in <code class="docutils literal notranslate"><span class="pre">linfactor</span></code>.
+Requires that <code class="docutils literal notranslate"><span class="pre">input</span></code> be monic and non-constant.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_distinct_deg">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_distinct_deg</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">degs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_distinct_deg" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a monic non-constant squarefree polynomial <code class="docutils literal notranslate"><span class="pre">poly</span></code>
+of degree <span class="math notranslate nohighlight">\(n\)</span> into factors <span class="math notranslate nohighlight">\(f[d]\)</span> such that for <span class="math notranslate nohighlight">\(1 \leq d \leq n\)</span>
+<span class="math notranslate nohighlight">\(f[d]\)</span> is the product of the monic irreducible factors of
+<code class="docutils literal notranslate"><span class="pre">poly</span></code> of degree <span class="math notranslate nohighlight">\(d\)</span>. Factors are stored in <code class="docutils literal notranslate"><span class="pre">res</span></code>,
+associated powers of irreducible polynomials are stored in
+<code class="docutils literal notranslate"><span class="pre">degs</span></code> in the same order as factors.</p>
+<p>Requires that <code class="docutils literal notranslate"><span class="pre">degs</span></code> have enough space for irreducible polynomials’
+powers (maximum space required is <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">*</span> <span class="pre">sizeof(slong)</span></code>).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_squarefree">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_squarefree</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_squarefree" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">res</span></code> to a squarefree factorization of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="fq.html#c.fq_t" title="fq_t"><span class="n"><span class="pre">fq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">lead</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic
+irreducible factors choosing the best algorithm for given modulo
+and degree.  The output <code class="docutils literal notranslate"><span class="pre">lead</span></code> is set to the leading coefficient of <span class="math notranslate nohighlight">\(f\)</span>
+upon return. Choice of algorithm is based on heuristic measurements.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_cantor_zassenhaus">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_cantor_zassenhaus</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_cantor_zassenhaus" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic
+irreducible factors using the Cantor-Zassenhaus algorithm.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_kaltofen_shoup">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_kaltofen_shoup</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_kaltofen_shoup" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic
+irreducible factors using the fast version of Cantor-Zassenhaus
+algorithm proposed by Kaltofen and Shoup (1998). More precisely
+this algorithm uses a “baby step/giant step” strategy for the
+distinct-degree factorization step.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_berlekamp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_berlekamp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">factors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_berlekamp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a non-constant polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic
+irreducible factors using the Berlekamp algorithm.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_with_berlekamp">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_with_berlekamp</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="fq.html#c.fq_t" title="fq_t"><span class="n"><span class="pre">fq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">leading_coeff</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_with_berlekamp" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a general polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors and sets <code class="docutils literal notranslate"><span class="pre">leading_coeff</span></code> to the leading coefficient
+of <code class="docutils literal notranslate"><span class="pre">f</span></code>, or 0 if <code class="docutils literal notranslate"><span class="pre">f</span></code> is the zero polynomial.</p>
+<p>This function first checks for small special cases, deflates
+<code class="docutils literal notranslate"><span class="pre">f</span></code> if it is of the form <span class="math notranslate nohighlight">\(p(x^m)\)</span> for some <span class="math notranslate nohighlight">\(m &gt; 1\)</span>, then
+performs a square-free factorisation, and finally runs Berlekamp
+factorisation on all the individual square-free factors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_with_cantor_zassenhaus">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_with_cantor_zassenhaus</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="fq.html#c.fq_t" title="fq_t"><span class="n"><span class="pre">fq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">leading_coeff</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_with_cantor_zassenhaus" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a general polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors and sets <code class="docutils literal notranslate"><span class="pre">leading_coeff</span></code> to the leading coefficient
+of <code class="docutils literal notranslate"><span class="pre">f</span></code>, or 0 if <code class="docutils literal notranslate"><span class="pre">f</span></code> is the zero polynomial.</p>
+<p>This function first checks for small special cases, deflates
+<code class="docutils literal notranslate"><span class="pre">f</span></code> if it is of the form <span class="math notranslate nohighlight">\(p(x^m)\)</span> for some <span class="math notranslate nohighlight">\(m &gt; 1\)</span>, then
+performs a square-free factorisation, and finally runs
+Cantor-Zassenhaus on all the individual square-free factors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_factor_with_kaltofen_shoup">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_factor_with_kaltofen_shoup</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">res</span></span>, <a class="reference internal" href="fq.html#c.fq_t" title="fq_t"><span class="n"><span class="pre">fq_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">leading_coeff</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_factor_with_kaltofen_shoup" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Factorises a general polynomial <code class="docutils literal notranslate"><span class="pre">f</span></code> into monic irreducible
+factors and sets <code class="docutils literal notranslate"><span class="pre">leading_coeff</span></code> to the leading coefficient
+of <code class="docutils literal notranslate"><span class="pre">f</span></code>, or 0 if <code class="docutils literal notranslate"><span class="pre">f</span></code> is the zero polynomial.</p>
+<p>This function first checks for small special cases, deflates
+<code class="docutils literal notranslate"><span class="pre">f</span></code> if it is of the form <span class="math notranslate nohighlight">\(p(x^m)\)</span> for some <span class="math notranslate nohighlight">\(m &gt; 1\)</span>, then
+performs a square-free factorisation, and finally runs
+Kaltofen-Shoup on all the individual square-free factors.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_iterated_frobenius_preinv">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_iterated_frobenius_preinv</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">rop</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">vinv</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_iterated_frobenius_preinv" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets <code class="docutils literal notranslate"><span class="pre">rop[i]</span></code> to be <span class="math notranslate nohighlight">\(x^{q^i}\bmod v\)</span> for <span class="math notranslate nohighlight">\(0 \le i &lt; n\)</span>.</p>
+<p>It is required that <code class="docutils literal notranslate"><span class="pre">vinv</span></code> is the inverse of the reverse of
+<code class="docutils literal notranslate"><span class="pre">v</span></code> mod <code class="docutils literal notranslate"><span class="pre">x^lenv</span></code>.</p>
+</dd></dl>
+
+</section>
+<section id="root-finding">
+<h2>Root Finding<a class="headerlink" href="#root-finding" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.fq_poly_roots">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fq_poly_roots</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.fq_poly_factor_t" title="fq_poly_factor_t"><span class="n"><span class="pre">fq_poly_factor_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">r</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq_poly.html#c.fq_poly_t" title="fq_poly_t"><span class="n"><span class="pre">fq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">f</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">with_multiplicity</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fq.html#c.fq_ctx_t" title="fq_ctx_t"><span class="n"><span class="pre">fq_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.fq_poly_roots" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Fill <span class="math notranslate nohighlight">\(r\)</span> with factors of the form <span class="math notranslate nohighlight">\(x - r_i\)</span> where the <span class="math notranslate nohighlight">\(r_i\)</span> are the distinct roots of a nonzero <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\(F_q\)</span>.
+If <span class="math notranslate nohighlight">\(with\_multiplicity\)</span> is zero, the exponent <span class="math notranslate nohighlight">\(e_i\)</span> of the factor <span class="math notranslate nohighlight">\(x - r_i\)</span> is <span class="math notranslate nohighlight">\(1\)</span>. Otherwise, it is the largest <span class="math notranslate nohighlight">\(e_i\)</span> such that <span class="math notranslate nohighlight">\((x-r_i)^e_i\)</span> divides <span class="math notranslate nohighlight">\(f\)</span>.
+This function throws if <span class="math notranslate nohighlight">\(f\)</span> is zero, but is otherwise always successful.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fq_default_poly.html"
+          title="Previous article"
+          ><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="fq_default_poly_factor.html"
+          title="Next article"
+          ><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_struct"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_t"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory Management</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_init"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_clear"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_realloc"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_realloc()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_fit_length"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_fit_length()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-operations">Basic Operations</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_set"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_print_pretty"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_print_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_print"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_insert"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_insert()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_concat"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_concat()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_pow"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_remove"><code class="docutils literal notranslate"><span class="pre">fq_poly_remove()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#irreducibility-testing">Irreducibility Testing</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible_ddf"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible_ddf()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible_ben_or"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible_ben_or()</span></code></a></li>
+<li><a class="reference internal" href="#c._fq_poly_is_squarefree"><code class="docutils literal notranslate"><span class="pre">_fq_poly_is_squarefree()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_squarefree"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_squarefree()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#factorisation">Factorisation</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_equal_deg_prob"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_equal_deg_prob()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_equal_deg"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_equal_deg()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_split_single"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_split_single()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_distinct_deg"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_distinct_deg()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_squarefree"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_squarefree()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_cantor_zassenhaus"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_cantor_zassenhaus()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_kaltofen_shoup"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_kaltofen_shoup()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_berlekamp"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_berlekamp()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_berlekamp"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_berlekamp()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_cantor_zassenhaus"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_cantor_zassenhaus()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_kaltofen_shoup"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_kaltofen_shoup()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_iterated_frobenius_preinv"><code class="docutils literal notranslate"><span class="pre">fq_poly_iterated_frobenius_preinv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#root-finding">Root Finding</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_roots"><code class="docutils literal notranslate"><span class="pre">fq_poly_roots()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a><ul>
+<li><a class="reference internal" href="#types-macros-and-constants">Types, macros and constants</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_struct"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_struct</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_t"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_t</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-management">Memory Management</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_init"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_init()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_clear"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_clear()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_realloc"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_realloc()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_fit_length"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_fit_length()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-operations">Basic Operations</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_set"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_set()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_print_pretty"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_print_pretty()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_print"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_print()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_insert"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_insert()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_concat"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_concat()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_pow"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_pow()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_remove"><code class="docutils literal notranslate"><span class="pre">fq_poly_remove()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#irreducibility-testing">Irreducibility Testing</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible_ddf"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible_ddf()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_irreducible_ben_or"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_irreducible_ben_or()</span></code></a></li>
+<li><a class="reference internal" href="#c._fq_poly_is_squarefree"><code class="docutils literal notranslate"><span class="pre">_fq_poly_is_squarefree()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_is_squarefree"><code class="docutils literal notranslate"><span class="pre">fq_poly_is_squarefree()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#factorisation">Factorisation</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_factor_equal_deg_prob"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_equal_deg_prob()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_equal_deg"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_equal_deg()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_split_single"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_split_single()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_distinct_deg"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_distinct_deg()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_squarefree"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_squarefree()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_cantor_zassenhaus"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_cantor_zassenhaus()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_kaltofen_shoup"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_kaltofen_shoup()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_berlekamp"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_berlekamp()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_berlekamp"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_berlekamp()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_cantor_zassenhaus"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_cantor_zassenhaus()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_factor_with_kaltofen_shoup"><code class="docutils literal notranslate"><span class="pre">fq_poly_factor_with_kaltofen_shoup()</span></code></a></li>
+<li><a class="reference internal" href="#c.fq_poly_iterated_frobenius_preinv"><code class="docutils literal notranslate"><span class="pre">fq_poly_iterated_frobenius_preinv()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#root-finding">Root Finding</a><ul>
+<li><a class="reference internal" href="#c.fq_poly_roots"><code class="docutils literal notranslate"><span class="pre">fq_poly_roots()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_domains.html"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>

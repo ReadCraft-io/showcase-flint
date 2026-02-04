@@ -1,0 +1,1647 @@
+
+<!doctype html>
+<html
+  lang="en"
+  data-content_root="./"
+  class="scroll-smooth [--header-height:calc(var(--spacing)*18)] [--header-padding:calc(var(--spacing)*12)]"
+  id="top"
+  
+>
+  <head>
+    <title>gr.h (continued) – builtin domains and types &mdash; FLINT 3.5.0-dev documentation</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="generator"
+  content="Sphinx 9.1.0, Clarity Theme for Sphinx 0.1.1 (https://readcraft.io/sphinx-clarity-theme/)"
+/>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<script src="_static/scripts/dark-mode.js"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=a5519fdd" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/output.css?v=71cc70a9" />
+
+
+
+    
+    
+  </head>
+
+  <body >
+    
+  <!-- ============================================================== -->
+  <!-- Primary drawer before markup -->
+  <!-- ============================================================== -->
+  <div class="drawer">
+    <input id="primary-drawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+      <!-- ========================================================== -->
+      <!-- Secondary drawer before markup -->
+      <!-- ========================================================== -->
+      <div class="drawer drawer-end">
+        <input id="secondary-drawer" type="checkbox" class="drawer-toggle" />
+        <div class="drawer-content">
+          <!-- ====================================================== -->
+          <!-- Page content -->
+          <!-- ====================================================== -->
+          <div class="bg-base-100 divide-base-200 divide-y">
+            
+
+
+<!-- Header -->
+<header id="main-header" class="bg-base-100 sticky top-0 z-50">
+  <div
+    class="container mx-auto flex h-[var(--header-height)] items-center px-4 md:px-0"
+  >
+    <!-- Left side (logo) -->
+    <div class="flex-1">
+<a href="index.html">
+  
+  
+    <span class="text-primary-content text-xl font-bold">
+      
+      FLINT 3.5.0-dev documentation
+    </span>
+  
+</a></div>
+
+    <!-- Right side -->
+    <div class="flex flex-1 items-center justify-end">
+      <!-- #Header menu (desktop) -->
+      <div class="hidden lg:block">
+        <!-- `[&_li]:self-center` - If a content of <li> is the button, the "self-center" required to properly vertically align it -->
+        <!-- `[&_li>a]:px-2 [&_li>a]:py-3` - Tweaks default menu ugly padding that doesn't match to buttons padding -->
+        <ul
+          class="menu menu-horizontal text-secondary-content gap-2 [&_li]:self-center [&_li>a]:px-2 [&_li>a]:py-3"
+        >
+          
+        </ul>
+      </div>
+      <!-- .#Header menu (desktop) -->
+
+      <!-- #Search button -->
+      <div class="tooltip tooltip-bottom" data-tip="Search">
+        <button
+          class="btn btn-ghost btn-secondary"
+          onclick="searchModal.showModal()"
+        >
+          <span class="icon-[prime--search] text-2xl"></span>
+        </button>
+      </div>
+      <!-- .#Search button -->
+
+      
+  
+  
+
+
+      
+  <!-- #Mode select -->
+  <div class="tooltip tooltip-bottom" data-tip="Light/dark mode">
+    <button class="btn btn-ghost btn-secondary">
+      <label class="swap swap-rotate">
+        <!-- this hidden checkbox controls the state -->
+        <input type="checkbox" onclick="toggleMode()" />
+        <!-- light mode icon -->
+        <span class="icon-[prime--sun] swap-on text-2xl"></span>
+        <!-- dark mode icon -->
+        <span class="icon-[prime--moon] swap-off text-2xl"></span>
+      </label>
+    </button>
+  </div>
+  <!-- .#Mode select -->
+
+
+      <!-- #Header menu (mobile) -->
+      <details class="dropdown dropdown-left lg:hidden">
+        <summary class="btn btn-secondary aspect-square" aria-label="Menu">
+          <span class="icon-[prime--bars]"></span>
+          <span class="sr-only">Menu</span>
+        </summary>
+        <!-- `[&_li>a.btn]:justify-start` - If a content of <li> is the button, it should be aligned to the start (left) -->
+        <ul
+          class="menu dropdown-content bg-base-100 rounded-box dark:border-base-200 z-1 w-52 p-2 shadow-sm dark:border [&_li>a.btn]:justify-start"
+        >
+          
+        </ul>
+      </details>
+      <!-- .#Header menu (mobile) -->
+    </div>
+  </div>
+</header>
+            
+<!-- #Sidebar toggles (mobile) -->
+<nav class="p-4 lg:hidden">
+  <div class="container mx-auto flex items-center justify-between text-sm">
+    <!-- Left side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="primary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            <span class="icon-[prime--align-left] text-xl"></span>
+            Table of Contents
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Left side -->
+    <!-- Right side -->
+    <div>
+      
+        <button
+          class="btn btn-secondary btn-sm text-secondary-content/80 font-normal"
+        >
+          <label
+            for="secondary-drawer"
+            class="flex cursor-pointer items-center gap-1"
+          >
+            This page
+            <span class="icon-[prime--align-right] text-xl"></span>
+          </label>
+        </button>
+      
+    </div>
+    <!-- .Right side -->
+  </div>
+</nav>
+<!-- .#Sidebar toggles (mobile) -->
+
+            <main class="p-4 lg:pt-[var(--header-padding)]">
+              <div class="container mx-auto lg:flex lg:items-start">
+                <article class="lg:order-2 lg:w-8/12 lg:flex-none lg:px-12">
+                  
+<!-- #Breadcrumb -->
+<nav class="flex flex-wrap items-center gap-1 text-sm">
+  
+  <a
+    href="index.html"
+    class="text-secondary-content/80 hover:text-accent-content hover:underline"
+  >
+    FLINT 3.5.0-dev documentation
+  </a>
+
+  
+
+  
+  <span
+    class="icon-[prime--arrow-right] text-secondary-content/50"
+  ></span>
+  <span class="text-secondary-content/80"><strong>gr.h (continued)</strong> – builtin domains and types</span>
+</nav>
+<!-- .#Breadcrumb -->
+
+                  
+                  <main role="main">
+  <section id="gr-h-continued-builtin-domains-and-types">
+<span id="gr-domains"></span><h1><strong>gr.h (continued)</strong> – builtin domains and types<a class="headerlink" href="#gr-h-continued-builtin-domains-and-types" title="Link to this heading">¶</a></h1>
+<section id="coercions">
+<h2>Coercions<a class="headerlink" href="#coercions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_cmp_coercion">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_cmp_coercion</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx1</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx2</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_cmp_coercion" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns 1 if coercing elements into <em>ctx1</em> is more meaningful,
+and returns -1 otherwise.</p>
+</dd></dl>
+
+</section>
+<section id="domain-properties">
+<h2>Domain properties<a class="headerlink" href="#domain-properties" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_is_finite">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_finite</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_finite" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_multiplicative_group">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_multiplicative_group</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_multiplicative_group" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_ring">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_ring</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_ring" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_commutative_ring">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_commutative_ring</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_commutative_ring" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_integral_domain">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_integral_domain</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_integral_domain" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_unique_factorization_domain">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_unique_factorization_domain</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_unique_factorization_domain" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_field">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_field</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_field" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_algebraically_closed">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_algebraically_closed</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_algebraically_closed" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_rational_vector_space">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_rational_vector_space</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_rational_vector_space" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_real_vector_space">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_real_vector_space</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_real_vector_space" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_complex_vector_space">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_complex_vector_space</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_complex_vector_space" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_finite_characteristic">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_finite_characteristic</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_finite_characteristic" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_ordered_ring">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_ordered_ring</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_ordered_ring" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_is_zero_ring">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_zero_ring</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_zero_ring" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the structure satisfies the respective
+mathematical property.
+The result can be <code class="docutils literal notranslate"><span class="pre">T_UNKNOWN</span></code>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_is_exact">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_exact</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_exact" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the representation of elements is always exact.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_is_canonical">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_is_canonical</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_is_canonical" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether the representation of elements is always canonical.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_has_real_prec">
+<a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_has_real_prec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_has_real_prec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Returns whether <em>ctx</em> or a base field thereof represents real or complex
+numbers using finite-precision approximations.
+This returns <code class="docutils literal notranslate"><span class="pre">T_TRUE</span></code> both for floating-point approximate
+fields and for rigorous fields based on ball or interval arithmetic.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_set_real_prec">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_set_real_prec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_set_real_prec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_get_real_prec">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_get_real_prec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">prec</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_get_real_prec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets or retrieves the floating-point precision in bits.</p>
+</dd></dl>
+
+</section>
+<section id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_debug">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_debug</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">elem_ctx</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n"><span class="pre">unable_probability</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_debug" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initialize <em>ctx</em> to a wrapper around <em>elem_ctx</em> for debugging.
+This will execute supported methods (currently only a handful
+of methods are supported, e.g. <code class="docutils literal notranslate"><span class="pre">gr_add</span></code>) as if one is computing
+directly over <em>elem_ctx</em>, but with added debugging features.</p>
+<p>If <em>unable_probability</em> is positive, some methods will randomly return
+<code class="docutils literal notranslate"><span class="pre">GR_UNABLE</span></code> and predicates will randomly return <code class="docutils literal notranslate"><span class="pre">T_UNKNOWN</span></code>.</p>
+<p>The following flags are supported:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GR_DEBUG_WRAP</span></code> - wrap elements in a box with a pointer. This allows
+performing extra checks such as whether a variable is being cleared
+twice or whether the wrong context object is passed as input. It can
+also help catch some bugs that are not revealed when entries are
+stored shallowly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GR_DEBUG_VERBOSE</span></code> - print debugging information for each operation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GR_DEBUG_TIMING</span></code> - print elapsed time for each operation.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="groups">
+<h2>Groups<a class="headerlink" href="#groups" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_perm">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_perm</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_perm" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the symmetric group <span class="math notranslate nohighlight">\(S_n\)</span> representing
+permutations of <span class="math notranslate nohighlight">\([0, 1, \ldots, n - 1]\)</span>.
+Elements are currently represented as pointers (the representation
+may change in the future).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_psl2z">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_psl2z</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_psl2z" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the modular group <span class="math notranslate nohighlight">\(\text{PSL}(2, \mathbb{Z})\)</span>
+with elements of type <a class="reference internal" href="acb_modular.html#c.psl2z_t" title="psl2z_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">psl2z_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_dirichlet_group">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_dirichlet_group</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">q</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_dirichlet_group" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the Dirichlet group <span class="math notranslate nohighlight">\(G_q\)</span>
+with elements of type <a class="reference internal" href="dirichlet.html#c.dirichlet_char_t" title="dirichlet_char_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">dirichlet_char_t</span></code></a>.
+Fails and returns <code class="docutils literal notranslate"><span class="pre">GR_DOMAIN</span></code> if <em>q</em> is zero.
+Fails and returns <code class="docutils literal notranslate"><span class="pre">GR_UNABLE</span></code> if <em>q</em> has a prime factor
+larger than <span class="math notranslate nohighlight">\(10^{16}\)</span>, which is currently unsupported
+by the implementation.</p>
+</dd></dl>
+
+</section>
+<section id="basic-rings-and-fields">
+<h2>Basic rings and fields<a class="headerlink" href="#basic-rings-and-fields" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_random">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_random</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.flint_rand_t" title="flint_rand_t"><span class="n"><span class="pre">flint_rand_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_random" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a random ring. This will currently
+only generate base rings and composite rings over certain
+simple base rings.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the ring of integers
+<span class="math notranslate nohighlight">\(\mathbb{Z}\)</span> with elements of type <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpq" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the field of rational numbers
+<span class="math notranslate nohighlight">\(\mathbb{Q}\)</span> with elements of type <a class="reference internal" href="fmpq.html#c.fmpq" title="fmpq"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpq</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpzi">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpzi</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpzi" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the ring of Gaussian integers
+<span class="math notranslate nohighlight">\(\mathbb{Z}[i]\)</span> with elements of type <a class="reference internal" href="fmpzi.html#c.fmpzi_t" title="fmpzi_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpzi_t</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="residue-rings-and-finite-fields">
+<h2>Residue rings and finite fields<a class="headerlink" href="#residue-rings-and-finite-fields" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_set_is_field">
+<span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_set_is_field</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.truth_t" title="truth_t"><span class="n"><span class="pre">truth_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">is_field</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_set_is_field" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Set whether the given ring is actually a field. For example,
+in the case of <span class="math notranslate nohighlight">\(\mathbb{Z}/n\mathbb{Z}\)</span>, this sets whether
+the modulus is prime. This can speed up some computations and
+enable some functions to complete that otherwise would
+return <code class="docutils literal notranslate"><span class="pre">GR_UNABLE</span></code>.</p>
+</dd></dl>
+
+<p>See:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="nmod.html#c.gr_ctx_init_nmod" title="gr_ctx_init_nmod"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_nmod()</span></code></a>
+<a class="reference internal" href="nmod.html#c.gr_ctx_init_nmod8" title="gr_ctx_init_nmod8"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_nmod8()</span></code></a>
+<a class="reference internal" href="nmod.html#c.gr_ctx_init_nmod32" title="gr_ctx_init_nmod32"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_nmod32()</span></code></a>
+<a class="reference internal" href="nmod.html#c.gr_ctx_init_nmod_redc" title="gr_ctx_init_nmod_redc"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_nmod_redc()</span></code></a>
+<a class="reference internal" href="nmod.html#c.gr_ctx_init_nmod_redc_fast" title="gr_ctx_init_nmod_redc_fast"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_nmod_redc_fast()</span></code></a></p></li>
+</ul>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz_mod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz_mod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz_mod" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the ring <span class="math notranslate nohighlight">\(\mathbb{Z}/n\mathbb{Z}\)</span>
+of integers modulo <em>n</em> where
+elements have type <a class="reference internal" href="fmpz.html#c.fmpz" title="fmpz"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz</span></code></a>. The modulus must be positive.</p>
+</dd></dl>
+
+<ul>
+<li><p><a class="reference internal" href="mpn_mod.html#c.gr_ctx_init_mpn_mod" title="gr_ctx_init_mpn_mod"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_mpn_mod()</span></code></a></p>
+<blockquote>
+<div><p>Initializes <em>ctx</em> to the ring <span class="math notranslate nohighlight">\(\mathbb{Z}/n\mathbb{Z}\)</span>
+of integers modulo <em>n</em> where
+elements are flat limb arrays with the same number of limbs as <em>n</em>.</p>
+</div></blockquote>
+</li>
+</ul>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fq">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fq</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">var</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fq" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_fq_nmod">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fq_nmod</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">var</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fq_nmod" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_fq_zech">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fq_zech</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.ulong" title="ulong"><span class="n"><span class="pre">ulong</span></span></a><span class="w"> </span><span class="n"><span class="pre">p</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">d</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">var</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fq_zech" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the finite field <span class="math notranslate nohighlight">\(\mathbb{F}_q\)</span>
+where <span class="math notranslate nohighlight">\(q = p^d\)</span>. It is assumed (not checked) that <em>p</em> is prime.
+The variable name <em>var</em> can be <code class="docutils literal notranslate"><span class="pre">NULL</span></code> to use a default.</p>
+<p>The corresponding element types are <code class="docutils literal notranslate"><span class="pre">fq_t</span></code>, <code class="docutils literal notranslate"><span class="pre">fq_nmod_t</span></code>, <code class="docutils literal notranslate"><span class="pre">fq_zech_t</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">fq_zech</span></code> context requires <span class="math notranslate nohighlight">\(q &lt; 2^{64}\)</span> (and in practice a much
+smaller value than this).</p>
+</dd></dl>
+
+</section>
+<section id="number-fields-and-algebraic-numbers">
+<h2>Number fields and algebraic numbers<a class="headerlink" href="#number-fields-and-algebraic-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_nf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_nf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_t" title="fmpq_poly_t"><span class="n"><span class="pre">fmpq_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_nf" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_nf_fmpz_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_nf_fmpz_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_t" title="fmpz_poly_t"><span class="n"><span class="pre">fmpz_poly_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">poly</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_nf_fmpz_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the number field with defining polynomial
+<code class="docutils literal notranslate"><span class="pre">poly</span></code> which <em>must</em> be irreducible (this is not checked).
+The elements have type <a class="reference internal" href="nf_elem.html#c.nf_elem_t" title="nf_elem_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">nf_elem_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_real_qqbar">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_real_qqbar</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_real_qqbar" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_qqbar">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_qqbar</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_qqbar" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the field of real or complex algebraic
+numbers with elements of type <a class="reference internal" href="qqbar.html#c.qqbar_t" title="qqbar_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">qqbar_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c._gr_ctx_qqbar_set_limits">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_gr_ctx_qqbar_set_limits</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">deg_limit</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">bits_limit</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c._gr_ctx_qqbar_set_limits" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Limit degrees of intermediate operands of a <em>qqbar</em> context
+to <em>deg_limit</em> and their bit sizes to <em>bits_limit</em> (approximately).
+The limits refer to the sizes of resultants prior to
+factorization (see <a class="reference internal" href="qqbar.html#c.qqbar_binop_within_limits" title="qqbar_binop_within_limits"><code class="xref c c-func docutils literal notranslate"><span class="pre">qqbar_binop_within_limits()</span></code></a>), so for example
+adding two degree-100 algebraic numbers
+requires a degree limit of at least 10000.
+Warning: currently not all methods respect these limits.</p>
+</dd></dl>
+
+</section>
+<section id="real-and-complex-numbers">
+<h2>Real and complex numbers<a class="headerlink" href="#real-and-complex-numbers" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_real_arb">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_real_arb</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_real_arb" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_acb">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_acb</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_acb" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the field of real or complex
+numbers represented by elements of type <a class="reference internal" href="arb.html#c.arb_t" title="arb_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">arb_t</span></code></a>
+and  <a class="reference internal" href="acb.html#c.acb_t" title="acb_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">acb_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_arb_set_prec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_arb_set_prec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_arb_set_prec" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_arb_get_prec">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_arb_get_prec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_arb_get_prec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets or retrieves the bit precision of <em>ctx</em> which must be
+an Arb context (this is currently not checked).</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_real_ca">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_real_ca</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_real_ca" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_ca">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_ca</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_ca" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_real_algebraic_ca">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_real_algebraic_ca</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_real_algebraic_ca" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_algebraic_ca">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_algebraic_ca</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_algebraic_ca" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the field of real, complex, real algebraic
+or complex algebraic numbers represented by elements of type
+<a class="reference internal" href="ca.html#c.ca_t" title="ca_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">ca_t</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_ca_set_option">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_ca_set_option</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">option</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_ca_set_option" title="Link to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.gr_ctx_ca_get_option">
+<a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_ca_get_option</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">option</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_ca_get_option" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Sets or retrieves options of a Calcium context object.</p>
+</dd></dl>
+
+</section>
+<section id="extended-number-sets">
+<h2>Extended number sets<a class="headerlink" href="#extended-number-sets" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_extended_ca">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_extended_ca</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_extended_ca" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Like <a class="reference internal" href="#c.gr_ctx_init_complex_ca" title="gr_ctx_init_complex_ca"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_ctx_init_complex_ca()</span></code></a> but allows special values
+(infinities, undefined).</p>
+</dd></dl>
+
+</section>
+<section id="floating-point-arithmetic">
+<h2>Floating-point arithmetic<a class="headerlink" href="#floating-point-arithmetic" title="Link to this heading">¶</a></h2>
+<p>Although domains of floating-point numbers approximate
+real and complex fields, they are not rings or fields.
+Floating-point arithmetic can be used in many places where a ring
+or field is normally assumed, but predicates like “is field”
+return false.</p>
+<ul class="simple">
+<li><p>Equality compares equality of floating-point numbers,
+with the special rule that NaN is not equal to itself.</p></li>
+<li><p>In general, the following implementations do not currently
+guarantee correct rounding except for atomic arithmetic operations
+(add, sub, mul, div, sqrt) on real floating-point numbers.</p></li>
+</ul>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_real_float_arf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_real_float_arf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_real_float_arf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the floating-point arithmetic with elements
+of type <a class="reference internal" href="arf.html#c.arf_t" title="arf_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">arf_t</span></code></a> and a default precision of <em>prec</em> bits.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_complex_float_acf">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_complex_float_acf</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">prec</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_complex_float_acf" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the complex floating-point arithmetic with elements
+of type <a class="reference internal" href="acf.html#c.acf_t" title="acf_t"><code class="xref c c-type docutils literal notranslate"><span class="pre">acf_t</span></code></a> and a default precision of <em>prec</em> bits.</p>
+</dd></dl>
+
+</section>
+<section id="vectors">
+<h2>Vectors<a class="headerlink" href="#vectors" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_vector_gr_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_vector_gr_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_vector_gr_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the domain of all vectors (of any length)
+over the given <em>base_type</em>.
+Elements have type <a class="reference internal" href="gr_vec.html#c.gr_vec_struct" title="gr_vec_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_vec_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_vector_space_gr_vec">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_vector_space_gr_vec</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_type</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_vector_space_gr_vec" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the space of all vectors of length <em>n</em>
+over the given <em>base_type</em>.
+Elements have type <a class="reference internal" href="gr_vec.html#c.gr_vec_struct" title="gr_vec_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_vec_struct</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="matrices">
+<h2>Matrices<a class="headerlink" href="#matrices" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_matrix_domain">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_matrix_domain</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_ring</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_matrix_domain" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the domain of all matrices (of any shape)
+over the given <em>base_ring</em>.
+Elements have type <a class="reference internal" href="gr_mat.html#c.gr_mat_struct" title="gr_mat_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_mat_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_matrix_space">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_matrix_space</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_ring</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_matrix_space" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the space of matrices over <em>base_ring</em>
+with <em>n</em> rows and <em>m</em> columns.
+Elements have type <a class="reference internal" href="gr_mat.html#c.gr_mat_struct" title="gr_mat_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_mat_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_matrix_ring">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_matrix_ring</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_ring</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_matrix_ring" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to the ring of matrices over <em>base_ring</em>
+with <em>n</em> rows columns.
+Elements have type <a class="reference internal" href="gr_mat.html#c.gr_mat_struct" title="gr_mat_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_mat_struct</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="polynomial-rings">
+<h2>Polynomial rings<a class="headerlink" href="#polynomial-rings" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of integer polynomials of
+type <a class="reference internal" href="fmpz_poly.html#c.fmpz_poly_struct" title="fmpz_poly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_poly_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpq_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpq_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpq_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of rational polynomials of
+type <a class="reference internal" href="fmpq_poly.html#c.fmpq_poly_struct" title="fmpq_poly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpq_poly_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_gr_poly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_gr_poly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_ring</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_gr_poly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of densely represented univariate polynomials
+over the given <em>base_ring</em>.
+Elements have type <a class="reference internal" href="gr_poly.html#c.gr_poly_struct" title="gr_poly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_poly_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz_mpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz_mpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nvars</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mpoly.html#c.ordering_t" title="ordering_t"><span class="n"><span class="pre">ordering_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ord</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz_mpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of sparsely represented multivariate
+polynomials in <em>nvars</em> variables over the integers,
+with monomial ordering <em>ord</em>.
+Elements have type <a class="reference internal" href="fmpz_mpoly.html#c.fmpz_mpoly_struct" title="fmpz_mpoly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mpoly_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_gr_mpoly">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_gr_mpoly</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">base_ring</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nvars</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mpoly.html#c.ordering_t" title="ordering_t"><span class="n"><span class="pre">ordering_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ord</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_gr_mpoly" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of sparsely represented multivariate
+polynomials in <em>nvars</em> variables over the given <em>base_ring</em>,
+with monomial ordering <em>ord</em>.
+Elements have type <a class="reference internal" href="gr_mpoly.html#c.gr_mpoly_struct" title="gr_mpoly_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">gr_mpoly_struct</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="power-series">
+<h2>Power series<a class="headerlink" href="#power-series" title="Link to this heading">¶</a></h2>
+<p>See <a class="reference internal" href="gr_series.html#c.gr_series_ctx_init" title="gr_series_ctx_init"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_series_ctx_init()</span></code></a> and <a class="reference internal" href="gr_series.html#c.gr_series_mod_ctx_init" title="gr_series_mod_ctx_init"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_series_mod_ctx_init()</span></code></a>
+in <a class="reference internal" href="gr_series.html#gr-series"><span class="std std-ref">gr_series.h – formal power series over generic rings</span></a>.</p>
+</section>
+<section id="fraction-fields">
+<h2>Fraction fields<a class="headerlink" href="#fraction-fields" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_gr_fraction">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_gr_fraction</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">domain</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_gr_fraction" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a generic implementation of the fraction field
+over the given integral domain <em>domain</em>.
+Fractions are represented as pairs of elements of <em>domain</em>, stored
+consecutively in memory as (numerator, denominator).
+By default, fractions are simplified by removing common content between
+the numerator and denominator (using <a class="reference internal" href="gr.html#c.gr_gcd" title="gr_gcd"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_gcd()</span></code></a>) and normalising the
+denominator by a canonical unit (using <a class="reference internal" href="gr.html#c.gr_canonical_associate" title="gr_canonical_associate"><code class="xref c c-func docutils literal notranslate"><span class="pre">gr_canonical_associate()</span></code></a>).
+The following optional <em>flags</em> can be set:</p>
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.gr_ctx_init_gr_fraction.GR_FRACTION_NO_REDUCTION">
+<span class="sig-name descname"><span class="n"><span class="pre">GR_FRACTION_NO_REDUCTION</span></span></span><a class="headerlink" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_NO_REDUCTION" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Setting this flag disables canonicalisation, allowing
+one to perform fraction field arithmetic over domains which do not
+implement GCD or unit canonicalisation.
+This flag can also improve performance in certain cases when
+GCDs are more expensive than just allowing coefficients to blow up.</p>
+</dd></dl>
+
+<dl class="c macro">
+<dt class="sig sig-object c" id="c.gr_ctx_init_gr_fraction.GR_FRACTION_STRONGLY_CANONICAL">
+<span class="sig-name descname"><span class="n"><span class="pre">GR_FRACTION_STRONGLY_CANONICAL</span></span></span><a class="headerlink" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_STRONGLY_CANONICAL" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Assert that fractions are in strongly canonical form,
+meaning that <span class="math notranslate nohighlight">\(a/b = c/d\)</span> if and only if <span class="math notranslate nohighlight">\(a = c\)</span> and <span class="math notranslate nohighlight">\(b = d\)</span>.
+Setting this flag allows faster equality testing.
+This should be valid in UFDs that implement a correct GCD and
+correct unit canonicalisation, but need not be true over
+integral domains which are not UFDs. In this future this may
+be automatic.</p>
+</dd></dl>
+
+<p>This constructor does not verify that <em>domain</em> is really an integral
+domain. The behavior over non-integral domains is undefined, as no attempt
+is made to detect the product of two nonzero denominators becoming zero.
+In the future, such checks may be implemented as an optional feature.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz_mpoly_q">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz_mpoly_q</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nvars</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mpoly.html#c.ordering_t" title="ordering_t"><span class="n"><span class="pre">ordering_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ord</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz_mpoly_q" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of sparsely represented multivariate
+fractions in <em>nvars</em> variables over the integers (equivalently, rationals),
+with monomial ordering <em>ord</em>.
+Elements have type <a class="reference internal" href="fmpz_mpoly_q.html#c.fmpz_mpoly_q_struct" title="fmpz_mpoly_q_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mpoly_q_struct</span></code></a>.</p>
+</dd></dl>
+
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fmpz_mod_mpoly_q">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fmpz_mod_mpoly_q</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span>, <a class="reference internal" href="flint.html#c.slong" title="slong"><span class="n"><span class="pre">slong</span></span></a><span class="w"> </span><span class="n"><span class="pre">nvars</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="mpoly.html#c.ordering_t" title="ordering_t"><span class="n"><span class="pre">ordering_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ord</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="fmpz.html#c.fmpz_t" title="fmpz_t"><span class="n"><span class="pre">fmpz_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">mod</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fmpz_mod_mpoly_q" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to a ring of sparsely represented multivariate
+fractions in <em>nvars</em> variables over the <span class="math notranslate nohighlight">\(\mathbb{F}_mod\)</span> field,
+with monomial ordering <em>ord</em>, and <em>mod</em> being a prime number.
+The user is responsible
+for verifying that <em>mod</em> is a prime number;
+if <em>mod</em> is composite, undefined behaviour may occur.
+Elements have type <a class="reference internal" href="fmpz_mod_mpoly_q.html#c.fmpz_mod_mpoly_q_struct" title="fmpz_mod_mpoly_q_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fmpz_mod_mpoly_q_struct</span></code></a>.</p>
+</dd></dl>
+
+</section>
+<section id="symbolic-expressions">
+<h2>Symbolic expressions<a class="headerlink" href="#symbolic-expressions" title="Link to this heading">¶</a></h2>
+<dl class="c function">
+<dt class="sig sig-object c" id="c.gr_ctx_init_fexpr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gr_ctx_init_fexpr</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="gr.html#c.gr_ctx_t" title="gr_ctx_t"><span class="n"><span class="pre">gr_ctx_t</span></span></a><span class="w"> </span><span class="n"><span class="pre">ctx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.gr_ctx_init_fexpr" title="Link to this definition">¶</a><br /></dt>
+<dd><p>Initializes <em>ctx</em> to handle symbolic expressions.
+Elements have type <a class="reference internal" href="fexpr.html#c.fexpr_struct" title="fexpr_struct"><code class="xref c c-type docutils literal notranslate"><span class="pre">fexpr_struct</span></code></a>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+</main>
+
+                  
+<!-- #Article navigation -->
+<nav class="my-8">
+  <ul
+    class="text-secondary-content flex justify-between gap-4"
+  >
+    
+      <li class="flex flex-col gap-1">
+        <span class="flex items-center text-xs font-light">
+          <span class="icon-[prime--angle-left]"></span>
+          Previous
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="gr_implementing.html"
+          title="Previous article"
+          ><strong>gr.h (continued)</strong> – implementing rings</a
+        >
+      </li>
+    
+    
+      <li class="flex flex-col gap-1 lg:items-end">
+        <span class="flex items-center text-xs font-light">
+          Next
+          <span class="icon-[prime--angle-right]"></span>
+        </span>
+        <a
+          class="hover:text-accent-content text-sm underline"
+          href="gr_generic.html"
+          title="Next article"
+          ><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a
+        >
+      </li>
+    
+  </ul>
+</nav>
+<!-- .#Article navigation -->
+                  
+<!-- #Article footer -->
+<footer
+  class="article-footer border-base-200 text-secondary-content/80 my-4 border-t pt-8 text-sm"
+>
+  <div class="flex flex-col justify-between gap-4 lg:flex-row">
+    <div class="article-footer__left">
+      
+      
+    </div>
+    <div class="article-footer__right">
+      
+      
+    </div>
+  </div>
+</footer>
+<!-- .#Article footer -->
+                </article>
+
+                <!-- #Primary drawer (desktop) -->
+                <nav
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-1 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+
+                </nav>
+                <!-- .#Primary drawer (desktop) -->
+
+                <!-- #Secondary drawer (desktop) -->
+                <aside
+                  class="lg:sticky lg:top-[calc(var(--header-height)+var(--header-padding))] lg:h-[calc(100vh-var(--header-height)-calc(var(--header-padding)*2))] lg:overflow-y-auto scrollbar-overlay hidden lg:order-3 lg:block lg:w-2/12 lg:flex-none"
+                >
+                  
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>gr.h (continued)</strong> – builtin domains and types</a><ul>
+<li><a class="reference internal" href="#coercions">Coercions</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_cmp_coercion"><code class="docutils literal notranslate"><span class="pre">gr_ctx_cmp_coercion()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#domain-properties">Domain properties</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_is_finite"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_multiplicative_group"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_multiplicative_group()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_commutative_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_commutative_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_integral_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_integral_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_unique_factorization_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_unique_factorization_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_field"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_field()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_algebraically_closed"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_algebraically_closed()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_rational_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_rational_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_real_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_real_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_complex_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_complex_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_finite_characteristic"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_finite_characteristic()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_ordered_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_ordered_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_zero_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_zero_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_exact"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_exact()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_canonical"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_has_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_has_real_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_set_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_set_real_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_get_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_get_real_prec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging">Debugging</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_debug"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_debug()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#groups">Groups</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_perm"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_perm()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_psl2z"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_psl2z()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_dirichlet_group"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_dirichlet_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-rings-and-fields">Basic rings and fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_random"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_random()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpq"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpq()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpzi"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpzi()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#residue-rings-and-finite-fields">Residue rings and finite fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_set_is_field"><code class="docutils literal notranslate"><span class="pre">gr_ctx_set_is_field()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mod"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mod()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq_nmod"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq_nmod()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq_zech"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq_zech()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#number-fields-and-algebraic-numbers">Number fields and algebraic numbers</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_nf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_nf()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_nf_fmpz_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_nf_fmpz_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_qqbar"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_qqbar()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_qqbar"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_qqbar()</span></code></a></li>
+<li><a class="reference internal" href="#c._gr_ctx_qqbar_set_limits"><code class="docutils literal notranslate"><span class="pre">_gr_ctx_qqbar_set_limits()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#real-and-complex-numbers">Real and complex numbers</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_arb"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_arb()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_acb"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_acb()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_arb_set_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_arb_set_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_arb_get_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_arb_get_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_algebraic_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_algebraic_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_algebraic_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_algebraic_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_ca_set_option"><code class="docutils literal notranslate"><span class="pre">gr_ctx_ca_set_option()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_ca_get_option"><code class="docutils literal notranslate"><span class="pre">gr_ctx_ca_get_option()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extended-number-sets">Extended number sets</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_extended_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_extended_ca()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#floating-point-arithmetic">Floating-point arithmetic</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_float_arf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_float_arf()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_float_acf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_float_acf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vectors">Vectors</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_vector_gr_vec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_vector_gr_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_vector_space_gr_vec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_vector_space_gr_vec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#matrices">Matrices</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_ring()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polynomial-rings">Polynomial rings</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpq_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpq_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mpoly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mpoly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_mpoly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_mpoly()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#power-series">Power series</a></li>
+<li><a class="reference internal" href="#fraction-fields">Fraction fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_fraction()</span></code></a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_NO_REDUCTION"><code class="docutils literal notranslate"><span class="pre">GR_FRACTION_NO_REDUCTION</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_STRONGLY_CANONICAL"><code class="docutils literal notranslate"><span class="pre">GR_FRACTION_STRONGLY_CANONICAL</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mpoly_q"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mpoly_q()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mod_mpoly_q"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mod_mpoly_q()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#symbolic-expressions">Symbolic expressions</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_fexpr"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fexpr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+
+                </aside>
+                <!-- .#Secondary drawer (desktop) -->
+              </div>
+            </main>
+
+            
+<footer class="p-4">
+  <div
+    class="text-secondary-content container mx-auto flex h-8 items-center justify-center text-center text-sm"
+  >
+    <div>
+        Copyright &copy; 2009-2025, The FLINT development team
+      <br class="lg:hidden" />
+      Made with
+      <a
+        href="https://www.sphinx-doc.org"
+        class="hover:text-accent-content underline"
+        >Sphinx</a
+      >
+      and
+      <a
+        href="https://readcraft.io/sphinx-clarity-theme/?utm_source=sphinx_clarity_theme"
+        class="hover:text-accent-content underline"
+        >Clarity Theme for Sphinx </a
+      >.
+    </div>
+  </div>
+</footer>
+          </div>
+
+          
+<!-- #Scroll to top -->
+<div id="scroll-to-top" class="toast toast-end">
+  <a
+    class="btn btn-secondary btn-sm"
+    href="#top"
+    aria-label="Scroll to top"
+  >
+    Back to top
+    <span class="icon-[prime--arrow-up] text-base"></span>
+  </a>
+</div>
+<!-- .#Scroll to top -->
+          
+<!-- #Search dialog -->
+<dialog id="searchModal" class="modal">
+  <div class="modal-box absolute top-8 lg:top-16">
+    <search>
+      <form action="search.html" method="get">
+        <label class="input input-xl w-full">
+          <span class="icon-[prime--search] text-4xl"></span>
+          <input
+            type="search"
+            class="grow"
+            placeholder="Search the docs"
+            name="q"
+            placeholder="Search the documentation"
+            aria-label="Search the documentation"
+          />
+          <kbd class="kbd kbd-lg p-4">Enter</kbd>
+        </label>
+      </form>
+    </search>
+    <p class="mt-4 text-sm">
+      Press <kbd class="kbd">Enter</kbd> to search. Press
+      <kbd class="kbd">Esc</kbd> or click outside to close.
+    </p>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+<!-- .#Search dialog -->
+
+          <!-- ====================================================== -->
+          <!-- .Page content -->
+          <!-- ====================================================== -->
+
+          <!-- ====================================================== -->
+          <!-- Secondary drawer after markup -->
+          <!-- ====================================================== -->
+        </div>
+        <div class="drawer-side">
+          <label
+            for="secondary-drawer"
+            class="drawer-overlay"
+            aria-label="Close secondary sidebar"
+          ></label>
+          <div
+            class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+          >
+            <!-- ==================================================== -->
+            <!-- Secondary drawer (mobile) content -->
+            <!-- ==================================================== -->
+            <div class="text-xs">
+
+
+  
+    <div class="local-toc">
+      <p class="local-toc__caption mt-0 mb-4 font-semibold uppercase">
+        On this page
+      </p>
+      <ul>
+<li><a class="reference internal" href="#"><strong>gr.h (continued)</strong> – builtin domains and types</a><ul>
+<li><a class="reference internal" href="#coercions">Coercions</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_cmp_coercion"><code class="docutils literal notranslate"><span class="pre">gr_ctx_cmp_coercion()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#domain-properties">Domain properties</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_is_finite"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_finite()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_multiplicative_group"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_multiplicative_group()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_commutative_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_commutative_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_integral_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_integral_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_unique_factorization_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_unique_factorization_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_field"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_field()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_algebraically_closed"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_algebraically_closed()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_rational_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_rational_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_real_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_real_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_complex_vector_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_complex_vector_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_finite_characteristic"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_finite_characteristic()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_ordered_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_ordered_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_zero_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_zero_ring()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_exact"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_exact()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_is_canonical"><code class="docutils literal notranslate"><span class="pre">gr_ctx_is_canonical()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_has_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_has_real_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_set_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_set_real_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_get_real_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_get_real_prec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#debugging">Debugging</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_debug"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_debug()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#groups">Groups</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_perm"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_perm()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_psl2z"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_psl2z()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_dirichlet_group"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_dirichlet_group()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-rings-and-fields">Basic rings and fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_random"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_random()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpq"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpq()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpzi"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpzi()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#residue-rings-and-finite-fields">Residue rings and finite fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_set_is_field"><code class="docutils literal notranslate"><span class="pre">gr_ctx_set_is_field()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mod"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mod()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq_nmod"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq_nmod()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fq_zech"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fq_zech()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#number-fields-and-algebraic-numbers">Number fields and algebraic numbers</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_nf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_nf()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_nf_fmpz_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_nf_fmpz_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_qqbar"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_qqbar()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_qqbar"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_qqbar()</span></code></a></li>
+<li><a class="reference internal" href="#c._gr_ctx_qqbar_set_limits"><code class="docutils literal notranslate"><span class="pre">_gr_ctx_qqbar_set_limits()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#real-and-complex-numbers">Real and complex numbers</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_arb"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_arb()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_acb"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_acb()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_arb_set_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_arb_set_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_arb_get_prec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_arb_get_prec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_algebraic_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_algebraic_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_algebraic_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_algebraic_ca()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_ca_set_option"><code class="docutils literal notranslate"><span class="pre">gr_ctx_ca_set_option()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_ca_get_option"><code class="docutils literal notranslate"><span class="pre">gr_ctx_ca_get_option()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extended-number-sets">Extended number sets</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_extended_ca"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_extended_ca()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#floating-point-arithmetic">Floating-point arithmetic</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_real_float_arf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_real_float_arf()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_complex_float_acf"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_complex_float_acf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vectors">Vectors</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_vector_gr_vec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_vector_gr_vec()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_vector_space_gr_vec"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_vector_space_gr_vec()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#matrices">Matrices</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_domain"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_domain()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_space"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_space()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_matrix_ring"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_matrix_ring()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polynomial-rings">Polynomial rings</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpq_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpq_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_poly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_poly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mpoly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mpoly()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_mpoly"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_mpoly()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#power-series">Power series</a></li>
+<li><a class="reference internal" href="#fraction-fields">Fraction fields</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_gr_fraction()</span></code></a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_NO_REDUCTION"><code class="docutils literal notranslate"><span class="pre">GR_FRACTION_NO_REDUCTION</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_gr_fraction.GR_FRACTION_STRONGLY_CANONICAL"><code class="docutils literal notranslate"><span class="pre">GR_FRACTION_STRONGLY_CANONICAL</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mpoly_q"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mpoly_q()</span></code></a></li>
+<li><a class="reference internal" href="#c.gr_ctx_init_fmpz_mod_mpoly_q"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fmpz_mod_mpoly_q()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#symbolic-expressions">Symbolic expressions</a><ul>
+<li><a class="reference internal" href="#c.gr_ctx_init_fexpr"><code class="docutils literal notranslate"><span class="pre">gr_ctx_init_fexpr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  
+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================== -->
+      <!-- Primary drawer after markup -->
+      <!-- ========================================================== -->
+    </div>
+
+    <div class="drawer-side">
+      <label
+        for="primary-drawer"
+        aria-label="Close primary sidebar"
+        class="drawer-overlay"
+      ></label>
+      <div
+        class="bg-base-100 text-base-content mt-[var(--header-height)] min-h-full w-80 overflow-y-auto p-4"
+      >
+        <!-- ===================================================== -->
+        <!-- Primary drawer (mobile) content -->
+        <!-- ===================================================== -->
+        <div class="text-xs">
+
+
+  <div class="global-toc">
+    <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html"><strong>Introduction</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html"><strong>Building, testing and installing</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="bug_reporting.html"><strong>Bug reporting</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html"><strong>Contributing to FLINT</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributors.html"><strong>Contributors</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html"><strong>Examples</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="memory.html"><strong>Memory management</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="portability.html"><strong>Portability</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="threading.html"><strong>Threading</strong></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">General utilities</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="flint.html"><strong>flint.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiler.html"><strong>profiler.h</strong> – performance profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="thread_pool.html"><strong>thread_pool.h</strong> – thread pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpoly.html"><strong>mpoly.h</strong> – support functions for multivariate polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_vectors.html"><strong>machine_vectors.h</strong> – SIMD-accelerated operations on fixed-length vectors</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Generic rings</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gr.html"><strong>gr.h</strong> – generic structures and their elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_implementing.html"><strong>gr.h (continued)</strong> – implementing rings</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><strong>gr.h (continued)</strong> – builtin domains and types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_generic.html"><strong>gr_generic.h</strong> – basic algorithms and fallback implementations for generic elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_special.html"><strong>gr_special.h</strong> – special arithmetic and transcendental functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_vec.html"><strong>gr_vec.h</strong> – vectors over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mat.html"><strong>gr_mat.h</strong> – dense matrices over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_poly.html"><strong>gr_poly.h</strong> – dense univariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_mpoly.html"><strong>gr_mpoly.h</strong> – sparse multivariate polynomials over generic rings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gr_series.html"><strong>gr_series.h</strong> – formal power series over generic rings</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index_generic.html"><strong>Generic rings</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ulong_extras.html"><strong>ulong_extras.h</strong> – arithmetic and number-theoretic functions for single-word integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz.html"><strong>fmpz.h</strong> – integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_vec.html"><strong>fmpz_vec.h</strong> – vectors of integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_factor.html"><strong>fmpz_factor.h</strong> – integer factorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mat.html"><strong>fmpz_mat.h</strong> – matrices over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_lll.html"><strong>fmpz_lll.h</strong> – LLL reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly.html"><strong>fmpz_poly.h</strong> – univariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_mat.html"><strong>fmpz_poly_mat.h</strong> – matrices of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_factor.html"><strong>fmpz_poly_factor.h</strong> – factorisation of polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly.html"><strong>fmpz_mpoly.h</strong> – multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_factor.html"><strong>fmpz_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="long_extras.html"><strong>long_extras.h</strong> – support functions for signed word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="longlong.html"><strong>longlong.h</strong> – support functions for multi-word arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_extras.html"><strong>mpn_extras.h</strong> – support functions for limb arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aprcl.html"><strong>aprcl.h</strong> – APRCL primality testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arith.html"><strong>arith.h</strong> – arithmetic and special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft.html"><strong>fft.h</strong> – Schoenhage-Strassen FFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fft_small.html"><strong>fft_small.h</strong> – FFT modulo word-size primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qsieve.html"><strong>qsieve.h</strong> – Quadratic sieve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="radix.html"><strong>radix.h</strong> – multiprecision arithmetic in general radix</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers.html"><strong>Integers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Rational numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fmpq.html"><strong>fmpq.h</strong> – rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_vec.html"><strong>fmpq_vec.h</strong> – vectors over rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mat.html"><strong>fmpq_mat.h</strong> – matrices over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_poly.html"><strong>fmpq_poly.h</strong> – univariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly_factor.html"><strong>fmpq_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpq_mpoly.html"><strong>fmpq_mpoly.h</strong> – multivariate polynomials over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_poly_q.html"><strong>fmpz_poly_q.h</strong> – rational functions over the rational numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mpoly_q.html"><strong>fmpz_mpoly_q.h</strong> – multivariate rational functions over Q</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_rationals.html"><strong>Rational numbers</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Integers mod n</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nmod.html"><strong>nmod.h</strong> – integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_vec.html"><strong>nmod_vec.h</strong> – vectors over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mat.html"><strong>nmod_mat.h</strong> – matrices over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly.html"><strong>nmod_poly.h</strong> – univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_mat.html"><strong>nmod_poly_mat.h</strong> – matrices of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_poly_factor.html"><strong>nmod_poly_factor.h</strong> – factorisation of univariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly.html"><strong>nmod_mpoly.h</strong> – multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nmod_mpoly_factor.html"><strong>nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over integers mod n (word-size n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpn_mod.html"><strong>mpn_mod.h</strong> – integers mod n (packed multi-word n)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod.html"><strong>fmpz_mod.h</strong> – arithmetic modulo integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_vec.html"><strong>fmpz_mod_vec.h</strong> – vectors over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mat.html"><strong>fmpz_mod_mat.h</strong> – matrices over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly.html"><strong>fmpz_mod_poly.h</strong> – polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_poly_factor.html"><strong>fmpz_mod_poly_factor.h</strong> – factorisation of polynomials over integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly.html"><strong>fmpz_mod_mpoly.h</strong> – polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_factor.html"><strong>fmpz_mod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over the integers mod n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_mod_mpoly_q.html"><strong>fmpz_mod_mpoly_q.h</strong> – multivariate rational functions over Z/mZ</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_integers_mod.html"><strong>Integers mod n</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Groups and other structures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="perm.html"><strong>perm.h</strong> – permutations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qfb.html"><strong>qfb.h</strong> – binary quadratic forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirichlet.html"><strong>dirichlet.h</strong> – Dirichlet characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dlog.html"><strong>dlog.h</strong> – discrete logarithms mod ulong primes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bool_mat.html"><strong>bool_mat.h</strong> – matrices over booleans</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Number fields and algebraic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nf.html"><strong>nf.h</strong> – number fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nf_elem.html"><strong>nf_elem.h</strong> – number field elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpzi.html"><strong>fmpzi.h</strong> – Gaussian integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qqbar.html"><strong>qqbar.h</strong> – algebraic numbers represented by minimal polynomials</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Feature overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using ball arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Technical conventions and potential issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_arb.html">Arb example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mag.html"><strong>mag.h</strong> – fixed-precision unsigned floating-point numbers for bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nfloat.html"><strong>nfloat.h</strong> – packed floating-point numbers with n-word precision</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arf.html"><strong>arf.h</strong> – arbitrary-precision floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acf.html"><strong>acf.h</strong> – complex floating-point numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb.html"><strong>arb.h</strong> – real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb.html"><strong>acb.h</strong> – complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_poly.html"><strong>arb_poly.h</strong> – polynomials over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_poly.html"><strong>acb_poly.h</strong> – polynomials over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fmpz_poly.html"><strong>arb_fmpz_poly.h</strong> – extra methods for integer polynomials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dft.html"><strong>acb_dft.h</strong> – Discrete Fourier transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_mat.html"><strong>arb_mat.h</strong> – matrices over the real numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_mat.html"><strong>acb_mat.h</strong> – matrices over the complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_hypgeom.html"><strong>acb_hypgeom.h</strong> – hypergeometric functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_hypgeom.html"><strong>arb_hypgeom.h</strong> – hypergeometric functions of real variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_elliptic.html"><strong>acb_elliptic.h</strong> – elliptic integrals and functions of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_modular.html"><strong>acb_modular.h</strong> – modular forms of complex variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_theta.html"><strong>acb_theta.h</strong> – Riemann theta functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_dirichlet.html"><strong>acb_dirichlet.h</strong> – Dirichlet L-functions, Riemann zeta and related functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bernoulli.html"><strong>bernoulli.h</strong> – support for Bernoulli numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypgeom.html"><strong>hypgeom.h</strong> – support for hypergeometric series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="partitions.html"><strong>partitions.h</strong> – computation of the partition function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_calc.html"><strong>arb_calc.h</strong> – calculus with real-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acb_calc.html"><strong>acb_calc.h</strong> – calculus with complex-valued functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arb_fpwrap.html"><strong>arb_fpwrap.h</strong> – floating-point wrappers of Arb mathematical functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmpz_extras.html"><strong>fmpz_extras.h</strong> – extra methods for FLINT integers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="formulas.html">General formulas and bounds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="constants.html">Algorithms for mathematical constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gamma.html">Algorithms for the gamma function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hurwitz.html">Algorithms for the Hurwitz zeta function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="polylogarithms.html">Algorithms for polylogarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hypergeometric.html">Algorithms for hypergeometric functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="agm.html">Algorithms for the arithmetic-geometric mean</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_arb.html"><strong>Real and complex numbers (Arb)</strong> : <em>detailed table of contents</em></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Exact real and complex numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction_calcium.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples_calcium.html">Calcium example programs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calcium.html"><strong>calcium.h</strong> – global definitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca.html"><strong>ca.h</strong> – exact real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_vec.html"><strong>ca_vec.h</strong> – vectors of real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_poly.html"><strong>ca_poly.h</strong> – dense univariate polynomials over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_mat.html"><strong>ca_mat.h</strong> – matrices over the real and complex numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_ext.html"><strong>ca_ext.h</strong> – real and complex extension numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ca_field.html"><strong>ca_field.h</strong> – extension fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr.html"><strong>fexpr.h</strong> – flat-packed symbolic expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fexpr_builtin.html"><strong>fexpr_builtin.h</strong> – builtin symbols</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Finite fields</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq.html"><strong>fq.h</strong> – finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default.html"><strong>fq_default.h</strong> – unified finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_vec.html"><strong>fq_vec.h</strong> – vectors over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_mat.html"><strong>fq_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_mat.html"><strong>fq_default_mat.h</strong> – matrices over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly.html"><strong>fq_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly.html"><strong>fq_default_poly.h</strong> – univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_poly_factor.html"><strong>fq_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_default_poly_factor.html"><strong>fq_default_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_embed.html"><strong>fq_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod.html"><strong>fq_nmod.h</strong> – finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_vec.html"><strong>fq_nmod_vec.h</strong> – vectors over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mat.html"><strong>fq_nmod_mat.h</strong> – matrices over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly.html"><strong>fq_nmod_poly.h</strong> – univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_poly_factor.html"><strong>fq_nmod_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (word-size characteristic)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_embed.html"><strong>fq_nmod_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly.html"><strong>fq_nmod_mpoly.h</strong> – multivariate polynomials over finite fields of word-sized characteristic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_nmod_mpoly_factor.html"><strong>fq_nmod_mpoly_factor.h</strong> – factorisation of multivariate polynomials over finite fields of word-sized characteristic</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech.html"><strong>fq_zech.h</strong> – finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_vec.html"><strong>fq_zech_vec.h</strong> – vectors over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_mat.html"><strong>fq_zech_mat.h</strong> – matrices over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly.html"><strong>fq_zech_poly.h</strong> – univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_poly_factor.html"><strong>fq_zech_poly_factor.h</strong> – factorisation of univariate polynomials over finite fields (Zech logarithm representation)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fq_zech_embed.html"><strong>fq_zech_embed.h</strong> – Computing isomorphisms and embeddings of finite fields</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">p-adic numbers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="padic.html"><strong>padic.h</strong> – p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_poly.html"><strong>padic_poly.h</strong> – polynomials over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padic_mat.html"><strong>padic_mat.h</strong> – matrices over p-adic numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="qadic.html"><strong>qadic.h</strong> – unramified extensions over p-adic numbers</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Floating-point support code</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="double_extras.html"><strong>double_extras.h</strong> – support functions for double arithmetic</a></li>
+<li class="toctree-l1"><a class="reference internal" href="double_interval.html"><strong>double_interval.h</strong> – double-precision interval arithmetic and helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_vec.html"><strong>d_vec.h</strong> – double precision vectors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="d_mat.html"><strong>d_mat.h</strong> – double precision matrices</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interfaces</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_flint.html"><strong>flint_ctypes</strong> - Python interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Version history</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="history.html">History and changes</a></li>
+</ul>
+
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    <script
+  defer
+  src="_static/scripts/scroll-to-top.js"
+></script>
+
+<script>
+  window.ScrollspyConfig = {
+    rootMargin: "-120px 0px -60% 0px",
+  };
+</script>
+<script defer src="_static/scripts/scrollspy.js"></script>
+  <script src="_static/documentation_options.js?v=4cb41d1b"></script>
+  <script src="_static/doctools.js?v=c73fddf3"></script>
+  <script src="_static/sphinx_highlight.js?v=36527ec2"></script>
+  <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    </body>
+</html>
